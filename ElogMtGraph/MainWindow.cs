@@ -30,8 +30,6 @@ namespace ElogMtGraph
 			myZedGraphCtrl.Anchor = AnchorStyles.Left | AnchorStyles.Top
 												| AnchorStyles.Right | AnchorStyles.Bottom;
 
-			Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
-
 			richTextBox1.Text = "";
 
 			// tell the control to rescale itself
