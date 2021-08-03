@@ -273,7 +273,7 @@ namespace ElogMtGraph
 				Console.WriteLine("dir_list[{0}]={1}", dir_index, dir_list[dir_index]);
 				// コンボsetする 24H 20V
 				this.SetComboPeriod(24);
-				this.SetComboY(0.01);
+				this.SetComboY(5.0);
 				// ファイル読み込んでグラフ描く
 				Graph.ReadAndDraw((string)dir_list[dir_index]);
 			}

@@ -467,11 +467,20 @@ namespace ElogMtGraph
 			myMaster.Margin.All = 0;
 			myMaster.InnerPaneGap = 0;
 			
-			myPane = new GraphPane[Constants.CHNUM];
+			myPane = new GraphPane[Constants.CHNUM+1];
 			
 			for(int ch = 0; ch < Constants.CHNUM; ch++) {
-				// Create a new GraphPane
-				myPane[ch] = new GraphPane();
+				// ch2とch3の間に空白のグラフを挿入する。
+                if (ch == 2)
+                {
+                    myPane[Constants.CHNUM] = new GraphPane();
+                    GraphPane myp2 = myPane[Constants.CHNUM];
+					myp2.Margin.All = 9999F; // 適当な大きい数字
+                    myMaster.Add(myp2);
+                }
+
+                // Create a new GraphPane
+                myPane[ch] = new GraphPane();
 				GraphPane myp = myPane[ch];
 				//myp.Title.Text = "CH"+ (ch+1).ToString();
 				myp.Title.Text = graphCaption[ch];
