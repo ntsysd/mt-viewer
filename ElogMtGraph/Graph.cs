@@ -36,6 +36,8 @@ namespace ElogMtGraph
         // true=Graph描画中
         private static bool mutex = false;
 
+        private static string[] graphCaption = { "CH1(EX)","CH2(EY)", "CH3(HX)", "CH4(HY)", "CH5(HZ)" };
+
 		// コンストラクタ
 		//
 		static Graph()
@@ -232,7 +234,7 @@ namespace ElogMtGraph
 		}
 
 		/*
-		 * 
+		 * データのトレンドを除去する
 		 * 
 		 */
 		public static void Detrend()
@@ -471,7 +473,8 @@ namespace ElogMtGraph
 				// Create a new GraphPane
 				myPane[ch] = new GraphPane();
 				GraphPane myp = myPane[ch];
-				myp.Title.Text = "CH"+ (ch+1).ToString();
+				//myp.Title.Text = "CH"+ (ch+1).ToString();
+				myp.Title.Text = graphCaption[ch];
 				myp.Title.FontSpec.Size = 16;	
 				myp.XAxis.Title.Text = "t";
 				myp.YAxis.Title.Text = "Volt";
