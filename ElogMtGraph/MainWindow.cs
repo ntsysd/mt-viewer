@@ -31,6 +31,8 @@ namespace ElogMtGraph
 
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
+
+			LoadSettings(@"settings.xml");
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
@@ -285,6 +287,41 @@ namespace ElogMtGraph
 
 			Graph.Detrend();
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+		}
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			string filename = @"settings.xml";
+
+			SaveSettings(filename);
+        }
+
+		private void LoadSettings(string filename)
+        {
+			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+			{
+				
+				var xDocument = System.Xml.Linq.XDocument.Load(stream);
+
+				this.Size = new Size(
+					int.Parse(xDocument.Element("Settings").Element("Size").Element("Width").Value),
+					int.Parse(xDocument.Element("Settings").Element("Size").Element("Height").Value));
+			}
+		}
+
+		private void SaveSettings(string filename)
+        {
+			using (var stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+			{
+				var xDocument = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "utf-8", "Yes"));
+				var xSettings = new System.Xml.Linq.XElement("Settings");
+				var xSize = new System.Xml.Linq.XElement("Size");
+				xSize.Add(new System.Xml.Linq.XElement("Height", this.Size.Height));
+				xSize.Add(new System.Xml.Linq.XElement("Width", this.Size.Width));
+				xSettings.Add(xSize);
+				xDocument.Add(xSettings);
+				xDocument.Save(stream);
+			}
 		}
     }
 }
