@@ -35,9 +35,9 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBoxMode = new System.Windows.Forms.ComboBox();
+            this.comboBoxY = new System.Windows.Forms.ComboBox();
+            this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
+            this.comboBoxDataMode = new System.Windows.Forms.ComboBox();
             this.labelYUnit = new System.Windows.Forms.Label();
             this.labelY = new System.Windows.Forms.Label();
             this.labelHour = new System.Windows.Forms.Label();
@@ -83,32 +83,36 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.openToolStripMenuItem.Text = "Open(&O)";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // pageSetupToolStripMenuItem
             // 
             this.pageSetupToolStripMenuItem.Name = "pageSetupToolStripMenuItem";
-            this.pageSetupToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.pageSetupToolStripMenuItem.Text = "PageSetup";
+            this.pageSetupToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.pageSetupToolStripMenuItem.Text = "PageSetup(&S)";
+            this.pageSetupToolStripMenuItem.Click += new System.EventHandler(this.pageSetupToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.printToolStripMenuItem.Text = "Print";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.printToolStripMenuItem.Text = "Print(&P)";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.exitToolStripMenuItem.Text = "Exit(&X)";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBoxMode);
+            this.groupBox1.Controls.Add(this.comboBoxY);
+            this.groupBox1.Controls.Add(this.comboBoxPeriod);
+            this.groupBox1.Controls.Add(this.comboBoxDataMode);
             this.groupBox1.Controls.Add(this.labelYUnit);
             this.groupBox1.Controls.Add(this.labelY);
             this.groupBox1.Controls.Add(this.labelHour);
@@ -122,32 +126,59 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox3
+            // comboBoxY
             // 
-            this.comboBox3.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(629, 15);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(58, 24);
-            this.comboBox3.TabIndex = 8;
+            this.comboBoxY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBoxY.FormattingEnabled = true;
+            this.comboBoxY.Items.AddRange(new object[] {
+            "0.0001",
+            "0.001",
+            "0.01",
+            "0.1",
+            "0.2",
+            "0.4",
+            "0.8",
+            "1",
+            "2.5",
+            "5.0"});
+            this.comboBoxY.Location = new System.Drawing.Point(629, 15);
+            this.comboBoxY.Name = "comboBoxY";
+            this.comboBoxY.Size = new System.Drawing.Size(58, 24);
+            this.comboBoxY.TabIndex = 8;
             // 
-            // comboBox2
+            // comboBoxPeriod
             // 
-            this.comboBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(475, 15);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(60, 24);
-            this.comboBox2.TabIndex = 7;
+            this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBoxPeriod.FormattingEnabled = true;
+            this.comboBoxPeriod.Items.AddRange(new object[] {
+            "0.017",
+            "0.1",
+            "0.2",
+            "0.5",
+            "1",
+            "2",
+            "4",
+            "8",
+            "12",
+            "24"});
+            this.comboBoxPeriod.Location = new System.Drawing.Point(475, 15);
+            this.comboBoxPeriod.Name = "comboBoxPeriod";
+            this.comboBoxPeriod.Size = new System.Drawing.Size(60, 24);
+            this.comboBoxPeriod.TabIndex = 7;
             // 
-            // comboBoxMode
+            // comboBoxDataMode
             // 
-            this.comboBoxMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBoxMode.FormattingEnabled = true;
-            this.comboBoxMode.Location = new System.Drawing.Point(271, 15);
-            this.comboBoxMode.Name = "comboBoxMode";
-            this.comboBoxMode.Size = new System.Drawing.Size(122, 24);
-            this.comboBoxMode.TabIndex = 6;
+            this.comboBoxDataMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDataMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBoxDataMode.Items.AddRange(new object[] {
+            "PHX(15Hz)",
+            "ADU(32Hz)"});
+            this.comboBoxDataMode.Location = new System.Drawing.Point(271, 15);
+            this.comboBoxDataMode.Name = "comboBoxDataMode";
+            this.comboBoxDataMode.Size = new System.Drawing.Size(122, 24);
+            this.comboBoxDataMode.TabIndex = 6;
             // 
             // labelYUnit
             // 
@@ -209,6 +240,7 @@
             this.buttonDetrend.TabIndex = 0;
             this.buttonDetrend.Text = "Detrend";
             this.buttonDetrend.UseVisualStyleBackColor = true;
+            this.buttonDetrend.Click += new System.EventHandler(this.buttonDetrend_Click);
             // 
             // splitContainer1
             // 
@@ -267,6 +299,7 @@
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(800, 17);
             this.hScrollBar1.TabIndex = 3;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // MainWindow
             // 
@@ -277,9 +310,11 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.hScrollBar1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Form1";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -308,9 +343,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBoxMode;
+        private System.Windows.Forms.ComboBox comboBoxY;
+        private System.Windows.Forms.ComboBox comboBoxPeriod;
+        private System.Windows.Forms.ComboBox comboBoxDataMode;
         private System.Windows.Forms.Label labelYUnit;
         private System.Windows.Forms.Label labelY;
         private System.Windows.Forms.Label labelHour;
