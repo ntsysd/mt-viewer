@@ -142,9 +142,9 @@
             "1",
             "2.5",
             "5.0"});
-            this.comboBoxY.Location = new System.Drawing.Point(629, 15);
+            this.comboBoxY.Location = new System.Drawing.Point(618, 15);
             this.comboBoxY.Name = "comboBoxY";
-            this.comboBoxY.Size = new System.Drawing.Size(58, 24);
+            this.comboBoxY.Size = new System.Drawing.Size(69, 24);
             this.comboBoxY.TabIndex = 8;
             // 
             // comboBoxPeriod
@@ -194,7 +194,7 @@
             // 
             this.labelY.AutoSize = true;
             this.labelY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelY.Location = new System.Drawing.Point(607, 18);
+            this.labelY.Location = new System.Drawing.Point(599, 18);
             this.labelY.Name = "labelY";
             this.labelY.Size = new System.Drawing.Size(17, 16);
             this.labelY.TabIndex = 4;
@@ -258,7 +258,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(800, 359);
-            this.splitContainer1.SplitterDistance = 291;
+            this.splitContainer1.SplitterDistance = 297;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -268,7 +268,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 291);
+            this.tabControl1.Size = new System.Drawing.Size(800, 297);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -276,7 +276,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 265);
+            this.tabPage1.Size = new System.Drawing.Size(792, 271);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -288,7 +288,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 64);
+            this.richTextBox1.Size = new System.Drawing.Size(800, 58);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
