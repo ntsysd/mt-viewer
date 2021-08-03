@@ -32,7 +32,14 @@ namespace ElogMtGraph
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
-			LoadSettings(@"settings.xml");
+            try
+            {
+				LoadSettings(@"settings.xml");
+			}
+            catch
+            {
+				Console.WriteLine("設定ファイル開けず");
+            }
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
