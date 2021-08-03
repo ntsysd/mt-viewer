@@ -205,8 +205,9 @@ namespace ElogMtGraph
 					myp.CurveList.Clear();
 					myp.AddCurve( "", list, Color.Red, SymbolType.None );
 					// グラフタイトル
-					myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
-                    Console.WriteLine("DrawGraph() CH={0} end", ch);
+					myp.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir);
+					// myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
+					Console.WriteLine("DrawGraph() CH={0} end", ch);
                 } // CHループ
 				using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
 				{
