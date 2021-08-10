@@ -29,7 +29,7 @@ namespace ElogMtGraph
     public static class Constants
     {
         public const int CHNUM = 5;
-        public const int SAMP_FREQ = 15;
+        public const int SAMP_FREQ = 32;
     }
 
     public class Debug
