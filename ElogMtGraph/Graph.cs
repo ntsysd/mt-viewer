@@ -78,6 +78,9 @@ namespace ElogMtGraph
 				
 				// グラフPaneの生成しておく
 				MakePane();
+
+				// デフォルトで用紙を横向きに
+				myZedGraphCtrl.PrintDocument.DefaultPageSettings.Landscape = false;
 			}
 			catch(Exception e)
 			{

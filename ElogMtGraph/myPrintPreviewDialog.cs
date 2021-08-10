@@ -11,6 +11,8 @@ namespace ElogMtGraph
     {
         public myPrintPreviewDialog()
         {
+            InitializeComponent();
+
             ToolStrip ts = (ToolStrip)this.Controls[1];
             ToolStripButton newPrintButtun = new System.Windows.Forms.ToolStripButton();
             newPrintButtun.Image = ts.Items[0].Image;
@@ -20,7 +22,7 @@ namespace ElogMtGraph
             newPrintButtun.Text = ts.Items[0].Text;
             ts.Items.RemoveAt(0);
             ts.Items.Insert(0, newPrintButtun);
-            newPrintButtun.Click += NewPrintButtun_Click; ;
+            newPrintButtun.Click += NewPrintButtun_Click;
         }
 
         private void NewPrintButtun_Click(object sender, EventArgs e)
@@ -32,6 +34,18 @@ namespace ElogMtGraph
             {
                 Document.Print();
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // myPrintPreviewDialog
+            // 
+            this.ClientSize = new System.Drawing.Size(639, 420);
+            this.Name = "myPrintPreviewDialog";
+            this.ResumeLayout(false);
+
         }
     }
 }
