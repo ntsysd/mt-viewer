@@ -106,10 +106,11 @@ namespace ElogMtGraph
 				if (data_length < 0) return;
                 // 描画中ならばreturn
                 if (mutex) return;
-                mutex = true;  
-				
+                mutex = true;
+
+				Program.FormMain.StatusLabel_SetText("グラフ描画中");
 				// スクロールバーEnable/Disable　Disableにするとバーをドラッグ出来なくなる
-//				Program.FormMain.TimeScrollBarDisable();
+				//				Program.FormMain.TimeScrollBarDisable();
 				// カーソルwait
 				Cursor.Current = Cursors.WaitCursor;
 				// スクロールバー設定
@@ -234,6 +235,7 @@ namespace ElogMtGraph
 				Cursor.Current = Cursors.Default;
 				Program.FormMain.Refresh();
                 mutex = false;
+				Program.FormMain.StatusLabel_SetText("");
 			}		
 		}
 

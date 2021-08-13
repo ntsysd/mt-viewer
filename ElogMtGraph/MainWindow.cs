@@ -255,8 +255,8 @@ namespace ElogMtGraph
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-        {
+		private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+		{
 			//受け取ったキーを表示する
 			Console.WriteLine(e.KeyCode);
 			if (dir_index < 0) return;
@@ -292,26 +292,29 @@ namespace ElogMtGraph
 			}
 		}
 
-        private void buttonDetrend_Click(object sender, EventArgs e)
-        {
+		private void buttonDetrend_Click(object sender, EventArgs e)
+		{
 			Console.WriteLine("DeTrend");
+			StatusLabel_SetText("Detrend処理中");
 
 			Graph.Detrend();
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			StatusLabel_SetText("");
+			statusStrip1.Refresh();
 		}
 
-        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
-        {
+		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+		{
 			string filename = @"settings.xml";
 
 			SaveSettings(filename);
-        }
+		}
 
 		private void LoadSettings(string filename)
-        {
+		{
 			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
 			{
-				
+
 				var xDocument = System.Xml.Linq.XDocument.Load(stream);
 
 				this.Size = new Size(
@@ -321,7 +324,7 @@ namespace ElogMtGraph
 		}
 
 		private void SaveSettings(string filename)
-        {
+		{
 			using (var stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
 			{
 				var xDocument = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "utf-8", "Yes"));
@@ -334,5 +337,11 @@ namespace ElogMtGraph
 				xDocument.Save(stream);
 			}
 		}
+
+		public void StatusLabel_SetText(string text)
+        {
+			toolStripStatusLabel1.Text = text;
+			statusStrip1.Refresh();
+        }
     }
 }
