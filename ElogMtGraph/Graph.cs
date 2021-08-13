@@ -139,6 +139,14 @@ namespace ElogMtGraph
                     if (h == 0 && m == 0) m = 1;
 					TimeSpan interval = new TimeSpan(h, m, 0);
 					te = ts + interval;
+
+					DateTime nextDay0000 = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, 0, 0, 0) + new TimeSpan(1, 0, 0, 0);
+					if (te > nextDay0000)
+                    {
+						TimeSpan over = te - nextDay0000;
+						ts -= over;
+						te = nextDay0000;
+					}
 //                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
                 }
 				// AD bits
