@@ -283,6 +283,10 @@ namespace ElogMtGraph
 				// コンボsetする 24H 20V
 				//this.SetComboPeriod(24);
 				//this.SetComboY(5.0);
+
+				// 時間を0:00にする
+				TimeScrollBarSetValue(0.0);
+
 				// ファイル読み込んでグラフ描く
 				Graph.ReadAndDraw((string)dir_list[dir_index]);
 			}
