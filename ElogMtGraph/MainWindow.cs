@@ -289,6 +289,9 @@ namespace ElogMtGraph
 					// ファイル読み込んでグラフ描く
 					Graph.ReadAndDraw((string)dir_list[dir_index]);
 				}
+
+				// フォーカスのあるコンボボックスの値が変わってしまうことを抑制
+				e.Handled = true;
 			}
 
 			if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
@@ -311,7 +314,6 @@ namespace ElogMtGraph
 					{
 						this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
 						Graph.DrawGraph(GetComboPeriod(), GetComboY());
-						return;
 					}
 				}
 				else if (e.KeyCode == Keys.Left)
@@ -331,9 +333,11 @@ namespace ElogMtGraph
 					{
 						this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
 						Graph.DrawGraph(GetComboPeriod(), GetComboY());
-						return;
 					}
 				}
+
+				// フォーカスのあるコンボボックスの値が変わってしまうことを抑制
+				e.Handled = true;
 			}
 		}
 
