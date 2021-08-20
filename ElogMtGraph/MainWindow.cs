@@ -150,6 +150,10 @@ namespace ElogMtGraph
         {
 			OpenFileDialog ofd = new OpenFileDialog();
 
+			ofd.CheckFileExists = false;
+			ofd.FileName = "Folder Select";
+            ofd.FileOk += Ofd_FileOk;
+
 			//ダイアログを表示する
 			if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -194,6 +198,30 @@ namespace ElogMtGraph
 				Graph.ReadAndDraw(DirName);
 			}
 		}
+
+		// 中身がなにもないフォルダを開こうとしたらキャンセルする
+        private void Ofd_FileOk(object sender, CancelEventArgs e)
+        {
+            try
+            {
+				var ofd = sender as OpenFileDialog;
+
+				var filename = ofd.FileName;
+
+				string directoryName = Path.GetDirectoryName(filename);
+
+				var list = Directory.GetFiles(directoryName);
+
+				if(list.Length == 0)
+                {
+					e.Cancel = true;
+				}
+			}
+            catch
+            {
+
+            }
+        }
 
         private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
