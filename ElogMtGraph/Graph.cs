@@ -25,10 +25,15 @@ namespace ElogMtGraph
 //		private static double range_h_save = -1;
 //		private static double range_y_save = -1;
 
-		private const double	VOLT_MAX = 2.5;
-		private const double	VOLT_MIN = -2.5;
+		private const double VOLT_MAX_E = 2.5;
+		private const double VOLT_MIN_E = -2.5;
+		private const double VOLT_MAX_H = 10.0;
+		private const double VOLT_MIN_H = -10.0;
+
 		// Volt/LSB 
-		private const double VOLT_LSB = 2.5 / 8388608;
+		private const double VOLT_LSB_E = 2.5 / 8388608;
+		private const double VOLT_LSB_H = 10.0 / 8388608;
+
 		// 1=ファイルが読み込まれていない
 		private static int firsttime;
 		// 入力file path
@@ -149,16 +154,26 @@ namespace ElogMtGraph
 					}
 //                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
                 }
-				// AD bits
-				// 変換係数get Volt/LSB
-				double coef = VOLT_LSB;
 
 				/*
 				 * グラフ描画
 				 */
 				// CHループ
 				for(int ch = 0; ch < Constants.CHNUM; ch++) {
-                    Console.WriteLine("DrawGraph() CH={0} start, data_elngth={1}", ch, data_length);
+					// AD bits
+					// 変換係数get Volt/LSB
+					double coef = VOLT_LSB_E;
+					double volt_max = VOLT_MAX_E;
+					double volt_min = VOLT_MIN_E;
+					if (ch >= 2)
+                    {
+						coef = VOLT_LSB_H;
+						volt_max = VOLT_MAX_H;
+						volt_min = VOLT_MIN_H;
+					}
+					
+
+					Console.WriteLine("DrawGraph() CH={0} start, data_elngth={1}", ch, data_length);
                     GraphPane myp;
 					myp = myPane[ch];
 					// 
@@ -200,14 +215,14 @@ namespace ElogMtGraph
                         // Y軸レンジ設定
                         double min = ycenter - range_y / 2;
                         double max = ycenter + range_y / 2;
-                        if (min < VOLT_MIN)
+                        if (min < volt_min)
                         {
-                            min = VOLT_MIN;
+                            min = volt_min;
                             max = min + range_y;
                         }
-                        if (max > VOLT_MAX)
+                        if (max > volt_max)
                         {
-                            max = VOLT_MAX;
+                            max = volt_max;
                             min = max - range_y;
                         }
                         myp.YAxis.Scale.Min = min;

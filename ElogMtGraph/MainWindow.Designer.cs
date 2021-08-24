@@ -144,7 +144,9 @@
             "0.8",
             "1",
             "2.5",
-            "5.0"});
+            "5.0",
+            "10",
+            "20"});
             this.comboBoxY.Location = new System.Drawing.Point(618, 15);
             this.comboBoxY.Name = "comboBoxY";
             this.comboBoxY.Size = new System.Drawing.Size(69, 24);
