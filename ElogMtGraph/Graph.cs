@@ -495,18 +495,21 @@ namespace ElogMtGraph
 			// Set the margins and the space between panes to 10 points
 			myMaster.Margin.All = 0;
 			myMaster.InnerPaneGap = 0;
-			
-			myPane = new GraphPane[Constants.CHNUM+1];
-			
-			for(int ch = 0; ch < Constants.CHNUM; ch++) {
-				// ch2とch3の間に空白のグラフを挿入する。
-                if (ch == 2)
-                {
-                    myPane[Constants.CHNUM] = new GraphPane();
-                    GraphPane myp2 = myPane[Constants.CHNUM];
-					myp2.Margin.All = 9999F; // 適当な大きい数字
-                    myMaster.Add(myp2);
-                }
+
+			myPane = new GraphPane[Constants.CHNUM];
+
+			//空白のグラフを挿入するので+1
+			//myPane = new GraphPane[Constants.CHNUM + 1];
+
+			for (int ch = 0; ch < Constants.CHNUM; ch++) {
+	//			// ch2とch3の間に空白のグラフを挿入する。
+    //            if (ch == 2)
+    //            {
+    //                myPane[Constants.CHNUM] = new GraphPane();
+    //                GraphPane myp2 = myPane[Constants.CHNUM];
+	//				myp2.Margin.All = 9999F; // 適当な大きい数字
+    //                myMaster.Add(myp2);
+    //            }
 
                 // Create a new GraphPane
                 myPane[ch] = new GraphPane();
@@ -535,7 +538,7 @@ namespace ElogMtGraph
 			// Tell ZedGraph to auto layout all the panes
 			using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
 			{
-				myMaster.SetLayout( g, PaneLayout.SquareColPreferred );
+				myMaster.SetLayout( g, PaneLayout.SingleColumn );
 				myMaster.AxisChange( g );
 				//g.Dispose();
 			}
