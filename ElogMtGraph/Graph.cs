@@ -107,7 +107,7 @@ namespace ElogMtGraph
 			try {
 				if (timestamp == null) return;
 				if (range_t <= 0) return;
-				if (range_y <= 0) return;
+				if (range_y <= 0 && range_y != -1.0) return;
 				if (data_length < 0) return;
                 // 描画中ならばreturn
                 if (mutex) return;
@@ -195,6 +195,8 @@ namespace ElogMtGraph
                     {
                         // データをグラフ用に抜き出すループ
                         double yavg = 0;
+						double yMax = double.MinValue;
+						double yMin = double.MaxValue;
                         int avg_num = 0;
                         list.Clear();
                         for (int i = 0; i < data_length; i += 1)
@@ -207,26 +209,41 @@ namespace ElogMtGraph
                                 list.Add(x, y);
                                 yavg += y;
                                 avg_num++;
+
+								yMax = Math.Max(yMax, y);
+								yMin = Math.Min(yMin, y);
                             }
                         }
-                        // Y軸中心値計算
-                        if (avg_num <= 0) avg_num = 1;
-                        double ycenter = yavg / avg_num;
-                        // Y軸レンジ設定
-                        double min = ycenter - range_y / 2;
-                        double max = ycenter + range_y / 2;
-                        if (min < volt_min)
+
+						// オートスケールのときの処理
+						if (range_y == -1.0)
                         {
-                            min = volt_min;
-                            max = min + range_y;
-                        }
-                        if (max > volt_max)
+							myp.YAxis.Scale.Min = yMin;
+							myp.YAxis.Scale.Max = yMax;
+						}
+						// オートスケールではないときの処理
+                        else
                         {
-                            max = volt_max;
-                            min = max - range_y;
-                        }
-                        myp.YAxis.Scale.Min = min;
-                        myp.YAxis.Scale.Max = max;
+							// Y軸中心値計算
+							if (avg_num <= 0) avg_num = 1;
+							double ycenter = yavg / avg_num;
+							// Y軸レンジ設定
+							double min = ycenter - range_y / 2;
+							double max = ycenter + range_y / 2;
+							if (min < volt_min)
+							{
+								min = volt_min;
+								max = min + range_y;
+							}
+							if (max > volt_max)
+							{
+								max = volt_max;
+								min = max - range_y;
+							}
+							myp.YAxis.Scale.Min = min;
+							myp.YAxis.Scale.Max = max;
+						}
+                        
                     } // if (data_length > 0)
                     // プロットする
 					myp.CurveList.Clear();

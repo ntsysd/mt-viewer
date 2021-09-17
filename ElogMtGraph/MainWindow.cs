@@ -27,7 +27,7 @@ namespace ElogMtGraph
 
 			comboBoxDataMode.SelectedIndex = 0;
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
-			comboBoxY.SelectedIndex = comboBoxPeriod.Items.Count - 1;
+			comboBoxY.SelectedIndex = comboBoxY.Items.Count - 1;
 
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
@@ -100,7 +100,14 @@ namespace ElogMtGraph
 		// Yコンボの値get　単位:Volt
 		public double GetComboY()
 		{
-			return double.Parse(this.comboBoxY.SelectedItem.ToString());
+            try
+            {
+				return double.Parse(this.comboBoxY.SelectedItem.ToString());
+			}
+			catch(FormatException e)
+            {
+				return -1.0;
+            }
 		}
 		public int GetComboDataModeFreq()
 		{
@@ -140,6 +147,19 @@ namespace ElogMtGraph
 				}
 			}
 		}
+		public void SetComboY(string y)
+        {
+			foreach (object item in this.comboBoxY.Items)
+			{
+				//				Console.WriteLine(item.ToString());
+				if (item.ToString() == y)
+				{
+					this.comboBoxY.SelectedItem = item;
+					break;
+				}
+			}
+		}
+
 		// descriptionBoxにテキスト設定
 		public void SetDescriptionBoxText(string text)
 		{
@@ -192,7 +212,7 @@ namespace ElogMtGraph
 
 				// コンボsetする 24H 20V
 				this.SetComboPeriod(24);
-				this.SetComboY(5.0);
+				this.SetComboY("AUTO");
 				// ファイル読み込んでグラフ描く
 				//				Graph.SetInputDir(fbd.SelectedPath);
 				Graph.ReadAndDraw(DirName);
