@@ -32,7 +32,12 @@ namespace ElogMtGraph
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
-            try
+			button1Hz.Enabled = true;
+			button32Hz.Enabled = false;
+			button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
+			button32Hz.BackColor = Color.Yellow;
+
+			try
             {
 				LoadSettings(@"settings.xml");
 			}
@@ -440,5 +445,39 @@ namespace ElogMtGraph
 			toolStripStatusLabel1.Text = text;
 			statusStrip1.Refresh();
         }
-    }
+
+        private void button32Hz_Click(object sender, EventArgs e)
+        {
+			SetAverageFilter(false);
+        }
+
+        private void button1Hz_Click(object sender, EventArgs e)
+        {
+			SetAverageFilter(true);
+        }
+
+		private void SetAverageFilter(bool enable)
+        {
+            if (enable)
+            {
+				button1Hz.Enabled = false;
+				button32Hz.Enabled = true;
+				button1Hz.BackColor = Color.Yellow;
+				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
+            }
+            else
+            {
+				button1Hz.Enabled = true;
+				button32Hz.Enabled = false;
+				button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
+				button32Hz.BackColor = Color.Yellow;
+			}
+        }
+
+		public bool getAverageFilter()
+        {
+			return button32Hz.Enabled;
+		}
+
+	}
 }

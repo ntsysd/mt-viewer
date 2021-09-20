@@ -35,6 +35,7 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button32Hz = new System.Windows.Forms.Button();
             this.comboBoxY = new System.Windows.Forms.ComboBox();
             this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
             this.comboBoxDataMode = new System.Windows.Forms.ComboBox();
@@ -51,6 +52,7 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1Hz = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -113,6 +115,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1Hz);
+            this.groupBox1.Controls.Add(this.button32Hz);
             this.groupBox1.Controls.Add(this.comboBoxY);
             this.groupBox1.Controls.Add(this.comboBoxPeriod);
             this.groupBox1.Controls.Add(this.comboBoxDataMode);
@@ -128,6 +132,18 @@
             this.groupBox1.Size = new System.Drawing.Size(800, 45);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // button32Hz
+            // 
+            this.button32Hz.AutoSize = true;
+            this.button32Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button32Hz.Location = new System.Drawing.Point(133, 13);
+            this.button32Hz.Name = "button32Hz";
+            this.button32Hz.Size = new System.Drawing.Size(51, 26);
+            this.button32Hz.TabIndex = 9;
+            this.button32Hz.Text = "32Hz";
+            this.button32Hz.UseVisualStyleBackColor = true;
+            this.button32Hz.Click += new System.EventHandler(this.button32Hz_Click);
             // 
             // comboBoxY
             // 
@@ -148,7 +164,7 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxY.Location = new System.Drawing.Point(618, 15);
+            this.comboBoxY.Location = new System.Drawing.Point(657, 15);
             this.comboBoxY.Name = "comboBoxY";
             this.comboBoxY.Size = new System.Drawing.Size(69, 24);
             this.comboBoxY.TabIndex = 8;
@@ -169,7 +185,7 @@
             "8",
             "12",
             "24"});
-            this.comboBoxPeriod.Location = new System.Drawing.Point(475, 15);
+            this.comboBoxPeriod.Location = new System.Drawing.Point(514, 15);
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(60, 24);
             this.comboBoxPeriod.TabIndex = 7;
@@ -181,7 +197,7 @@
             this.comboBoxDataMode.Items.AddRange(new object[] {
             "PHX(15Hz)",
             "ADU(32Hz)"});
-            this.comboBoxDataMode.Location = new System.Drawing.Point(271, 15);
+            this.comboBoxDataMode.Location = new System.Drawing.Point(310, 15);
             this.comboBoxDataMode.Name = "comboBoxDataMode";
             this.comboBoxDataMode.Size = new System.Drawing.Size(122, 24);
             this.comboBoxDataMode.TabIndex = 6;
@@ -190,7 +206,7 @@
             // 
             this.labelYUnit.AutoSize = true;
             this.labelYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelYUnit.Location = new System.Drawing.Point(689, 18);
+            this.labelYUnit.Location = new System.Drawing.Point(728, 18);
             this.labelYUnit.Name = "labelYUnit";
             this.labelYUnit.Size = new System.Drawing.Size(62, 16);
             this.labelYUnit.TabIndex = 5;
@@ -200,7 +216,7 @@
             // 
             this.labelY.AutoSize = true;
             this.labelY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelY.Location = new System.Drawing.Point(599, 18);
+            this.labelY.Location = new System.Drawing.Point(638, 18);
             this.labelY.Name = "labelY";
             this.labelY.Size = new System.Drawing.Size(17, 16);
             this.labelY.TabIndex = 4;
@@ -210,7 +226,7 @@
             // 
             this.labelHour.AutoSize = true;
             this.labelHour.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHour.Location = new System.Drawing.Point(541, 18);
+            this.labelHour.Location = new System.Drawing.Point(580, 18);
             this.labelHour.Name = "labelHour";
             this.labelHour.Size = new System.Drawing.Size(38, 16);
             this.labelHour.TabIndex = 3;
@@ -220,7 +236,7 @@
             // 
             this.labelPeriod.AutoSize = true;
             this.labelPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelPeriod.Location = new System.Drawing.Point(422, 18);
+            this.labelPeriod.Location = new System.Drawing.Point(461, 18);
             this.labelPeriod.Name = "labelPeriod";
             this.labelPeriod.Size = new System.Drawing.Size(51, 16);
             this.labelPeriod.TabIndex = 2;
@@ -230,7 +246,7 @@
             // 
             this.labelMode.AutoSize = true;
             this.labelMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelMode.Location = new System.Drawing.Point(229, 18);
+            this.labelMode.Location = new System.Drawing.Point(268, 18);
             this.labelMode.Name = "labelMode";
             this.labelMode.Size = new System.Drawing.Size(44, 16);
             this.labelMode.TabIndex = 1;
@@ -264,7 +280,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(800, 337);
-            this.splitContainer1.SplitterDistance = 275;
+            this.splitContainer1.SplitterDistance = 111;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -274,7 +290,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 275);
+            this.tabControl1.Size = new System.Drawing.Size(800, 111);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -282,7 +298,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 249);
+            this.tabPage1.Size = new System.Drawing.Size(792, 85);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -294,7 +310,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 58);
+            this.richTextBox1.Size = new System.Drawing.Size(800, 222);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -323,6 +339,18 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // button1Hz
+            // 
+            this.button1Hz.AutoSize = true;
+            this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1Hz.Location = new System.Drawing.Point(183, 13);
+            this.button1Hz.Name = "button1Hz";
+            this.button1Hz.Size = new System.Drawing.Size(51, 26);
+            this.button1Hz.TabIndex = 10;
+            this.button1Hz.Text = "1Hz";
+            this.button1Hz.UseVisualStyleBackColor = true;
+            this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
             // 
             // MainWindow
             // 
@@ -381,6 +409,8 @@
         private System.Windows.Forms.Button buttonDetrend;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button button32Hz;
+        private System.Windows.Forms.Button button1Hz;
     }
 }
 
