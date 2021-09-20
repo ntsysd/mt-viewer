@@ -464,20 +464,18 @@ namespace ElogMtGraph
 				button32Hz.Enabled = true;
 				button1Hz.BackColor = Color.Yellow;
 				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-            }
+				Graph.AverageFilter();
+				Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			}
             else
             {
 				button1Hz.Enabled = true;
 				button32Hz.Enabled = false;
 				button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
 				button32Hz.BackColor = Color.Yellow;
+				Graph.RefreshData();
+				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
         }
-
-		public bool getAverageFilter()
-        {
-			return button32Hz.Enabled;
-		}
-
 	}
 }

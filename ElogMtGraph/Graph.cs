@@ -9,21 +9,27 @@ namespace ElogMtGraph
 {
 	public static class Graph
 	{
-
 		private static ZedGraphControl myZedGraphCtrl;
 		private static MasterPane myMaster;
 
 		private static GraphPane[] myPane;
 
-		// データ読み込み用　タイムスタンプ
+		// グラフ描画用　タイムスタンプ
 		private static DateTime[] timestamp;
-		// データ読み込み用　観測値
+		// グラフ描画用　観測値
 		private static int[,] data;
-		// データ個数
+		// グラフ描画用　データ個数
 		private static UInt32 data_length = 0;
-		
-//		private static double range_h_save = -1;
-//		private static double range_y_save = -1;
+
+		// データ読み込み用　タイムスタンプ
+		private static DateTime[] readTimestamp;
+		// データ読み込み用　観測値
+		private static int[,] readData;
+		// データ読み込み用　データ個数
+		private static UInt32 readData_length = 0;
+
+		//		private static double range_h_save = -1;
+		//		private static double range_y_save = -1;
 
 		private const double VOLT_MAX_E = 2.5;
 		private const double VOLT_MIN_E = -2.5;
@@ -57,7 +63,9 @@ namespace ElogMtGraph
                 // 間引きを無くしたので15Hzデータ1日分のメモリを確保する
                 timestamp = new DateTime[86400*Constants.SAMP_FREQ+1024];
                 data = new int[86400*Constants.SAMP_FREQ+1024, Constants.CHNUM];
-				
+				readTimestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
+				readData = new int[86400 * Constants.SAMP_FREQ + 1024, Constants.CHNUM];
+
 				firsttime = 1;
 //				input_dir = "";
 			}
@@ -316,7 +324,48 @@ namespace ElogMtGraph
 			}
         }
 
-        /*
+		/*
+		 * 読み込んだデータをそのままグラフ描画用の配列にコピーする
+		 * 
+		 */
+		public static void RefreshData()
+        {
+			Array.Copy(readData, data, readData.Length);
+			Array.Copy(readTimestamp, timestamp, readTimestamp.Length);
+			data_length = readData_length;
+		}
+
+		/*
+		 * 32Hzのデータを1Hzに平均化する
+		 * 
+		 */
+		public static void AverageFilter()
+        {
+			for (int ch = 0; ch < Constants.CHNUM; ++ch)
+			{
+				int sum = 0;
+				for (int i = 0; i < data_length; ++i)
+                {
+					sum += readData[i, ch];
+					if(i % 32 == 31)
+                    {
+						data[i/32, ch] = sum / 32;
+						sum = 0;
+                    }
+                }
+			}
+
+			for (int i = 0; i * 32 < data_length; ++i)
+			{
+				timestamp[i] = readTimestamp[i * 32];
+			}
+
+			data_length = readData_length / 32;
+		}
+
+
+
+		/*
          * ディレクトリから1日分のファイル読み込んでグラフ描画する
 		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
          */
@@ -339,14 +388,14 @@ namespace ElogMtGraph
 			DirectoryInfo dir = new DirectoryInfo(input_dir);
 			FileInfo[] file_list = dir.GetFiles();
 
-			data_length = 0;
+			readData_length = 0;
 			if(Program.FormMain.GetComboDataModeFreq() == 15) {
 				int fileCount = 0;
 				foreach (FileInfo f in file_list) {
 					if (f != null) {
 						if (f.Name.IndexOf("_15Hz") >= 0) {
 							Console.WriteLine("{0}", f.Name);
-							if (ReadFile(f.FullName, ref data_length) < 0) {
+							if (ReadFile(f.FullName, ref readData_length) < 0) {
 								// 読み込みエラー
 								MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 								return -1;
@@ -369,7 +418,7 @@ namespace ElogMtGraph
 					if (f != null) {
 						if (f.Name.IndexOf("_32Hz") >= 0) {
 							Console.WriteLine("{0}", f.Name);
-							if (ReadFile(f.FullName, ref data_length) < 0) {
+							if (ReadFile(f.FullName, ref readData_length) < 0) {
 								// 読み込みエラー
 								MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 								return -1;
@@ -386,6 +435,8 @@ namespace ElogMtGraph
 					MessageBox.Show("32Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
+
+			RefreshData();
 
 			// Graph描画
 			double period = Program.FormMain.GetComboPeriod();
@@ -447,7 +498,7 @@ namespace ElogMtGraph
 				// 指定した時間範囲(ts〜te)のデータだけをファイルから読み込む
 				// ts,teの指定は機能してない
 				// 間引き有り
-				decode.ReadFile(file_path, ref timestamp, ref data, ref cnt, ts, te, mabiki);
+				decode.ReadFile(file_path, ref readTimestamp, ref readData, ref cnt, ts, te, mabiki);
 				return 0;
 			} // try()
 			catch(Exception e)
