@@ -471,7 +471,10 @@ namespace ElogMtGraph
 
 		private void SetAverageFilter(bool enable)
         {
-            if (enable)
+			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
+			this.ActiveControl = richTextBox1;
+
+			if (enable)
             {
 				button1Hz.Enabled = false;
 				button32Hz.Enabled = true;

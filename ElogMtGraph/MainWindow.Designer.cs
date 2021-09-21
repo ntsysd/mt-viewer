@@ -35,6 +35,7 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1Hz = new System.Windows.Forms.Button();
             this.button32Hz = new System.Windows.Forms.Button();
             this.comboBoxY = new System.Windows.Forms.ComboBox();
             this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
@@ -52,7 +53,6 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1Hz = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -132,6 +132,18 @@
             this.groupBox1.Size = new System.Drawing.Size(800, 45);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // button1Hz
+            // 
+            this.button1Hz.AutoSize = true;
+            this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1Hz.Location = new System.Drawing.Point(183, 13);
+            this.button1Hz.Name = "button1Hz";
+            this.button1Hz.Size = new System.Drawing.Size(51, 26);
+            this.button1Hz.TabIndex = 10;
+            this.button1Hz.Text = "1Hz";
+            this.button1Hz.UseVisualStyleBackColor = true;
+            this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
             // 
             // button32Hz
             // 
@@ -280,7 +292,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(800, 337);
-            this.splitContainer1.SplitterDistance = 111;
+            this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -290,7 +302,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 111);
+            this.tabControl1.Size = new System.Drawing.Size(800, 289);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -298,7 +310,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 85);
+            this.tabPage1.Size = new System.Drawing.Size(792, 263);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -310,7 +322,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 222);
+            this.richTextBox1.Size = new System.Drawing.Size(800, 44);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -339,18 +351,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button1Hz
-            // 
-            this.button1Hz.AutoSize = true;
-            this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1Hz.Location = new System.Drawing.Point(183, 13);
-            this.button1Hz.Name = "button1Hz";
-            this.button1Hz.Size = new System.Drawing.Size(51, 26);
-            this.button1Hz.TabIndex = 10;
-            this.button1Hz.Text = "1Hz";
-            this.button1Hz.UseVisualStyleBackColor = true;
-            this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
             // 
             // MainWindow
             // 
