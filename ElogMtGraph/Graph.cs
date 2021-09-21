@@ -355,9 +355,23 @@ namespace ElogMtGraph
                 }
 			}
 
-			for (int i = 0; i * filter_length < data_length; ++i)
+			DateTime baseTime = new DateTime();
+			TimeSpan timeSpan = new TimeSpan();
+			for (int i = 0; i < data_length; ++i)
 			{
-				timestamp[i] = readTimestamp[i * filter_length];
+				if(i % filter_length == 0)
+                {
+					baseTime = readTimestamp[i];
+					timeSpan = new TimeSpan();
+				}
+                else
+                {
+					timeSpan += readTimestamp[i] - baseTime;
+					if (i % filter_length == filter_length - 1)
+					{
+						timestamp[i / filter_length] = baseTime + new TimeSpan(timeSpan.Ticks / filter_length);
+					}
+				}
 			}
 
 			data_length = (uint)(readData_length / filter_length);
