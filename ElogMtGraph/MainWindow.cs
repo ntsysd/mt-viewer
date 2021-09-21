@@ -18,6 +18,7 @@ namespace ElogMtGraph
 		private ArrayList dir_list = new ArrayList();
 		// 現在表示しているディレクトリリストの番号
 		private int dir_index = -1;
+		private int currentFreq = -1;
 
 		public MainWindow()
         {
@@ -36,6 +37,8 @@ namespace ElogMtGraph
 			button32Hz.Enabled = false;
 			button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
 			button32Hz.BackColor = Color.Yellow;
+			currentFreq = GetComboDataModeFreq();
+			button32Hz.Text = currentFreq.ToString() + "Hz";
 
 			try
             {
@@ -114,14 +117,20 @@ namespace ElogMtGraph
 				return -1.0;
             }
 		}
-		public int GetComboDataModeFreq()
-		{
+
+		private int GetComboDataModeFreq()
+        {
 			switch (this.comboBoxDataMode.Text)
 			{
 				case "PHX(15Hz)": return 15;
 				case "ADU(32Hz)": return 32;
 				default: return -1;
 			}
+		}
+
+		public int GetDataModeFreq()
+		{
+			return currentFreq;
 		}
 
 		// Periodコンボの値set
@@ -215,9 +224,13 @@ namespace ElogMtGraph
 				dir_index = dir_list.IndexOf(DirName);
 				Console.WriteLine("dir_index={0}", dir_index);
 
-				// コンボsetする 24H 20V
+				// コンボsetする 24H AUTO-V
 				this.SetComboPeriod(24);
 				this.SetComboY("AUTO");
+
+				// フィルタの周波数を設定
+				currentFreq = GetComboDataModeFreq();
+				button32Hz.Text = currentFreq.ToString() + "Hz";
 				// ファイル読み込んでグラフ描く
 				//				Graph.SetInputDir(fbd.SelectedPath);
 				Graph.ReadAndDraw(DirName);
@@ -464,7 +477,7 @@ namespace ElogMtGraph
 				button32Hz.Enabled = true;
 				button1Hz.BackColor = Color.Yellow;
 				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-				Graph.AverageFilter();
+				Graph.AverageFilter(GetDataModeFreq());
 				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
             else

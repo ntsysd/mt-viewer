@@ -336,10 +336,10 @@ namespace ElogMtGraph
 		}
 
 		/*
-		 * 32Hzのデータを1Hzに平均化する
-		 * 
+		 * xxHzのデータを1Hzに平均化する
+		 * arg:filter_length 平均化するデータの個数
 		 */
-		public static void AverageFilter()
+		public static void AverageFilter(int filter_length)
         {
 			for (int ch = 0; ch < Constants.CHNUM; ++ch)
 			{
@@ -347,20 +347,20 @@ namespace ElogMtGraph
 				for (int i = 0; i < data_length; ++i)
                 {
 					sum += readData[i, ch];
-					if(i % 32 == 31)
+					if(i % filter_length == filter_length-1)
                     {
-						data[i/32, ch] = sum / 32;
+						data[i/ filter_length, ch] = sum / filter_length;
 						sum = 0;
                     }
                 }
 			}
 
-			for (int i = 0; i * 32 < data_length; ++i)
+			for (int i = 0; i * filter_length < data_length; ++i)
 			{
-				timestamp[i] = readTimestamp[i * 32];
+				timestamp[i] = readTimestamp[i * filter_length];
 			}
 
-			data_length = readData_length / 32;
+			data_length = (uint)(readData_length / filter_length);
 		}
 
 
@@ -389,7 +389,7 @@ namespace ElogMtGraph
 			FileInfo[] file_list = dir.GetFiles();
 
 			readData_length = 0;
-			if(Program.FormMain.GetComboDataModeFreq() == 15) {
+			if(Program.FormMain.GetDataModeFreq() == 15) {
 				int fileCount = 0;
 				foreach (FileInfo f in file_list) {
 					if (f != null) {
@@ -412,7 +412,7 @@ namespace ElogMtGraph
 					MessageBox.Show("15Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
-			if(Program.FormMain.GetComboDataModeFreq() == 32) {
+			if(Program.FormMain.GetDataModeFreq() == 32) {
 				int fileCount = 0;
 				foreach (FileInfo f in file_list) {
 					if (f != null) {

@@ -27,7 +27,7 @@ namespace ElogMtGraph
 		 */
 		public static int ReadFile(string filepath, ref DateTime[] timestamp, ref int[,] data, ref UInt32 out_cnt, DateTime ts, DateTime te, int mabiki)
 		{
-			samp_freq = Program.FormMain.GetComboDataModeFreq();
+			samp_freq = Program.FormMain.GetDataModeFreq();
 			int ONEBLOCK = (TIME_LEN + (DATA_LEN*Constants.CHNUM) * samp_freq); // 1block(1sec)データ長
 			DateTime [] timestamp0 = new DateTime[samp_freq];
 			int [,] data0 = new int[samp_freq, Constants.CHNUM];
