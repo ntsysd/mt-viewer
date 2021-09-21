@@ -492,6 +492,11 @@ namespace ElogMtGraph
 			SetAverageFilter(true);
         }
 
+		public bool AverageFilterIsEnable()
+        {
+			return button32Hz.Enabled;
+		}
+
 		private void SetAverageFilter(bool enable)
         {
 			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
@@ -503,7 +508,7 @@ namespace ElogMtGraph
 				button32Hz.Enabled = true;
 				button1Hz.BackColor = Color.Yellow;
 				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-				Graph.AverageFilter(GetDataModeFreq());
+				
 				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
             else
@@ -512,7 +517,7 @@ namespace ElogMtGraph
 				button32Hz.Enabled = false;
 				button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
 				button32Hz.BackColor = Color.Yellow;
-				Graph.RefreshData();
+				
 				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
         }

@@ -129,7 +129,11 @@ namespace ElogMtGraph
 				// スクロールバー設定
 				Program.FormMain.TimeScrollBarSetMinMax(0.0, 24, range_t/5, range_t);
 				Program.FormMain.Refresh();
+
 				
+				if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+				else Graph.RefreshData();
+
 				//
 				// 時間軸レンジ計算
 				//
