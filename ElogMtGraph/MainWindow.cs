@@ -43,6 +43,29 @@ namespace ElogMtGraph
 			try
             {
 				LoadSettings(@"settings.xml");
+
+				bool sizeFix = false;
+				Size newSize = this.Size;
+				Point newLocation = this.Location;
+				
+				if(this.Size.Width > Screen.GetWorkingArea(this).Width)
+                {
+					sizeFix = true;
+					newSize.Width = Screen.GetWorkingArea(this).Width;
+					newLocation.X = 0;
+				}
+				if (this.Size.Height > Screen.GetWorkingArea(this).Height)
+				{
+					sizeFix = true;
+					newSize.Height = Screen.GetWorkingArea(this).Height;
+					newLocation.Y = 0;
+				}
+
+                if (sizeFix)
+                {
+					this.Size = newSize;
+					this.Location = newLocation;
+                }
 			}
             catch
             {
