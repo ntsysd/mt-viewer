@@ -142,8 +142,8 @@ namespace ElogMtGraph
 				Program.FormMain.Refresh();
 
 				
-				if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
-				else Graph.RefreshData();
+				//if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+				//else Graph.RefreshData();
 
 				//
 				// 時間軸レンジ計算
@@ -227,18 +227,94 @@ namespace ElogMtGraph
                         int avg_num = 0;
                         list.Clear();
 
-                        for (int i = tsindex; i <= teindex; ++i)
-                        {
-                            double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
-                                                                timestamp[i].Hour, timestamp[i].Minute, timestamp[i].Second, timestamp[i].Millisecond);
-                            double y = (double)data[i, ch] * coef;
-                            list.Add(x, y);
-                            yavg += y;
-                            avg_num++;
+						int WindowWidth = Program.FormMain.getScreenWidth();
+						int len = WindowWidth * 3;
+						int crop_length = teindex - tsindex + 1;
 
-							yMax = Math.Max(yMax, y);
-							yMin = Math.Min(yMin, y);
-                        }
+						//if (len < crop_length)
+						if (!Program.FormMain.AverageFilterIsEnable())
+						{
+							for (int i = tsindex; i <= teindex; ++i)
+							{
+
+								double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
+																	timestamp[i].Hour, timestamp[i].Minute, timestamp[i].Second, timestamp[i].Millisecond);
+								double y = (double)data[i, ch] * coef;
+								list.Add(x, y);
+								yavg += y;
+								avg_num++;
+
+								yMax = Math.Max(yMax, y);
+								yMin = Math.Min(yMin, y);
+							}
+						}
+                        else
+                        {
+							//double mabikiYmin, mabikiYmax;
+							//double mabikiXmin, mabikiXmax; 
+
+							//(mabikiYmin, mabikiYmax) = (double.MaxValue, double.MinValue);
+
+							double x;
+							double y;
+
+							for (int i = 0; i < len; ++i)
+							{
+								int start = (int)((long)crop_length * i / len + teindex);
+								int end = (int)((long)crop_length * (i + 1) / len - 1 + teindex);
+
+								int min = int.MaxValue;
+								int max = int.MinValue;
+								int minindex = 0;
+								int maxindex = 0;
+								for (int j = start; j <= end; ++j)
+								{
+									if (min > data[j, ch])
+									{
+										min = data[j, ch];
+										minindex = j;
+									}
+									if (max < data[j, ch])
+									{
+										max = data[j, ch];
+										maxindex = j;
+									}
+
+									y = (double)data[j, ch] * coef;
+									yavg += y;
+									avg_num++;
+
+									yMax = Math.Max(yMax, y);
+									yMin = Math.Min(yMin, y);
+								}
+								//var mindata = new PointPair(list[minindex]);
+								//var maxdata = new PointPair(list[maxindex]);
+								if (minindex < maxindex)
+								{
+									x = (double)new XDate(timestamp[minindex].Year, timestamp[minindex].Month, timestamp[minindex].Day,
+																	timestamp[minindex].Hour, timestamp[minindex].Minute, timestamp[minindex].Second, timestamp[minindex].Millisecond);
+									y = (double)data[minindex, ch] * coef;
+									list.Add(x, y);
+
+									x = (double)new XDate(timestamp[maxindex].Year, timestamp[maxindex].Month, timestamp[maxindex].Day,
+																	timestamp[maxindex].Hour, timestamp[maxindex].Minute, timestamp[maxindex].Second, timestamp[maxindex].Millisecond);
+									y = (double)data[maxindex, ch] * coef;
+									list.Add(x, y);
+								}
+								else
+								{
+									x = (double)new XDate(timestamp[maxindex].Year, timestamp[maxindex].Month, timestamp[maxindex].Day,
+																	timestamp[maxindex].Hour, timestamp[maxindex].Minute, timestamp[maxindex].Second, timestamp[maxindex].Millisecond);
+									y = (double)data[maxindex, ch] * coef;
+									list.Add(x, y);
+
+									x = (double)new XDate(timestamp[minindex].Year, timestamp[minindex].Month, timestamp[minindex].Day,
+																	timestamp[minindex].Hour, timestamp[minindex].Minute, timestamp[minindex].Second, timestamp[minindex].Millisecond);
+									y = (double)data[minindex, ch] * coef;
+									list.Add(x, y);
+								}
+							}
+						}
 
 						// オートスケールのときの処理
 						if (range_y == -1.0)

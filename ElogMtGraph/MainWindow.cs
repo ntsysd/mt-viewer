@@ -156,6 +156,11 @@ namespace ElogMtGraph
 			return currentFreq;
 		}
 
+		public int getScreenWidth()
+		{
+			return Screen.GetWorkingArea(this).Width;
+		}
+
 		// Periodコンボの値set
 		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
 		public void SetComboPeriod(double period)
