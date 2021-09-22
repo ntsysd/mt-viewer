@@ -142,8 +142,8 @@ namespace ElogMtGraph
 				Program.FormMain.Refresh();
 
 				
-				//if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
-				//else Graph.RefreshData();
+				if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+				else Graph.RefreshData();
 
 				//
 				// 時間軸レンジ計算
@@ -231,8 +231,7 @@ namespace ElogMtGraph
 						int len = WindowWidth * 3;
 						int crop_length = teindex - tsindex + 1;
 
-						//if (len * 2 < crop_length)
-						if (!(Program.FormMain.AverageFilterIsEnable() && len * 2 < crop_length))
+						if (!(Program.FormMain.getCheckboxFast() && len * 2 < crop_length))
 						{
 							for (int i = tsindex; i <= teindex; ++i)
 							{

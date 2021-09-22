@@ -53,6 +53,7 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.checkBoxFast = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -115,6 +116,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBoxFast);
             this.groupBox1.Controls.Add(this.button1Hz);
             this.groupBox1.Controls.Add(this.button32Hz);
             this.groupBox1.Controls.Add(this.comboBoxY);
@@ -352,6 +354,15 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // checkBoxFast
+            // 
+            this.checkBoxFast.AutoSize = true;
+            this.checkBoxFast.Location = new System.Drawing.Point(241, 18);
+            this.checkBoxFast.Name = "checkBoxFast";
+            this.checkBoxFast.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxFast.TabIndex = 11;
+            this.checkBoxFast.UseVisualStyleBackColor = true;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -411,6 +422,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button32Hz;
         private System.Windows.Forms.Button button1Hz;
+        private System.Windows.Forms.CheckBox checkBoxFast;
     }
 }
 
