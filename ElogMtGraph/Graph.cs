@@ -105,6 +105,17 @@ namespace ElogMtGraph
 
 		}
 
+        public static (int, int) searchTsTe(DateTime[] dateTimes, int len, DateTime ts, DateTime te)
+        {
+			int tsindex = Array.BinarySearch(dateTimes, 0, len, ts);
+			if (tsindex < 0) tsindex = ~tsindex;
+
+			int teindex = Array.BinarySearch(dateTimes, tsindex, len - tsindex, te);
+			if (teindex < 0) teindex = ~teindex - 1;
+
+			return (tsindex, teindex);
+		}
+
 		// グラフ描画する
 		// データ読み込み済みである必要有り
 		//
@@ -167,11 +178,15 @@ namespace ElogMtGraph
 //                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
                 }
 
+				int tsindex;
+				int teindex;
+				(tsindex, teindex) = searchTsTe(timestamp, (int)data_length, ts, te);
+
 				/*
 				 * グラフ描画
 				 */
 				// CHループ
-				for(int ch = 0; ch < Constants.CHNUM; ch++) {
+				for (int ch = 0; ch < Constants.CHNUM; ch++) {
 					// AD bits
 					// 変換係数get Volt/LSB
 					double coef = VOLT_LSB_E;
@@ -211,20 +226,18 @@ namespace ElogMtGraph
 						double yMin = double.MaxValue;
                         int avg_num = 0;
                         list.Clear();
-                        for (int i = 0; i < data_length; i += 1)
-                        {
-                            if (ts <= timestamp[i] && timestamp[i] <= te)
-                            {
-                                double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
-                                                                  timestamp[i].Hour, timestamp[i].Minute, timestamp[i].Second, timestamp[i].Millisecond);
-                                double y = (double)data[i, ch] * coef;
-                                list.Add(x, y);
-                                yavg += y;
-                                avg_num++;
 
-								yMax = Math.Max(yMax, y);
-								yMin = Math.Min(yMin, y);
-                            }
+                        for (int i = tsindex; i <= teindex; ++i)
+                        {
+                            double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
+                                                                timestamp[i].Hour, timestamp[i].Minute, timestamp[i].Second, timestamp[i].Millisecond);
+                            double y = (double)data[i, ch] * coef;
+                            list.Add(x, y);
+                            yavg += y;
+                            avg_num++;
+
+							yMax = Math.Max(yMax, y);
+							yMin = Math.Min(yMin, y);
                         }
 
 						// オートスケールのときの処理
