@@ -231,8 +231,8 @@ namespace ElogMtGraph
 						int len = WindowWidth * 3;
 						int crop_length = teindex - tsindex + 1;
 
-						//if (len < crop_length)
-						if (!Program.FormMain.AverageFilterIsEnable())
+						//if (len * 2 < crop_length)
+						if (!(Program.FormMain.AverageFilterIsEnable() && len * 2 < crop_length))
 						{
 							for (int i = tsindex; i <= teindex; ++i)
 							{
@@ -260,8 +260,8 @@ namespace ElogMtGraph
 
 							for (int i = 0; i < len; ++i)
 							{
-								int start = (int)((long)crop_length * i / len + teindex);
-								int end = (int)((long)crop_length * (i + 1) / len - 1 + teindex);
+								int start = (int)((long)crop_length * i / len + tsindex);
+								int end = (int)((long)crop_length * (i + 1) / len - 1 + tsindex);
 
 								int min = int.MaxValue;
 								int max = int.MinValue;
