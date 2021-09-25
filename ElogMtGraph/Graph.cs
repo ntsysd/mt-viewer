@@ -318,8 +318,15 @@ namespace ElogMtGraph
 						// オートスケールのときの処理
 						if (range_y == -1.0)
                         {
-							myp.YAxis.Scale.Min = yMin;
-							myp.YAxis.Scale.Max = yMax;
+							double rangemin = yMin == double.MaxValue ? -20.0 : yMin;
+							double rangemax = yMax == double.MinValue ? 20.0 : yMax;
+							double range = rangemax - rangemin;
+							if (range < 0.0001) range = 0.0001;
+							rangemin = rangemin - range * 0.05;
+							rangemax = rangemax + range * 0.05;
+
+							myp.YAxis.Scale.Min = rangemin;
+							myp.YAxis.Scale.Max = rangemax;
 						}
 						// オートスケールではないときの処理
                         else
@@ -690,7 +697,7 @@ namespace ElogMtGraph
 				GraphPane myp = myPane[ch];
 				//myp.Title.Text = "CH"+ (ch+1).ToString();
 				myp.Title.Text = graphCaption[ch];
-				myp.Title.FontSpec.Size = 16;	
+				myp.Title.FontSpec.Size = 16;
 				myp.XAxis.Title.Text = "t";
 				myp.YAxis.Title.Text = "Volt";
 				myp.Margin.All = 0;	
