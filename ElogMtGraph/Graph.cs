@@ -357,6 +357,15 @@ namespace ElogMtGraph
 					myp.AddCurve( "", list, Color.Red, SymbolType.None );
 					// グラフタイトル
 					myp.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir);
+					myp.Title.FontSpec.Size = 16 * 1000 * 3 / (Program.FormMain.Size.Height * 2);
+					myp.Title.IsVisible = false;
+					myp.XAxis.Title.FontSpec.Size = (int)(14 * 1000 * 3.0 / Program.FormMain.Size.Height);
+					myp.XAxis.IsVisible = false;
+					myp.YAxis.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir)+"\n\nVolt";
+					myp.YAxis.Title.FontSpec.Size = (int)(14 * 1000 * 3.0 / Program.FormMain.Size.Height);
+					myp.YAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 3.0 / Program.FormMain.Size.Height);
+					myp.YAxis.MinSpace = 600;
+
 					// myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
 					Console.WriteLine("DrawGraph() CH={0} end", ch);
                 } // CHループ
