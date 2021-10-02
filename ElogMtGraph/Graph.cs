@@ -142,8 +142,10 @@ namespace ElogMtGraph
 				Program.FormMain.Refresh();
 
 				
-				if(Program.FormMain.AverageFilterIsEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+				if(Program.FormMain.IsAverageFilterEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
 				else Graph.RefreshData();
+
+				if (Program.FormMain.IsDetrendEnable()) Graph.Detrend();
 
 				//
 				// 時間軸レンジ計算
