@@ -35,6 +35,7 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxFast = new System.Windows.Forms.CheckBox();
             this.button1Hz = new System.Windows.Forms.Button();
             this.button32Hz = new System.Windows.Forms.Button();
             this.comboBoxY = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,7 @@
             this.labelHour = new System.Windows.Forms.Label();
             this.labelPeriod = new System.Windows.Forms.Label();
             this.labelMode = new System.Windows.Forms.Label();
-            this.buttonDetrend = new System.Windows.Forms.Button();
+            this.buttonDetrendOn = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -53,7 +54,8 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.checkBoxFast = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonDetrendOff = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -116,6 +118,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonDetrendOff);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.checkBoxFast);
             this.groupBox1.Controls.Add(this.button1Hz);
             this.groupBox1.Controls.Add(this.button32Hz);
@@ -127,7 +131,7 @@
             this.groupBox1.Controls.Add(this.labelHour);
             this.groupBox1.Controls.Add(this.labelPeriod);
             this.groupBox1.Controls.Add(this.labelMode);
-            this.groupBox1.Controls.Add(this.buttonDetrend);
+            this.groupBox1.Controls.Add(this.buttonDetrendOn);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
@@ -135,11 +139,20 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // checkBoxFast
+            // 
+            this.checkBoxFast.AutoSize = true;
+            this.checkBoxFast.Location = new System.Drawing.Point(269, 18);
+            this.checkBoxFast.Name = "checkBoxFast";
+            this.checkBoxFast.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxFast.TabIndex = 11;
+            this.checkBoxFast.UseVisualStyleBackColor = true;
+            // 
             // button1Hz
             // 
             this.button1Hz.AutoSize = true;
             this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1Hz.Location = new System.Drawing.Point(183, 13);
+            this.button1Hz.Location = new System.Drawing.Point(211, 13);
             this.button1Hz.Name = "button1Hz";
             this.button1Hz.Size = new System.Drawing.Size(51, 26);
             this.button1Hz.TabIndex = 10;
@@ -151,7 +164,7 @@
             // 
             this.button32Hz.AutoSize = true;
             this.button32Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button32Hz.Location = new System.Drawing.Point(133, 13);
+            this.button32Hz.Location = new System.Drawing.Point(161, 13);
             this.button32Hz.Name = "button32Hz";
             this.button32Hz.Size = new System.Drawing.Size(51, 26);
             this.button32Hz.TabIndex = 9;
@@ -211,9 +224,9 @@
             this.comboBoxDataMode.Items.AddRange(new object[] {
             "PHX(15Hz)",
             "ADU(32Hz)"});
-            this.comboBoxDataMode.Location = new System.Drawing.Point(310, 15);
+            this.comboBoxDataMode.Location = new System.Drawing.Point(339, 15);
             this.comboBoxDataMode.Name = "comboBoxDataMode";
-            this.comboBoxDataMode.Size = new System.Drawing.Size(122, 24);
+            this.comboBoxDataMode.Size = new System.Drawing.Size(99, 24);
             this.comboBoxDataMode.TabIndex = 6;
             // 
             // labelYUnit
@@ -260,23 +273,23 @@
             // 
             this.labelMode.AutoSize = true;
             this.labelMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelMode.Location = new System.Drawing.Point(268, 18);
+            this.labelMode.Location = new System.Drawing.Point(297, 18);
             this.labelMode.Name = "labelMode";
             this.labelMode.Size = new System.Drawing.Size(44, 16);
             this.labelMode.TabIndex = 1;
             this.labelMode.Text = "Mode";
             // 
-            // buttonDetrend
+            // buttonDetrendOn
             // 
-            this.buttonDetrend.AutoSize = true;
-            this.buttonDetrend.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrend.Location = new System.Drawing.Point(24, 13);
-            this.buttonDetrend.Name = "buttonDetrend";
-            this.buttonDetrend.Size = new System.Drawing.Size(92, 26);
-            this.buttonDetrend.TabIndex = 0;
-            this.buttonDetrend.Text = "Detrend";
-            this.buttonDetrend.UseVisualStyleBackColor = true;
-            this.buttonDetrend.Click += new System.EventHandler(this.buttonDetrend_Click);
+            this.buttonDetrendOn.AutoSize = true;
+            this.buttonDetrendOn.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.buttonDetrendOn.Location = new System.Drawing.Point(69, 13);
+            this.buttonDetrendOn.Name = "buttonDetrendOn";
+            this.buttonDetrendOn.Size = new System.Drawing.Size(39, 26);
+            this.buttonDetrendOn.TabIndex = 0;
+            this.buttonDetrendOn.Text = "ON";
+            this.buttonDetrendOn.UseVisualStyleBackColor = true;
+            this.buttonDetrendOn.Click += new System.EventHandler(this.buttonDetrendOn_Click);
             // 
             // splitContainer1
             // 
@@ -354,14 +367,27 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // checkBoxFast
+            // label1
             // 
-            this.checkBoxFast.AutoSize = true;
-            this.checkBoxFast.Location = new System.Drawing.Point(241, 18);
-            this.checkBoxFast.Name = "checkBoxFast";
-            this.checkBoxFast.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxFast.TabIndex = 11;
-            this.checkBoxFast.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 16);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Detrend";
+            // 
+            // buttonDetrendOff
+            // 
+            this.buttonDetrendOff.AutoSize = true;
+            this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.buttonDetrendOff.Location = new System.Drawing.Point(107, 13);
+            this.buttonDetrendOff.Name = "buttonDetrendOff";
+            this.buttonDetrendOff.Size = new System.Drawing.Size(47, 26);
+            this.buttonDetrendOff.TabIndex = 13;
+            this.buttonDetrendOff.Text = "OFF";
+            this.buttonDetrendOff.UseVisualStyleBackColor = true;
+            this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
             // 
             // MainWindow
             // 
@@ -417,12 +443,14 @@
         private System.Windows.Forms.Label labelHour;
         private System.Windows.Forms.Label labelPeriod;
         private System.Windows.Forms.Label labelMode;
-        private System.Windows.Forms.Button buttonDetrend;
+        private System.Windows.Forms.Button buttonDetrendOn;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button32Hz;
         private System.Windows.Forms.Button button1Hz;
         private System.Windows.Forms.CheckBox checkBoxFast;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonDetrendOff;
     }
 }
 

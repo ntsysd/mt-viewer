@@ -33,10 +33,9 @@ namespace ElogMtGraph
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
-			button1Hz.Enabled = true;
-			button32Hz.Enabled = false;
-			button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-			button32Hz.BackColor = Color.Yellow;
+			SetAverageFilterEnable(false, false);
+			SetDetrendEnable(false, false);
+			
 			currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
 
@@ -435,16 +434,42 @@ namespace ElogMtGraph
 			}
 		}
 
-		private void buttonDetrend_Click(object sender, EventArgs e)
+		private void buttonDetrendOn_Click(object sender, EventArgs e)
 		{
-			Console.WriteLine("DeTrend");
-			StatusLabel_SetText("Detrend処理中");
-
-			Graph.Detrend();
-			Graph.DrawGraph(GetComboPeriod(), GetComboY());
-			StatusLabel_SetText("");
-			statusStrip1.Refresh();
+			SetDetrendEnable(true);
 		}
+
+		private void buttonDetrendOff_Click(object sender, EventArgs e)
+		{
+			SetDetrendEnable(false);
+		}
+
+		private void SetDetrendEnable(bool enable, bool draw = true)
+        {
+			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
+			this.ActiveControl = richTextBox1;
+
+			if (enable)
+			{
+				buttonDetrendOn.Enabled = false;
+				buttonDetrendOff.Enabled = true;
+				buttonDetrendOn.BackColor = Color.Yellow;
+				buttonDetrendOff.BackColor = Color.FromKnownColor(KnownColor.Control);
+			}
+			else
+			{
+				buttonDetrendOn.Enabled = true;
+				buttonDetrendOff.Enabled = false;
+				buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
+				buttonDetrendOff.BackColor = Color.Yellow;
+			}
+			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+		}
+
+		public bool IsDetrendEnable()
+        {
+			return !buttonDetrendOn.Enabled;
+        }
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
@@ -489,20 +514,20 @@ namespace ElogMtGraph
 
         private void button32Hz_Click(object sender, EventArgs e)
         {
-			SetAverageFilter(false);
+			SetAverageFilterEnable(false);
         }
 
         private void button1Hz_Click(object sender, EventArgs e)
         {
-			SetAverageFilter(true);
+			SetAverageFilterEnable(true);
         }
 
-		public bool AverageFilterIsEnable()
+		public bool IsAverageFilterEnable()
         {
 			return button32Hz.Enabled;
 		}
 
-		private void SetAverageFilter(bool enable)
+		private void SetAverageFilterEnable(bool enable, bool draw = true)
         {
 			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
 			this.ActiveControl = richTextBox1;
@@ -513,8 +538,6 @@ namespace ElogMtGraph
 				button32Hz.Enabled = true;
 				button1Hz.BackColor = Color.Yellow;
 				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-				
-				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
             else
             {
@@ -522,14 +545,14 @@ namespace ElogMtGraph
 				button32Hz.Enabled = false;
 				button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
 				button32Hz.BackColor = Color.Yellow;
-				
-				Graph.DrawGraph(GetComboPeriod(), GetComboY());
 			}
-        }
+
+			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+		}
 		
 		public bool getCheckboxFast()
         {
 			return checkBoxFast.Checked;
         }
-	}
+    }
 }
