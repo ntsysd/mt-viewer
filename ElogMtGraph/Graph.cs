@@ -105,7 +105,10 @@ namespace ElogMtGraph
 
 		}
 
-        public static (int, int) searchTsTe(DateTime[] dateTimes, int len, DateTime ts, DateTime te)
+		//
+		// TsからTeを含むデータを切り取るためのインデックスを探す関数
+		//
+        private static (int, int) searchTsTe(DateTime[] dateTimes, int len, DateTime ts, DateTime te)
         {
 			int tsindex = Array.BinarySearch(dateTimes, 0, len, ts);
 			if (tsindex < 0) tsindex = ~tsindex;
@@ -114,6 +117,26 @@ namespace ElogMtGraph
 			if (teindex < 0) teindex = ~teindex - 1;
 
 			return (tsindex, teindex);
+		}
+
+		//
+		// データとtimestampを描画範囲に応じて切り取る
+		//
+		private static void DataCrop(DateTime ts, DateTime te)
+        {
+			int tsindex;
+			int teindex;
+			(tsindex, teindex) = searchTsTe(timestamp, (int)data_length, ts, te);
+
+			data_length = (uint)(teindex - tsindex) + 1;
+			for(int i=0; i < data_length; ++i)
+            {
+				for(int ch = 0; ch < Constants.CHNUM; ++ch)
+                {
+					data[i, ch] = data[i + tsindex, ch];
+				}
+				timestamp[i] = timestamp[i + tsindex];
+            }
 		}
 
 		// グラフ描画する
@@ -141,11 +164,8 @@ namespace ElogMtGraph
 				Program.FormMain.TimeScrollBarSetMinMax(0.0, 24, range_t/5, range_t);
 				Program.FormMain.Refresh();
 
-				
-				if(Program.FormMain.IsAverageFilterEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
-				else Graph.RefreshData();
-
-				if (Program.FormMain.IsDetrendEnable()) Graph.Detrend();
+				Graph.RefreshData();
+				if (Program.FormMain.IsAverageFilterEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
 
 				//
 				// 時間軸レンジ計算
@@ -180,9 +200,12 @@ namespace ElogMtGraph
 //                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
                 }
 
-				int tsindex;
-				int teindex;
-				(tsindex, teindex) = searchTsTe(timestamp, (int)data_length, ts, te);
+				//int tsindex;
+				//int teindex;
+				//(tsindex, teindex) = searchTsTe(timestamp, (int)data_length, ts, te);
+				DataCrop(ts, te);
+
+				if (Program.FormMain.IsDetrendEnable()) Graph.Detrend();
 
 				/*
 				 * グラフ描画
@@ -230,12 +253,11 @@ namespace ElogMtGraph
                         list.Clear();
 
 						int WindowWidth = Program.FormMain.getScreenWidth();
-						int len = WindowWidth * 3;
-						int crop_length = teindex - tsindex + 1;
+						int mabikiLen = WindowWidth * 3;
 
-						if (!(Program.FormMain.getCheckboxFast() && len * 2 < crop_length))
+						if (!(Program.FormMain.getCheckboxFast() && mabikiLen * 2 < data_length))
 						{
-							for (int i = tsindex; i <= teindex; ++i)
+							for (int i = 0; i < data_length; ++i)
 							{
 
 								double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
@@ -259,10 +281,10 @@ namespace ElogMtGraph
 							double x;
 							double y;
 
-							for (int i = 0; i < len; ++i)
+							for (int i = 0; i < mabikiLen; ++i)
 							{
-								int start = (int)((long)crop_length * i / len + tsindex);
-								int end = (int)((long)crop_length * (i + 1) / len - 1 + tsindex);
+								int start = (int)((long)data_length * i / mabikiLen);
+								int end = (int)((long)data_length * (i + 1) / mabikiLen - 1);
 
 								int min = int.MaxValue;
 								int max = int.MinValue;
@@ -447,10 +469,10 @@ namespace ElogMtGraph
 				int sum = 0;
 				for (int i = 0; i < data_length; ++i)
                 {
-					sum += readData[i, ch];
-					if(i % filter_length == filter_length-1)
+					sum += data[i, ch];
+					if(i % filter_length == filter_length - 1)
                     {
-						data[i/ filter_length, ch] = sum / filter_length;
+						data[i / filter_length, ch] = sum / filter_length;
 						sum = 0;
                     }
                 }
@@ -462,12 +484,12 @@ namespace ElogMtGraph
 			{
 				if(i % filter_length == 0)
                 {
-					baseTime = readTimestamp[i];
+					baseTime = timestamp[i];
 					timeSpan = new TimeSpan();
 				}
                 else
                 {
-					timeSpan += readTimestamp[i] - baseTime;
+					timeSpan += timestamp[i] - baseTime;
 					if (i % filter_length == filter_length - 1)
 					{
 						timestamp[i / filter_length] = baseTime + new TimeSpan(timeSpan.Ticks / filter_length);
@@ -475,7 +497,7 @@ namespace ElogMtGraph
 				}
 			}
 
-			data_length = (uint)(readData_length / filter_length);
+			data_length = (uint)(data_length / filter_length);
 		}
 
 
