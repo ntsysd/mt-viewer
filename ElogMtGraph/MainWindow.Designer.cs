@@ -35,6 +35,8 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonDetrendOff = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.checkBoxFast = new System.Windows.Forms.CheckBox();
             this.button1Hz = new System.Windows.Forms.Button();
             this.button32Hz = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonDetrendOff = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -73,7 +73,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(928, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,9 +135,31 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(800, 45);
+            this.groupBox1.Size = new System.Drawing.Size(928, 45);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // buttonDetrendOff
+            // 
+            this.buttonDetrendOff.AutoSize = true;
+            this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.buttonDetrendOff.Location = new System.Drawing.Point(107, 13);
+            this.buttonDetrendOff.Name = "buttonDetrendOff";
+            this.buttonDetrendOff.Size = new System.Drawing.Size(47, 26);
+            this.buttonDetrendOff.TabIndex = 13;
+            this.buttonDetrendOff.Text = "OFF";
+            this.buttonDetrendOff.UseVisualStyleBackColor = true;
+            this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 16);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Detrend";
             // 
             // checkBoxFast
             // 
@@ -306,8 +328,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 337);
-            this.splitContainer1.SplitterDistance = 289;
+            this.splitContainer1.Size = new System.Drawing.Size(928, 337);
+            this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -317,7 +339,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 289);
+            this.tabControl1.Size = new System.Drawing.Size(928, 248);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -325,7 +347,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 263);
+            this.tabPage1.Size = new System.Drawing.Size(920, 222);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -337,7 +359,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 44);
+            this.richTextBox1.Size = new System.Drawing.Size(928, 85);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -346,7 +368,7 @@
             this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.hScrollBar1.Location = new System.Drawing.Point(0, 411);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(800, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(928, 17);
             this.hScrollBar1.TabIndex = 3;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
@@ -356,7 +378,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(928, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -367,33 +389,11 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(6, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 16);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Detrend";
-            // 
-            // buttonDetrendOff
-            // 
-            this.buttonDetrendOff.AutoSize = true;
-            this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrendOff.Location = new System.Drawing.Point(107, 13);
-            this.buttonDetrendOff.Name = "buttonDetrendOff";
-            this.buttonDetrendOff.Size = new System.Drawing.Size(47, 26);
-            this.buttonDetrendOff.TabIndex = 13;
-            this.buttonDetrendOff.Text = "OFF";
-            this.buttonDetrendOff.UseVisualStyleBackColor = true;
-            this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(928, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
