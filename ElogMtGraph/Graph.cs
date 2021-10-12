@@ -519,7 +519,7 @@ namespace ElogMtGraph
          * ディレクトリから1日分のファイル読み込んでグラフ描画する
 		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
          */
-		public static int ReadAndDraw(String input_dir0)
+		public static int ReadAndDraw(String input_dir0, bool first = false)
 		{
 			input_dir = input_dir0;
 			// dir存在チェック
@@ -587,6 +587,29 @@ namespace ElogMtGraph
 			}
 
 			RefreshData();
+
+            if (first)
+            {
+//				Program.FormMain.SetComboPeriod(Constants.comboPeriod_InitialList[0]);
+				//double span = (readTimestamp[readData_length-1] - readTimestamp[0]).TotalHours;
+				double Datastart = (readTimestamp[0] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalHours;
+				double Dataend = (readTimestamp[readData_length - 1] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalHours;
+
+				for (int i=0; i< Constants.comboPeriod_InitialList.Length; ++i)
+                {
+					// 表示範囲の最初
+					var start = ((uint)(Datastart / Constants.comboPeriod_InitialList[i])) * Constants.comboPeriod_InitialList[i];
+					// 表示範囲の終わり
+					var end = start + Constants.comboPeriod_InitialList[i];
+
+                    if (Dataend <= end)
+                    {
+						Program.FormMain.SetComboPeriod(Constants.comboPeriod_InitialList[i]);
+						Program.FormMain.TimeScrollBarSetValue(start);
+						break;
+                    }
+				}
+            }
 
 			// Graph描画
 			double period = Program.FormMain.GetComboPeriod();

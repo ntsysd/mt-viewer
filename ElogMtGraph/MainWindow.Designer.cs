@@ -73,7 +73,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(928, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,7 +135,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(928, 45);
+            this.groupBox1.Size = new System.Drawing.Size(800, 45);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -223,17 +223,6 @@
             this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBoxPeriod.FormattingEnabled = true;
-            this.comboBoxPeriod.Items.AddRange(new object[] {
-            "0.017",
-            "0.1",
-            "0.2",
-            "0.5",
-            "1",
-            "2",
-            "4",
-            "8",
-            "12",
-            "24"});
             this.comboBoxPeriod.Location = new System.Drawing.Point(514, 15);
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(60, 24);
@@ -328,7 +317,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(928, 337);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 337);
             this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -339,7 +328,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(928, 248);
+            this.tabControl1.Size = new System.Drawing.Size(800, 248);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -347,7 +336,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(920, 222);
+            this.tabPage1.Size = new System.Drawing.Size(792, 222);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -359,7 +348,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(928, 85);
+            this.richTextBox1.Size = new System.Drawing.Size(800, 85);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -368,7 +357,7 @@
             this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.hScrollBar1.Location = new System.Drawing.Point(0, 411);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(928, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(800, 17);
             this.hScrollBar1.TabIndex = 3;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
@@ -378,7 +367,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(928, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -393,7 +382,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 450);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);

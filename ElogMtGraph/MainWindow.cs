@@ -27,6 +27,10 @@ namespace ElogMtGraph
             Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
 
 			comboBoxDataMode.SelectedIndex = 0;
+            foreach (var item in Constants.comboPeriod_InitialList)
+            {
+				comboBoxPeriod.Items.Add(item);
+            }
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
 			comboBoxY.SelectedIndex = comboBoxY.Items.Count - 1;
 
@@ -260,7 +264,7 @@ namespace ElogMtGraph
 				button32Hz.Text = currentFreq.ToString() + "Hz";
 				// ファイル読み込んでグラフ描く
 				//				Graph.SetInputDir(fbd.SelectedPath);
-				Graph.ReadAndDraw(DirName);
+				Graph.ReadAndDraw(DirName, true);
 			}
 		}
 
