@@ -253,9 +253,11 @@ namespace ElogMtGraph
                         list.Clear();
 
 						int WindowWidth = Program.FormMain.getScreenWidth();
-						int mabikiLen = WindowWidth * 3;
+						int mabikiLen = WindowWidth * 3; // 高速化のための間引き後の点数の半分
 
-						if (!(Program.FormMain.getCheckboxFast() && mabikiLen * 2 < data_length))
+						// mabikiLen * 2 < data_lengthならば(間引きをして点数が減るならば)間引きをして描画
+						// そうでないなら間引きをしないで描画
+						if (!(mabikiLen * 2 < data_length))
 						{
 							for (int i = 0; i < data_length; ++i)
 							{

@@ -553,10 +553,5 @@ namespace ElogMtGraph
 
 			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
-		
-		public bool getCheckboxFast()
-        {
-			return checkBoxFast.Checked;
-        }
     }
 }

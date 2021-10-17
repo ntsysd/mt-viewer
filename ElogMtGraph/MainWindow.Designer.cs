@@ -37,7 +37,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonDetrendOff = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.checkBoxFast = new System.Windows.Forms.CheckBox();
             this.button1Hz = new System.Windows.Forms.Button();
             this.button32Hz = new System.Windows.Forms.Button();
             this.comboBoxY = new System.Windows.Forms.ComboBox();
@@ -120,7 +119,6 @@
             // 
             this.groupBox1.Controls.Add(this.buttonDetrendOff);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.checkBoxFast);
             this.groupBox1.Controls.Add(this.button1Hz);
             this.groupBox1.Controls.Add(this.button32Hz);
             this.groupBox1.Controls.Add(this.comboBoxY);
@@ -160,15 +158,6 @@
             this.label1.Size = new System.Drawing.Size(62, 16);
             this.label1.TabIndex = 12;
             this.label1.Text = "Detrend";
-            // 
-            // checkBoxFast
-            // 
-            this.checkBoxFast.AutoSize = true;
-            this.checkBoxFast.Location = new System.Drawing.Point(269, 18);
-            this.checkBoxFast.Name = "checkBoxFast";
-            this.checkBoxFast.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxFast.TabIndex = 11;
-            this.checkBoxFast.UseVisualStyleBackColor = true;
             // 
             // button1Hz
             // 
@@ -437,7 +426,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Button button32Hz;
         private System.Windows.Forms.Button button1Hz;
-        private System.Windows.Forms.CheckBox checkBoxFast;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDetrendOff;
     }
