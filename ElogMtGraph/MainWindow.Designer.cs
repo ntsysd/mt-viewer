@@ -307,7 +307,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(800, 337);
-            this.splitContainer1.SplitterDistance = 248;
+            this.splitContainer1.SplitterDistance = 283;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -317,7 +317,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 248);
+            this.tabControl1.Size = new System.Drawing.Size(800, 283);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -325,7 +325,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 222);
+            this.tabPage1.Size = new System.Drawing.Size(792, 257);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 85);
+            this.richTextBox1.Size = new System.Drawing.Size(800, 50);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 

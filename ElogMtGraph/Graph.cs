@@ -590,7 +590,7 @@ namespace ElogMtGraph
 
 			RefreshData();
 
-            if (first)
+            if (first && readData_length > 0)
             {
 //				Program.FormMain.SetComboPeriod(Constants.comboPeriod_InitialList[0]);
 				//double span = (readTimestamp[readData_length-1] - readTimestamp[0]).TotalHours;
@@ -759,13 +759,24 @@ namespace ElogMtGraph
 				GraphPane myp = myPane[ch];
 				//myp.Title.Text = "CH"+ (ch+1).ToString();
 				myp.Title.Text = graphCaption[ch];
-				myp.Title.FontSpec.Size = 16;
-				myp.XAxis.Title.Text = "t";
-				myp.YAxis.Title.Text = "Volt";
-				myp.Margin.All = 0;	
-				myp.XAxis.Scale.Format = "HH:mm";	// HH=24時間制
-//                myp.XAxis.Scale.FormatAuto = true;
-                // X軸を時間軸に
+				//myp.Title.FontSpec.Size = 16;
+				//myp.XAxis.Title.Text = "t";
+				//myp.YAxis.Title.Text = "Volt";
+				//myp.Margin.All = 0;	
+				myp.XAxis.Scale.Format = "HH:mm";   // HH=24時間制
+
+				myp.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / (Program.FormMain.Size.Height));
+				myp.Title.IsVisible = false;
+				myp.XAxis.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
+				myp.XAxis.Title.IsVisible = false;
+				myp.XAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
+				myp.YAxis.Title.Text = graphCaption[ch] + "\n" + "Volt";
+				myp.YAxis.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
+				myp.YAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
+				myp.YAxis.MinSpace = 300;
+
+				//                myp.XAxis.Scale.FormatAuto = true;
+				// X軸を時間軸に
 				myp.XAxis.Type = AxisType.Date;
 //					myPane.XAxis.Scale.MajorUnit = DateUnit.Hour;
 				
