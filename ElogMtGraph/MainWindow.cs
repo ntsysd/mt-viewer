@@ -510,7 +510,14 @@ namespace ElogMtGraph
 				var xSize = new System.Xml.Linq.XElement("Size");
 				xSize.Add(new System.Xml.Linq.XElement("Height", this.Size.Height));
 				xSize.Add(new System.Xml.Linq.XElement("Width", this.Size.Width));
+				var xView = new System.Xml.Linq.XElement("View");
+				xView.Add(new System.Xml.Linq.XElement("Detrend", IsDetrendEnable()?"On":"Off"));
+				xView.Add(new System.Xml.Linq.XElement("AveFilter", IsAverageFilterEnable()?"On":"Off"));
+				xView.Add(new System.Xml.Linq.XElement("Mode", GetComboDataModeFreq()));
+				xView.Add(new System.Xml.Linq.XElement("Period", GetComboPeriod()));
+				xView.Add(new System.Xml.Linq.XElement("Y", GetComboY()));
 				xSettings.Add(xSize);
+				xSettings.Add(xView);
 				xDocument.Add(xSettings);
 				xDocument.Save(stream);
 			}
