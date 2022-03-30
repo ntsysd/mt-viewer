@@ -274,8 +274,8 @@ namespace ElogMtGraph
 				Console.WriteLine("dir_index={0}", dir_index);
 
 				// コンボsetする 24H AUTO-V
-				this.SetComboPeriod(24);
-				this.SetComboY("AUTO");
+				//this.SetComboPeriod(24);
+				//this.SetComboY("AUTO");
 
 				// フィルタの周波数を設定
 				currentFreq = GetComboDataModeFreq();
