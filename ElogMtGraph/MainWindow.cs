@@ -34,14 +34,8 @@ namespace ElogMtGraph
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
 			comboBoxY.SelectedIndex = comboBoxY.Items.Count - 1;
 
-			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
-
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
-			
-			currentFreq = GetComboDataModeFreq();
-			button32Hz.Text = currentFreq.ToString() + "Hz";
 
 			try
             {
@@ -80,6 +74,12 @@ namespace ElogMtGraph
             {
 				Console.WriteLine("設定ファイル開けず");
             }
+
+			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
+			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
+
+			currentFreq = GetComboDataModeFreq();
+			button32Hz.Text = currentFreq.ToString() + "Hz";
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
@@ -157,6 +157,18 @@ namespace ElogMtGraph
 				case "PHX(15Hz)": return 15;
 				case "ADU(32Hz)": return 32;
 				default: return -1;
+			}
+		}
+
+		private void SetComboDataModeFreq(int freq)
+		{
+            if (freq == 15)
+            {
+				this.comboBoxDataMode.Text = "PHX(15Hz)";
+			}
+			else if(freq == 32)
+            {
+				this.comboBoxDataMode.Text = "ADU(32Hz)";
 			}
 		}
 
@@ -498,6 +510,12 @@ namespace ElogMtGraph
 				this.Size = new Size(
 					int.Parse(xDocument.Element("Settings").Element("Size").Element("Width").Value),
 					int.Parse(xDocument.Element("Settings").Element("Size").Element("Height").Value));
+
+				SetDetrendEnable(xDocument.Element("Settings").Element("View").Element("Detrend").Value == "On", false);
+                SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
+				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
+				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
+				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
 			}
 		}
 
