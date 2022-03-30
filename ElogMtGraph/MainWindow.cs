@@ -64,6 +64,12 @@ namespace ElogMtGraph
 					newLocation.Y = 0;
 				}
 
+				// タスクバーが上にあったときの処理
+                if (Screen.GetWorkingArea(this).Top > newLocation.Y)
+                {
+                    newLocation.Y = Screen.GetWorkingArea(this).Top;
+                }
+
                 if (sizeFix)
                 {
 					this.Size = newSize;
