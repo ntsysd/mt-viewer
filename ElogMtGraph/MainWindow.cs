@@ -252,7 +252,7 @@ namespace ElogMtGraph
             }
         }
 
-        private bool LoadAndDraw(string filename)
+        private bool LoadAndDraw(string filename, bool intaractive = true)
 		{
             Console.WriteLine(filename);
             /*
@@ -263,7 +263,10 @@ namespace ElogMtGraph
             string dirName = System.IO.Path.GetDirectoryName(filename);
             if (!System.IO.Directory.Exists(dirName))
             {
-                MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (intaractive)
+				{
+					MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
                 return false;
             }
             DirectoryInfo dirInfo = System.IO.Directory.GetParent(dirName);
@@ -298,9 +301,7 @@ namespace ElogMtGraph
             // フィルタの周波数を設定
             currentFreq = GetComboDataModeFreq();
             button32Hz.Text = currentFreq.ToString() + "Hz";
-            // ファイル読み込んでグラフ描く
-            //				Graph.SetInputDir(fbd.SelectedPath);
-            return Graph.ReadAndDraw(dirName, true);
+            return Graph.ReadAndDraw(dirName, true, intaractive);
         }
 
         // 中身がなにもないフォルダを開こうとしたらキャンセルする
@@ -521,7 +522,7 @@ namespace ElogMtGraph
 		{
 			if (this.dataFilename.Length > 0)
 			{
-				if (!this.LoadAndDraw(this.dataFilename))
+				if (!this.LoadAndDraw(this.dataFilename, false))	
 				{
 					this.dataFilename = "";
 				}

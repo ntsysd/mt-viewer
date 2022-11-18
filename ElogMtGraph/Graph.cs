@@ -521,12 +521,15 @@ namespace ElogMtGraph
          * ディレクトリから1日分のファイル読み込んでグラフ描画する
 		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
          */
-		public static bool ReadAndDraw(String input_dir0, bool first = false)
+		public static bool ReadAndDraw(String input_dir0, bool first = false, bool interactive = true)
 		{
 			input_dir = input_dir0;
 			// dir存在チェック
 		    if (!System.IO.Directory.Exists(input_dir)) {
-				MessageBox.Show("ディレクトリが存在しません\n" + input_dir , "ERROR" , MessageBoxButtons.OK, MessageBoxIcon.Error);
+				if (interactive)
+				{
+					MessageBox.Show("ディレクトリが存在しません\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
 				return false;
     		}
             // Graph Clear
@@ -549,7 +552,10 @@ namespace ElogMtGraph
 							Console.WriteLine("{0}", f.Name);
 							if (ReadFile(f.FullName, ref readData_length) < 0) {
 								// 読み込みエラー
-								MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+								if (interactive)
+								{
+									MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+								}
 								return false;
 							}
                             else
@@ -561,7 +567,10 @@ namespace ElogMtGraph
 				}
                 if (fileCount == 0)
                 {
-					MessageBox.Show("15Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					if (interactive)
+					{
+						MessageBox.Show("15Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 					return false;
 				}
 			}
@@ -573,7 +582,10 @@ namespace ElogMtGraph
 							Console.WriteLine("{0}", f.Name);
 							if (ReadFile(f.FullName, ref readData_length) < 0) {
 								// 読み込みエラー
-								MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+								if (interactive)
+								{
+									MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+								}
 								return false;
 							}
                             else
@@ -585,7 +597,10 @@ namespace ElogMtGraph
 				}
                 if (fileCount == 0)
                 {
-					MessageBox.Show("32Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					if (interactive)
+					{
+						MessageBox.Show("32Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
 					return false;
 				}
 			}
