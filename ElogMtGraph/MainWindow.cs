@@ -247,7 +247,7 @@ namespace ElogMtGraph
             }
         }
 
-        private void LoadAndDraw(string FileName)
+        private bool LoadAndDraw(string FileName)
         {
             /*
 			 * 親directory内のデータdirリストを取得しておく
@@ -289,7 +289,7 @@ namespace ElogMtGraph
             button32Hz.Text = currentFreq.ToString() + "Hz";
             // ファイル読み込んでグラフ描く
             //				Graph.SetInputDir(fbd.SelectedPath);
-            Graph.ReadAndDraw(DirName, true);
+            return Graph.ReadAndDraw(DirName, true);
         }
 
         // 中身がなにもないフォルダを開こうとしたらキャンセルする
