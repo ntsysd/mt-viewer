@@ -240,53 +240,59 @@ namespace ElogMtGraph
 			//ダイアログを表示する
 			if (ofd.ShowDialog() == DialogResult.OK)
             {
-				//OKボタンがクリックされた
-				Console.WriteLine(ofd.FileName);
-				/*
-				 * 親directory内のデータdirリストを取得しておく
-				 */
-				dir_list.Clear();
-				// 親Dir取得
-				string DirName = System.IO.Path.GetDirectoryName(ofd.FileName);
-				DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
-				Console.WriteLine("Parent={0}", DirInfo.FullName);
-				// 親Dir内のデータ子Dirリスト YYYYMMDD
-				foreach (string stDirPath in Directory.GetDirectories(DirInfo.FullName))
-				{
-					// YYYYMMDD形式のみ抽出
-					if (System.Text.RegularExpressions.Regex.IsMatch(
-						Path.GetFileName(stDirPath),
-						@"\A\d{8}\z",
-						System.Text.RegularExpressions.RegexOptions.ECMAScript))
-					{
-						//						Console.WriteLine(stDirPath);
-						dir_list.Add(stDirPath);
-					}
-				}
-				// ソート
-				dir_list.Sort();
-				foreach (string a in dir_list)
-				{
-					Console.WriteLine(a);
-				}
-				// これからグラフ化するデータのArrayList内位置番号取得
-				dir_index = dir_list.IndexOf(DirName);
-				Console.WriteLine("dir_index={0}", dir_index);
+                //OKボタンがクリックされた
+                Console.WriteLine(ofd.FileName);
+                string FileName = ofd.FileName;
+                LoadAndDraw(FileName);
+            }
+        }
 
-				// コンボsetする 24H AUTO-V
-				this.SetComboPeriod(24);
-				//this.SetComboY("AUTO");
+        private void LoadAndDraw(string FileName)
+        {
+            /*
+			 * 親directory内のデータdirリストを取得しておく
+			 */
+            dir_list.Clear();
+            // 親Dir取得
+            string DirName = System.IO.Path.GetDirectoryName(FileName);
+            DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
+            Console.WriteLine("Parent={0}", DirInfo.FullName);
+            // 親Dir内のデータ子Dirリスト YYYYMMDD
+            foreach (string stDirPath in Directory.GetDirectories(DirInfo.FullName))
+            {
+                // YYYYMMDD形式のみ抽出
+                if (System.Text.RegularExpressions.Regex.IsMatch(
+                    Path.GetFileName(stDirPath),
+                    @"\A\d{8}\z",
+                    System.Text.RegularExpressions.RegexOptions.ECMAScript))
+                {
+                    //						Console.WriteLine(stDirPath);
+                    dir_list.Add(stDirPath);
+                }
+            }
+            // ソート
+            dir_list.Sort();
+            foreach (string a in dir_list)
+            {
+                Console.WriteLine(a);
+            }
+            // これからグラフ化するデータのArrayList内位置番号取得
+            dir_index = dir_list.IndexOf(DirName);
+            Console.WriteLine("dir_index={0}", dir_index);
 
-				// フィルタの周波数を設定
-				currentFreq = GetComboDataModeFreq();
-				button32Hz.Text = currentFreq.ToString() + "Hz";
-				// ファイル読み込んでグラフ描く
-				//				Graph.SetInputDir(fbd.SelectedPath);
-				Graph.ReadAndDraw(DirName, true);
-			}
-		}
+            // コンボsetする 24H AUTO-V
+            this.SetComboPeriod(24);
+            //this.SetComboY("AUTO");
 
-		// 中身がなにもないフォルダを開こうとしたらキャンセルする
+            // フィルタの周波数を設定
+            currentFreq = GetComboDataModeFreq();
+            button32Hz.Text = currentFreq.ToString() + "Hz";
+            // ファイル読み込んでグラフ描く
+            //				Graph.SetInputDir(fbd.SelectedPath);
+            Graph.ReadAndDraw(DirName, true);
+        }
+
+        // 中身がなにもないフォルダを開こうとしたらキャンセルする
         private void Ofd_FileOk(object sender, CancelEventArgs e)
         {
             try
@@ -537,7 +543,8 @@ namespace ElogMtGraph
 				xSettings.Add(xSize);
 				xSettings.Add(xView);
 				xDocument.Add(xSettings);
-				xDocument.Save(stream);
+				var xDirectory = new System.Xml.Linq.XElement("Directory");
+                xDocument.Save(stream);
 			}
 		}
 
