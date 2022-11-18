@@ -40,44 +40,37 @@ namespace ElogMtGraph
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
 
-			try
-            {
-				LoadSettings(@"settings.xml");
+			LoadSettings(@"settings.xml");
 
-				bool sizeFix = false;
-				Size newSize = this.Size;
-				Point newLocation = this.Location;
+			bool sizeFix = false;
+			Size newSize = this.Size;
+			Point newLocation = this.Location;
 				
-				if(this.Size.Width > Screen.GetWorkingArea(this).Width)
-                {
-					sizeFix = true;
-					newSize.Width = Screen.GetWorkingArea(this).Width;
-					newLocation.X = 0;
-				}
-				if (this.Size.Height > Screen.GetWorkingArea(this).Height)
-				{
-					sizeFix = true;
-					newSize.Height = Screen.GetWorkingArea(this).Height;
-					newLocation.Y = 0;
-				}
-
-				// タスクバーが上にあったときの処理
-                if (Screen.GetWorkingArea(this).Top > newLocation.Y)
-                {
-                    newLocation.Y = Screen.GetWorkingArea(this).Top;
-                }
-
-                if (sizeFix)
-                {
-					this.Size = newSize;
-					this.Location = newLocation;
-                }
+			if(this.Size.Width > Screen.GetWorkingArea(this).Width)
+			{
+				sizeFix = true;
+				newSize.Width = Screen.GetWorkingArea(this).Width;
+				newLocation.X = 0;
 			}
-            catch
-            {
-				Console.WriteLine("設定ファイル開けず");
-            }
+			if (this.Size.Height > Screen.GetWorkingArea(this).Height)
+			{
+				sizeFix = true;
+				newSize.Height = Screen.GetWorkingArea(this).Height;
+				newLocation.Y = 0;
+			}
 
+			// タスクバーが上にあったときの処理
+			if (Screen.GetWorkingArea(this).Top > newLocation.Y)
+			{
+				newLocation.Y = Screen.GetWorkingArea(this).Top;
+			}
+
+			if (sizeFix)
+			{
+				this.Size = newSize;
+				this.Location = newLocation;
+			}
+			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
@@ -205,8 +198,12 @@ namespace ElogMtGraph
 		{
 			foreach (object item in this.comboBoxY.Items)
 			{
-				//				Console.WriteLine(item.ToString());
-				if (double.Parse(item.ToString()) == y)
+				double itemValue;
+				if (!double.TryParse(item.ToString(), out itemValue))
+				{
+					continue;
+				}
+				if (itemValue == y)
 				{
 					this.comboBoxY.SelectedItem = item;
 					break;
@@ -531,6 +528,9 @@ namespace ElogMtGraph
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
 				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
+				this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
+				Console.WriteLine("foobar");
+				Console.WriteLine(this.dataFilename);
 			}
 		}
 
