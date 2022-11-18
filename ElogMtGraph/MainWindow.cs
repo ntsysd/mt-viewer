@@ -260,11 +260,16 @@ namespace ElogMtGraph
 			 */
             dir_list.Clear();
             // 親Dir取得
-            string DirName = System.IO.Path.GetDirectoryName(filename);
-            DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
-            Console.WriteLine("Parent={0}", DirInfo.FullName);
+            string dirName = System.IO.Path.GetDirectoryName(filename);
+            if (!System.IO.Directory.Exists(dirName))
+            {
+                MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            DirectoryInfo dirInfo = System.IO.Directory.GetParent(dirName);
+            Console.WriteLine("Parent={0}", dirInfo.FullName);
             // 親Dir内のデータ子Dirリスト YYYYMMDD
-            foreach (string stDirPath in Directory.GetDirectories(DirInfo.FullName))
+            foreach (string stDirPath in Directory.GetDirectories(dirInfo.FullName))
             {
                 // YYYYMMDD形式のみ抽出
                 if (System.Text.RegularExpressions.Regex.IsMatch(
@@ -283,7 +288,7 @@ namespace ElogMtGraph
                 Console.WriteLine(a);
             }
             // これからグラフ化するデータのArrayList内位置番号取得
-            dir_index = dir_list.IndexOf(DirName);
+            dir_index = dir_list.IndexOf(dirName);
             Console.WriteLine("dir_index={0}", dir_index);
 
             // コンボsetする 24H AUTO-V
@@ -295,7 +300,7 @@ namespace ElogMtGraph
             button32Hz.Text = currentFreq.ToString() + "Hz";
             // ファイル読み込んでグラフ描く
             //				Graph.SetInputDir(fbd.SelectedPath);
-            return Graph.ReadAndDraw(DirName, true);
+            return Graph.ReadAndDraw(dirName, true);
         }
 
         // 中身がなにもないフォルダを開こうとしたらキャンセルする
