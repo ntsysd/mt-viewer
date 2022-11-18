@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -241,20 +242,21 @@ namespace ElogMtGraph
 			if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //OKボタンがクリックされた
-                Console.WriteLine(ofd.FileName);
-                string FileName = ofd.FileName;
-                LoadAndDraw(FileName);
+ 
+                string fileName = ofd.FileName;
+                LoadAndDraw(fileName);
             }
         }
 
-        private bool LoadAndDraw(string FileName)
-        {
+        private bool LoadAndDraw(string fileName)
+		{
+            Console.WriteLine(fileName);
             /*
 			 * 親directory内のデータdirリストを取得しておく
 			 */
             dir_list.Clear();
             // 親Dir取得
-            string DirName = System.IO.Path.GetDirectoryName(FileName);
+            string DirName = System.IO.Path.GetDirectoryName(fileName);
             DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
             Console.WriteLine("Parent={0}", DirInfo.FullName);
             // 親Dir内のデータ子Dirリスト YYYYMMDD
