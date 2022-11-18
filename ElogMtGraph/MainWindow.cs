@@ -17,6 +17,8 @@ namespace ElogMtGraph
     {
 		// データファイルのディレクトリリスト
 		private ArrayList dir_list = new ArrayList();
+		// データファイル名
+		private string dataFilename = "";
 		// 現在表示しているディレクトリリストの番号
 		private int dir_index = -1;
 		private int currentFreq = -1;
@@ -242,21 +244,26 @@ namespace ElogMtGraph
 			if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //OKボタンがクリックされた
- 
-                string fileName = ofd.FileName;
-                LoadAndDraw(fileName);
+                string filename = ofd.FileName;
+                if (LoadAndDraw(filename))
+				{
+					this.dataFilename = filename;
+				} else
+				{
+					this.dataFilename = "";
+				}
             }
         }
 
-        private bool LoadAndDraw(string fileName)
+        private bool LoadAndDraw(string filename)
 		{
-            Console.WriteLine(fileName);
+            Console.WriteLine(filename);
             /*
 			 * 親directory内のデータdirリストを取得しておく
 			 */
             dir_list.Clear();
             // 親Dir取得
-            string DirName = System.IO.Path.GetDirectoryName(fileName);
+            string DirName = System.IO.Path.GetDirectoryName(filename);
             DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
             Console.WriteLine("Parent={0}", DirInfo.FullName);
             // 親Dir内のデータ子Dirリスト YYYYMMDD
@@ -544,8 +551,9 @@ namespace ElogMtGraph
 				xView.Add(new System.Xml.Linq.XElement("Y", GetComboY()));
 				xSettings.Add(xSize);
 				xSettings.Add(xView);
-				xDocument.Add(xSettings);
-				var xDirectory = new System.Xml.Linq.XElement("Directory");
+                var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
+				xSettings.Add(xDataFilename);
+                xDocument.Add(xSettings);
                 xDocument.Save(stream);
 			}
 		}
