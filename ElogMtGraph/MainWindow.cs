@@ -525,6 +525,10 @@ namespace ElogMtGraph
 
 		private void LoadSettings(string filename)
 		{
+			if (!File.Exists(filename))
+			{
+				return;
+			}
 			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
 			{
 
