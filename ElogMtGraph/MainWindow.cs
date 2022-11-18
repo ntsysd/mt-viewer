@@ -512,6 +512,17 @@ namespace ElogMtGraph
 			SaveSettings(filename);
 		}
 
+		private void MainWindow_Shown(object sender, EventArgs e)
+		{
+			if (this.dataFilename.Length > 0)
+			{
+				if (!this.LoadAndDraw(this.dataFilename))
+				{
+					this.dataFilename = "";
+				}
+			}
+		}
+
 		private void LoadSettings(string filename)
 		{
 			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))

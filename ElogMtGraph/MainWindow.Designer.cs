@@ -68,11 +68,14 @@
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 29);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(13, 4, 0, 4);
+            this.menuStrip1.Size = new System.Drawing.Size(1733, 57);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -84,34 +87,34 @@
             this.printToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 25);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(89, 49);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(347, 54);
             this.openToolStripMenuItem.Text = "Open(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // pageSetupToolStripMenuItem
             // 
             this.pageSetupToolStripMenuItem.Name = "pageSetupToolStripMenuItem";
-            this.pageSetupToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.pageSetupToolStripMenuItem.Size = new System.Drawing.Size(347, 54);
             this.pageSetupToolStripMenuItem.Text = "PageSetup(&S)";
             this.pageSetupToolStripMenuItem.Click += new System.EventHandler(this.pageSetupToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(347, 54);
             this.printToolStripMenuItem.Text = "Print(&P)";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(347, 54);
             this.exitToolStripMenuItem.Text = "Exit(&X)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -131,9 +134,11 @@
             this.groupBox1.Controls.Add(this.labelMode);
             this.groupBox1.Controls.Add(this.buttonDetrendOn);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 29);
+            this.groupBox1.Location = new System.Drawing.Point(0, 57);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(800, 45);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Size = new System.Drawing.Size(1733, 90);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -141,9 +146,10 @@
             // 
             this.buttonDetrendOff.AutoSize = true;
             this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrendOff.Location = new System.Drawing.Point(107, 13);
+            this.buttonDetrendOff.Location = new System.Drawing.Point(246, 26);
+            this.buttonDetrendOff.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buttonDetrendOff.Name = "buttonDetrendOff";
-            this.buttonDetrendOff.Size = new System.Drawing.Size(47, 26);
+            this.buttonDetrendOff.Size = new System.Drawing.Size(119, 52);
             this.buttonDetrendOff.TabIndex = 13;
             this.buttonDetrendOff.Text = "OFF";
             this.buttonDetrendOff.UseVisualStyleBackColor = true;
@@ -153,9 +159,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Location = new System.Drawing.Point(13, 36);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 16);
+            this.label1.Size = new System.Drawing.Size(122, 33);
             this.label1.TabIndex = 12;
             this.label1.Text = "Detrend";
             // 
@@ -163,9 +170,10 @@
             // 
             this.button1Hz.AutoSize = true;
             this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1Hz.Location = new System.Drawing.Point(211, 13);
+            this.button1Hz.Location = new System.Drawing.Point(501, 26);
+            this.button1Hz.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button1Hz.Name = "button1Hz";
-            this.button1Hz.Size = new System.Drawing.Size(51, 26);
+            this.button1Hz.Size = new System.Drawing.Size(109, 52);
             this.button1Hz.TabIndex = 10;
             this.button1Hz.Text = "1Hz";
             this.button1Hz.UseVisualStyleBackColor = true;
@@ -175,9 +183,10 @@
             // 
             this.button32Hz.AutoSize = true;
             this.button32Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button32Hz.Location = new System.Drawing.Point(161, 13);
+            this.button32Hz.Location = new System.Drawing.Point(394, 26);
+            this.button32Hz.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button32Hz.Name = "button32Hz";
-            this.button32Hz.Size = new System.Drawing.Size(51, 26);
+            this.button32Hz.Size = new System.Drawing.Size(110, 52);
             this.button32Hz.TabIndex = 9;
             this.button32Hz.Text = "32Hz";
             this.button32Hz.UseVisualStyleBackColor = true;
@@ -202,9 +211,10 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxY.Location = new System.Drawing.Point(657, 15);
+            this.comboBoxY.Location = new System.Drawing.Point(1424, 30);
+            this.comboBoxY.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxY.Name = "comboBoxY";
-            this.comboBoxY.Size = new System.Drawing.Size(69, 24);
+            this.comboBoxY.Size = new System.Drawing.Size(145, 41);
             this.comboBoxY.TabIndex = 8;
             // 
             // comboBoxPeriod
@@ -212,9 +222,10 @@
             this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBoxPeriod.FormattingEnabled = true;
-            this.comboBoxPeriod.Location = new System.Drawing.Point(514, 15);
+            this.comboBoxPeriod.Location = new System.Drawing.Point(1114, 30);
+            this.comboBoxPeriod.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxPeriod.Name = "comboBoxPeriod";
-            this.comboBoxPeriod.Size = new System.Drawing.Size(60, 24);
+            this.comboBoxPeriod.Size = new System.Drawing.Size(125, 41);
             this.comboBoxPeriod.TabIndex = 7;
             // 
             // comboBoxDataMode
@@ -224,18 +235,20 @@
             this.comboBoxDataMode.Items.AddRange(new object[] {
             "PHX(15Hz)",
             "ADU(32Hz)"});
-            this.comboBoxDataMode.Location = new System.Drawing.Point(339, 15);
+            this.comboBoxDataMode.Location = new System.Drawing.Point(734, 30);
+            this.comboBoxDataMode.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.comboBoxDataMode.Name = "comboBoxDataMode";
-            this.comboBoxDataMode.Size = new System.Drawing.Size(99, 24);
+            this.comboBoxDataMode.Size = new System.Drawing.Size(210, 41);
             this.comboBoxDataMode.TabIndex = 6;
             // 
             // labelYUnit
             // 
             this.labelYUnit.AutoSize = true;
             this.labelYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelYUnit.Location = new System.Drawing.Point(728, 18);
+            this.labelYUnit.Location = new System.Drawing.Point(1577, 36);
+            this.labelYUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelYUnit.Name = "labelYUnit";
-            this.labelYUnit.Size = new System.Drawing.Size(62, 16);
+            this.labelYUnit.Size = new System.Drawing.Size(122, 33);
             this.labelYUnit.TabIndex = 5;
             this.labelYUnit.Text = "Volt/FS";
             // 
@@ -243,9 +256,10 @@
             // 
             this.labelY.AutoSize = true;
             this.labelY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelY.Location = new System.Drawing.Point(638, 18);
+            this.labelY.Location = new System.Drawing.Point(1382, 36);
+            this.labelY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(17, 16);
+            this.labelY.Size = new System.Drawing.Size(34, 33);
             this.labelY.TabIndex = 4;
             this.labelY.Text = "Y";
             // 
@@ -253,9 +267,10 @@
             // 
             this.labelHour.AutoSize = true;
             this.labelHour.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHour.Location = new System.Drawing.Point(580, 18);
+            this.labelHour.Location = new System.Drawing.Point(1257, 36);
+            this.labelHour.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelHour.Name = "labelHour";
-            this.labelHour.Size = new System.Drawing.Size(38, 16);
+            this.labelHour.Size = new System.Drawing.Size(74, 33);
             this.labelHour.TabIndex = 3;
             this.labelHour.Text = "hour";
             // 
@@ -263,9 +278,10 @@
             // 
             this.labelPeriod.AutoSize = true;
             this.labelPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelPeriod.Location = new System.Drawing.Point(461, 18);
+            this.labelPeriod.Location = new System.Drawing.Point(999, 36);
+            this.labelPeriod.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelPeriod.Name = "labelPeriod";
-            this.labelPeriod.Size = new System.Drawing.Size(51, 16);
+            this.labelPeriod.Size = new System.Drawing.Size(101, 33);
             this.labelPeriod.TabIndex = 2;
             this.labelPeriod.Text = "Period";
             // 
@@ -273,9 +289,10 @@
             // 
             this.labelMode.AutoSize = true;
             this.labelMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelMode.Location = new System.Drawing.Point(297, 18);
+            this.labelMode.Location = new System.Drawing.Point(644, 36);
+            this.labelMode.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelMode.Name = "labelMode";
-            this.labelMode.Size = new System.Drawing.Size(44, 16);
+            this.labelMode.Size = new System.Drawing.Size(87, 33);
             this.labelMode.TabIndex = 1;
             this.labelMode.Text = "Mode";
             // 
@@ -283,9 +300,10 @@
             // 
             this.buttonDetrendOn.AutoSize = true;
             this.buttonDetrendOn.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrendOn.Location = new System.Drawing.Point(69, 13);
+            this.buttonDetrendOn.Location = new System.Drawing.Point(150, 26);
+            this.buttonDetrendOn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.buttonDetrendOn.Name = "buttonDetrendOn";
-            this.buttonDetrendOn.Size = new System.Drawing.Size(39, 26);
+            this.buttonDetrendOn.Size = new System.Drawing.Size(101, 52);
             this.buttonDetrendOn.TabIndex = 0;
             this.buttonDetrendOn.Text = "ON";
             this.buttonDetrendOn.UseVisualStyleBackColor = true;
@@ -295,7 +313,8 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 74);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 147);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -306,8 +325,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 337);
-            this.splitContainer1.SplitterDistance = 283;
+            this.splitContainer1.Size = new System.Drawing.Size(1733, 714);
+            this.splitContainer1.SplitterDistance = 656;
+            this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
             // tabControl1
@@ -315,17 +335,19 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 283);
+            this.tabControl1.Size = new System.Drawing.Size(1733, 656);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 257);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage1.Size = new System.Drawing.Size(1717, 609);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -335,28 +357,31 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(800, 50);
+            this.richTextBox1.Size = new System.Drawing.Size(1733, 50);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // hScrollBar1
             // 
             this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBar1.Location = new System.Drawing.Point(0, 411);
+            this.hScrollBar1.Location = new System.Drawing.Point(0, 861);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(800, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(1733, 17);
             this.hScrollBar1.TabIndex = 3;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 878);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1733, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -364,14 +389,14 @@
             // 
             this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 12);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1733, 900);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -379,9 +404,11 @@
             this.Controls.Add(this.statusStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
