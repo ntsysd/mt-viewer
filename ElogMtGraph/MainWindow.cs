@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,8 @@ namespace ElogMtGraph
     {
 		// データファイルのディレクトリリスト
 		private ArrayList dir_list = new ArrayList();
+		// データファイル名
+		private string dataFilename = "";
 		// 現在表示しているディレクトリリストの番号
 		private int dir_index = -1;
 		private int currentFreq = -1;
@@ -37,44 +40,37 @@ namespace ElogMtGraph
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
 
-			try
-            {
-				LoadSettings(@"settings.xml");
+			LoadSettings(@"settings.xml");
 
-				bool sizeFix = false;
-				Size newSize = this.Size;
-				Point newLocation = this.Location;
+			bool sizeFix = false;
+			Size newSize = this.Size;
+			Point newLocation = this.Location;
 				
-				if(this.Size.Width > Screen.GetWorkingArea(this).Width)
-                {
-					sizeFix = true;
-					newSize.Width = Screen.GetWorkingArea(this).Width;
-					newLocation.X = 0;
-				}
-				if (this.Size.Height > Screen.GetWorkingArea(this).Height)
-				{
-					sizeFix = true;
-					newSize.Height = Screen.GetWorkingArea(this).Height;
-					newLocation.Y = 0;
-				}
-
-				// タスクバーが上にあったときの処理
-                if (Screen.GetWorkingArea(this).Top > newLocation.Y)
-                {
-                    newLocation.Y = Screen.GetWorkingArea(this).Top;
-                }
-
-                if (sizeFix)
-                {
-					this.Size = newSize;
-					this.Location = newLocation;
-                }
+			if(this.Size.Width > Screen.GetWorkingArea(this).Width)
+			{
+				sizeFix = true;
+				newSize.Width = Screen.GetWorkingArea(this).Width;
+				newLocation.X = 0;
 			}
-            catch
-            {
-				Console.WriteLine("設定ファイル開けず");
-            }
+			if (this.Size.Height > Screen.GetWorkingArea(this).Height)
+			{
+				sizeFix = true;
+				newSize.Height = Screen.GetWorkingArea(this).Height;
+				newLocation.Y = 0;
+			}
 
+			// タスクバーが上にあったときの処理
+			if (Screen.GetWorkingArea(this).Top > newLocation.Y)
+			{
+				newLocation.Y = Screen.GetWorkingArea(this).Top;
+			}
+
+			if (sizeFix)
+			{
+				this.Size = newSize;
+				this.Location = newLocation;
+			}
+			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
@@ -202,8 +198,12 @@ namespace ElogMtGraph
 		{
 			foreach (object item in this.comboBoxY.Items)
 			{
-				//				Console.WriteLine(item.ToString());
-				if (double.Parse(item.ToString()) == y)
+				double itemValue;
+				if (!double.TryParse(item.ToString(), out itemValue))
+				{
+					continue;
+				}
+				if (itemValue == y)
 				{
 					this.comboBoxY.SelectedItem = item;
 					break;
@@ -240,53 +240,71 @@ namespace ElogMtGraph
 			//ダイアログを表示する
 			if (ofd.ShowDialog() == DialogResult.OK)
             {
-				//OKボタンがクリックされた
-				Console.WriteLine(ofd.FileName);
-				/*
-				 * 親directory内のデータdirリストを取得しておく
-				 */
-				dir_list.Clear();
-				// 親Dir取得
-				string DirName = System.IO.Path.GetDirectoryName(ofd.FileName);
-				DirectoryInfo DirInfo = System.IO.Directory.GetParent(DirName);
-				Console.WriteLine("Parent={0}", DirInfo.FullName);
-				// 親Dir内のデータ子Dirリスト YYYYMMDD
-				foreach (string stDirPath in Directory.GetDirectories(DirInfo.FullName))
+                //OKボタンがクリックされた
+                string filename = ofd.FileName;
+                if (LoadAndDraw(filename))
 				{
-					// YYYYMMDD形式のみ抽出
-					if (System.Text.RegularExpressions.Regex.IsMatch(
-						Path.GetFileName(stDirPath),
-						@"\A\d{8}\z",
-						System.Text.RegularExpressions.RegexOptions.ECMAScript))
-					{
-						//						Console.WriteLine(stDirPath);
-						dir_list.Add(stDirPath);
-					}
-				}
-				// ソート
-				dir_list.Sort();
-				foreach (string a in dir_list)
+					this.dataFilename = filename;
+				} else
 				{
-					Console.WriteLine(a);
+					this.dataFilename = "";
 				}
-				// これからグラフ化するデータのArrayList内位置番号取得
-				dir_index = dir_list.IndexOf(DirName);
-				Console.WriteLine("dir_index={0}", dir_index);
+            }
+        }
 
-				// コンボsetする 24H AUTO-V
-				this.SetComboPeriod(24);
-				//this.SetComboY("AUTO");
+        private bool LoadAndDraw(string filename, bool intaractive = true)
+		{
+            Console.WriteLine(filename);
+            /*
+			 * 親directory内のデータdirリストを取得しておく
+			 */
+            dir_list.Clear();
+            // 親Dir取得
+            string dirName = System.IO.Path.GetDirectoryName(filename);
+            if (!System.IO.Directory.Exists(dirName))
+            {
+				if (intaractive)
+				{
+					MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+                return false;
+            }
+            DirectoryInfo dirInfo = System.IO.Directory.GetParent(dirName);
+            Console.WriteLine("Parent={0}", dirInfo.FullName);
+            // 親Dir内のデータ子Dirリスト YYYYMMDD
+            foreach (string stDirPath in Directory.GetDirectories(dirInfo.FullName))
+            {
+                // YYYYMMDD形式のみ抽出
+                if (System.Text.RegularExpressions.Regex.IsMatch(
+                    Path.GetFileName(stDirPath),
+                    @"\A\d{8}\z",
+                    System.Text.RegularExpressions.RegexOptions.ECMAScript))
+                {
+                    //						Console.WriteLine(stDirPath);
+                    dir_list.Add(stDirPath);
+                }
+            }
+            // ソート
+            dir_list.Sort();
+            foreach (string a in dir_list)
+            {
+                Console.WriteLine(a);
+            }
+            // これからグラフ化するデータのArrayList内位置番号取得
+            dir_index = dir_list.IndexOf(dirName);
+            Console.WriteLine("dir_index={0}", dir_index);
 
-				// フィルタの周波数を設定
-				currentFreq = GetComboDataModeFreq();
-				button32Hz.Text = currentFreq.ToString() + "Hz";
-				// ファイル読み込んでグラフ描く
-				//				Graph.SetInputDir(fbd.SelectedPath);
-				Graph.ReadAndDraw(DirName, true);
-			}
-		}
+            // コンボsetする 24H AUTO-V
+            this.SetComboPeriod(24);
+            //this.SetComboY("AUTO");
 
-		// 中身がなにもないフォルダを開こうとしたらキャンセルする
+            // フィルタの周波数を設定
+            currentFreq = GetComboDataModeFreq();
+            button32Hz.Text = currentFreq.ToString() + "Hz";
+            return Graph.ReadAndDraw(dirName, true, intaractive);
+        }
+
+        // 中身がなにもないフォルダを開こうとしたらキャンセルする
         private void Ofd_FileOk(object sender, CancelEventArgs e)
         {
             try
@@ -500,8 +518,23 @@ namespace ElogMtGraph
 			SaveSettings(filename);
 		}
 
+		private void MainWindow_Shown(object sender, EventArgs e)
+		{
+			if (this.dataFilename.Length > 0)
+			{
+				if (!this.LoadAndDraw(this.dataFilename, false))	
+				{
+					this.dataFilename = "";
+				}
+			}
+		}
+
 		private void LoadSettings(string filename)
 		{
+			if (!File.Exists(filename))
+			{
+				return;
+			}
 			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
 			{
 
@@ -516,6 +549,9 @@ namespace ElogMtGraph
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
 				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
+				this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
+				Console.WriteLine("foobar");
+				Console.WriteLine(this.dataFilename);
 			}
 		}
 
@@ -536,8 +572,10 @@ namespace ElogMtGraph
 				xView.Add(new System.Xml.Linq.XElement("Y", GetComboY()));
 				xSettings.Add(xSize);
 				xSettings.Add(xView);
-				xDocument.Add(xSettings);
-				xDocument.Save(stream);
+                var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
+				xSettings.Add(xDataFilename);
+                xDocument.Add(xSettings);
+                xDocument.Save(stream);
 			}
 		}
 
