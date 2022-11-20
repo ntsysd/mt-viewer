@@ -138,7 +138,7 @@ namespace ElogMtGraph
 		{
             try
             {
-				return double.Parse(this.comboBoxY.SelectedItem.ToString());
+				return double.Parse(this.comboBoxY.Text);
 			}
 			catch(FormatException e)
             {

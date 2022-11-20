@@ -135,9 +135,9 @@
             this.groupBox1.Controls.Add(this.buttonDetrendOn);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 57);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(1733, 90);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -147,7 +147,7 @@
             this.buttonDetrendOff.AutoSize = true;
             this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.buttonDetrendOff.Location = new System.Drawing.Point(246, 26);
-            this.buttonDetrendOff.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonDetrendOff.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDetrendOff.Name = "buttonDetrendOff";
             this.buttonDetrendOff.Size = new System.Drawing.Size(119, 52);
             this.buttonDetrendOff.TabIndex = 13;
@@ -171,7 +171,7 @@
             this.button1Hz.AutoSize = true;
             this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button1Hz.Location = new System.Drawing.Point(501, 26);
-            this.button1Hz.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button1Hz.Margin = new System.Windows.Forms.Padding(6);
             this.button1Hz.Name = "button1Hz";
             this.button1Hz.Size = new System.Drawing.Size(109, 52);
             this.button1Hz.TabIndex = 10;
@@ -184,7 +184,7 @@
             this.button32Hz.AutoSize = true;
             this.button32Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button32Hz.Location = new System.Drawing.Point(394, 26);
-            this.button32Hz.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button32Hz.Margin = new System.Windows.Forms.Padding(6);
             this.button32Hz.Name = "button32Hz";
             this.button32Hz.Size = new System.Drawing.Size(110, 52);
             this.button32Hz.TabIndex = 9;
@@ -194,9 +194,9 @@
             // 
             // comboBoxY
             // 
-            this.comboBoxY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBoxY.FormattingEnabled = true;
+            this.comboBoxY.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.comboBoxY.Items.AddRange(new object[] {
             "0.0001",
             "0.001",
@@ -212,7 +212,7 @@
             "20",
             "AUTO"});
             this.comboBoxY.Location = new System.Drawing.Point(1424, 30);
-            this.comboBoxY.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxY.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxY.Name = "comboBoxY";
             this.comboBoxY.Size = new System.Drawing.Size(145, 41);
             this.comboBoxY.TabIndex = 8;
@@ -223,7 +223,7 @@
             this.comboBoxPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBoxPeriod.FormattingEnabled = true;
             this.comboBoxPeriod.Location = new System.Drawing.Point(1114, 30);
-            this.comboBoxPeriod.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxPeriod.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(125, 41);
             this.comboBoxPeriod.TabIndex = 7;
@@ -236,7 +236,7 @@
             "PHX(15Hz)",
             "ADU(32Hz)"});
             this.comboBoxDataMode.Location = new System.Drawing.Point(734, 30);
-            this.comboBoxDataMode.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboBoxDataMode.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxDataMode.Name = "comboBoxDataMode";
             this.comboBoxDataMode.Size = new System.Drawing.Size(210, 41);
             this.comboBoxDataMode.TabIndex = 6;
@@ -301,7 +301,7 @@
             this.buttonDetrendOn.AutoSize = true;
             this.buttonDetrendOn.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.buttonDetrendOn.Location = new System.Drawing.Point(150, 26);
-            this.buttonDetrendOn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonDetrendOn.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDetrendOn.Name = "buttonDetrendOn";
             this.buttonDetrendOn.Size = new System.Drawing.Size(101, 52);
             this.buttonDetrendOn.TabIndex = 0;
@@ -314,7 +314,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 147);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -326,7 +326,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1733, 714);
-            this.splitContainer1.SplitterDistance = 656;
+            this.splitContainer1.SplitterDistance = 652;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -335,19 +335,19 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1733, 656);
+            this.tabControl1.Size = new System.Drawing.Size(1733, 652);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabPage1.Size = new System.Drawing.Size(1717, 609);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Size = new System.Drawing.Size(1717, 605);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -357,10 +357,10 @@
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1733, 50);
+            this.richTextBox1.Size = new System.Drawing.Size(1733, 54);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -404,7 +404,7 @@
             this.Controls.Add(this.statusStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
