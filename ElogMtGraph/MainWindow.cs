@@ -394,7 +394,7 @@ namespace ElogMtGraph
 			{
 				Console.WriteLine("value not validated: " + combobox.Text);
 				e.Cancel = true;
-				combobox.BackColor = Color.PaleVioletRed;
+				combobox.BackColor = Color.LightSalmon;
 				return;
 			}
 			combobox.BackColor = Color.White;
