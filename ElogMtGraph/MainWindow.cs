@@ -366,9 +366,7 @@ namespace ElogMtGraph
         {
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
-
-			Console.WriteLine("comboY_SelectedIndexChanged() " + combobox.SelectedIndex);
-			Console.WriteLine("value:" + combobox.Text);
+            combobox.BackColor = Color.White;
 
 			// グラフ描画
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
@@ -380,7 +378,8 @@ namespace ElogMtGraph
 			if (combobox == null) return;
 			if (combobox.Text == "AUTO")
 			{
-				return;
+                combobox.BackColor = Color.White;
+                return;
 			}
 			double value;
 			if (!double.TryParse(combobox.Text, out value))
