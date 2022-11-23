@@ -199,6 +199,7 @@
             this.comboBoxY.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.comboBoxY.Items.AddRange(new object[] {
             "0.0001",
+            "0.0005",
             "0.001",
             "0.01",
             "0.1",
@@ -326,7 +327,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1733, 714);
-            this.splitContainer1.SplitterDistance = 652;
+            this.splitContainer1.SplitterDistance = 644;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -338,7 +339,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1733, 652);
+            this.tabControl1.Size = new System.Drawing.Size(1733, 644);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -347,7 +348,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1717, 605);
+            this.tabPage1.Size = new System.Drawing.Size(1717, 597);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -360,7 +361,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1733, 54);
+            this.richTextBox1.Size = new System.Drawing.Size(1733, 62);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
