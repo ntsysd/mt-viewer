@@ -198,31 +198,20 @@ namespace ElogMtGraph
 		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
 		public void SetComboY(double y)
 		{
-			foreach (object item in this.comboBoxY.Items)
+			if (y == -1)
 			{
-				double itemValue;
-				if (!double.TryParse(item.ToString(), out itemValue))
-				{
-					continue;
-				}
-				if (itemValue == y)
-				{
-					this.comboBoxY.SelectedItem = item;
-					break;
-				}
+				// means AUTO
+				return;
 			}
-		}
-		public void SetComboY(string y)
-        {
-			foreach (object item in this.comboBoxY.Items)
+
+			string yValue = y.ToString();
+			this.comboBoxY.SelectedIndex = comboBoxY.FindStringExact(yValue);
+
+			if (this.comboBoxY.SelectedIndex < 0)
 			{
-				//				Console.WriteLine(item.ToString());
-				if (item.ToString() == y)
-				{
-					this.comboBoxY.SelectedItem = item;
-					break;
-				}
+				this.comboBoxY.Text = yValue;
 			}
+
 		}
 
 		// descriptionBoxにテキスト設定
@@ -389,12 +378,16 @@ namespace ElogMtGraph
 		{
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
+			if (combobox.Text == "AUTO")
+			{
+				return;
+			}
 			double value;
 			if (!double.TryParse(combobox.Text, out value))
 			{
 				Console.WriteLine("value not validated: " + combobox.Text);
 				e.Cancel = true;
-				combobox.BackColor = Color.PaleVioletRed;
+				combobox.BackColor = Color.LightSalmon;
 				return;
 			}
 			combobox.BackColor = Color.White;
@@ -569,7 +562,6 @@ namespace ElogMtGraph
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
 				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
 				this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
-				Console.WriteLine("foobar");
 				Console.WriteLine(this.dataFilename);
 			}
 		}
