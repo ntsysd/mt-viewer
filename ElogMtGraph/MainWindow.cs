@@ -366,8 +366,6 @@ namespace ElogMtGraph
         {
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
-            combobox.BackColor = Color.White;
-
 			// グラフ描画
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
@@ -378,18 +376,16 @@ namespace ElogMtGraph
 			if (combobox == null) return;
 			if (combobox.Text == "AUTO")
 			{
-                combobox.BackColor = Color.White;
                 return;
 			}
 			double value;
 			if (!double.TryParse(combobox.Text, out value))
 			{
-				Console.WriteLine("value not validated: " + combobox.Text);
+				MessageBox.Show("数値を入力してください\n" , "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				e.Cancel = true;
-				combobox.BackColor = Color.LightSalmon;
 				return;
 			}
-			combobox.BackColor = Color.White;
+
             Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
