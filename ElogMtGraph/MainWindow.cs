@@ -356,18 +356,17 @@ namespace ElogMtGraph
 				Console.WriteLine("comboPeriod_SelectedIndexChanged(): SelectedIndex == NULL!");
 				return;
 			}
-			// グラフ描画
-			//			Graph.ReadAndDraw();
-			// ファイル読み込まずに、読み込み済みのデータをプロット
-			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+
+            Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
 
         private void comboBoxY_SelectedIndexChanged(object sender, EventArgs e)
         {
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
-			// グラフ描画
-			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            this.comboYErrorProvider.SetError(combobox, String.Empty);
+            // グラフ描画
+            Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
 
 		private void comboBoxY_Validating(object sender, CancelEventArgs e)
@@ -381,8 +380,9 @@ namespace ElogMtGraph
 			double value;
 			if (!double.TryParse(combobox.Text, out value))
 			{
-				MessageBox.Show("数値を入力してください\n" , "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				e.Cancel = true;
+				this.comboYErrorProvider.SetError(combobox, "数値を入力してください");
+
+                e.Cancel = true;
 				return;
 			}
 
@@ -393,6 +393,7 @@ namespace ElogMtGraph
 		{
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
+            this.comboYErrorProvider.SetError(combobox, String.Empty);
             Graph.DrawGraph(GetComboPeriod(), GetComboY());
         }
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -520,6 +521,7 @@ namespace ElogMtGraph
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			e.Cancel = false;
 			string filename = @"settings.xml";
 
 			SaveSettings(filename);

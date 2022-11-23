@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +56,7 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.comboYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -63,6 +65,7 @@
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboYErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -327,7 +330,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1733, 714);
-            this.splitContainer1.SplitterDistance = 644;
+            this.splitContainer1.SplitterDistance = 640;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -339,7 +342,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1733, 644);
+            this.tabControl1.Size = new System.Drawing.Size(1733, 640);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -348,7 +351,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1717, 597);
+            this.tabPage1.Size = new System.Drawing.Size(1717, 593);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -361,7 +364,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1733, 62);
+            this.richTextBox1.Size = new System.Drawing.Size(1733, 66);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -393,6 +396,10 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 12);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // comboYErrorProvider
+            // 
+            this.comboYErrorProvider.ContainerControl = this;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -422,6 +429,7 @@
             this.tabControl1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.comboYErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,6 +464,7 @@
         private System.Windows.Forms.Button button1Hz;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDetrendOff;
+        private System.Windows.Forms.ErrorProvider comboYErrorProvider;
     }
 }
 
