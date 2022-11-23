@@ -72,6 +72,8 @@ namespace ElogMtGraph
 			}
 			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
+            this.comboBoxY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxY_Validating);
+			this.comboBoxY.Validated += new System.EventHandler(this.comboBoxY_Validated);
 			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
 
 			currentFreq = GetComboDataModeFreq();
@@ -138,7 +140,7 @@ namespace ElogMtGraph
 		{
             try
             {
-				return double.Parse(this.comboBoxY.SelectedItem.ToString());
+				return double.Parse(this.comboBoxY.Text);
 			}
 			catch(FormatException e)
             {
@@ -377,18 +379,35 @@ namespace ElogMtGraph
 			if (combobox == null) return;
 
 			Console.WriteLine("comboY_SelectedIndexChanged() " + combobox.SelectedIndex);
-			Console.WriteLine("combo: " + combobox.SelectedItem.ToString());
+			Console.WriteLine("value:" + combobox.Text);
 
-			if (combobox.SelectedItem == null)
-			{
-				Console.WriteLine("comboY_SelectedIndexChanged(): SelectedIndex == NULL!");
-				return;
-			}
 			// グラフ描画
 			Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
 
-		private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+		private void comboBoxY_Validating(object sender, CancelEventArgs e)
+		{
+			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+			if (combobox == null) return;
+			double value;
+			if (!double.TryParse(combobox.Text, out value))
+			{
+				Console.WriteLine("value not validated: " + combobox.Text);
+				e.Cancel = true;
+				combobox.BackColor = Color.PaleVioletRed;
+				return;
+			}
+			combobox.BackColor = Color.White;
+            Console.WriteLine("validate success on value:" + combobox.Text);
+        }
+
+		private void comboBoxY_Validated(object sender, EventArgs e)
+		{
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
+            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+        }
+        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
 			//受け取ったキーを表示する
 			Console.WriteLine(e.KeyCode);
