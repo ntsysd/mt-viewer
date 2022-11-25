@@ -341,7 +341,7 @@ namespace ElogMtGraph
 			// グラフ描画
 			//			Graph.ReadAndDraw();
 			// ファイル読み込まずに、読み込み済みのデータをプロット
-			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			Graph.DrawGraph();
 		}
 
         private void comboBoxPeriod_SelectedIndexChanged(object sender, EventArgs e)
@@ -358,7 +358,7 @@ namespace ElogMtGraph
 				return;
 			}
 
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            Graph.DrawGraph();
 		}
 
         private void comboBoxY_SelectedIndexChanged(object sender, EventArgs e)
@@ -367,7 +367,7 @@ namespace ElogMtGraph
 			if (combobox == null) return;
             this.comboYErrorProvider.SetError(combobox, String.Empty);
             // グラフ描画
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            Graph.DrawGraph();
 		}
 
 		private void comboBoxY_Validating(object sender, CancelEventArgs e)
@@ -395,7 +395,7 @@ namespace ElogMtGraph
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
             this.comboYErrorProvider.SetError(combobox, String.Empty);
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            Graph.DrawGraph();
         }
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -455,7 +455,7 @@ namespace ElogMtGraph
 					else
 					{
 						this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
-						Graph.DrawGraph(GetComboPeriod(), GetComboY());
+						Graph.DrawGraph();
 					}
 				}
 				else if (e.KeyCode == Keys.Left)
@@ -474,7 +474,7 @@ namespace ElogMtGraph
 					else
 					{
 						this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
-						Graph.DrawGraph(GetComboPeriod(), GetComboY());
+						Graph.DrawGraph();
 					}
 				}
 
@@ -512,7 +512,7 @@ namespace ElogMtGraph
 				buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
 				buttonDetrendOff.BackColor = Color.Yellow;
 			}
-			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			if (draw) Graph.DrawGraph();
 		}
 
 		public bool IsDetrendEnable()
@@ -629,7 +629,7 @@ namespace ElogMtGraph
 				button32Hz.BackColor = Color.Yellow;
 			}
 
-			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			if (draw) Graph.DrawGraph();
 		}
 
     }

@@ -144,8 +144,10 @@ namespace ElogMtGraph
 		//
 		// double range_t: 時間軸レンジ　Hour 
 		// double range_y: Y軸レンジ　Volt/FS 中心値±range_y/2の範囲になる
-        public static void DrawGraph(double range_t, double range_y)
+        public static void DrawGraph()
 		{
+            double range_t = Program.FormMain.GetComboPeriod();
+            double range_y = Program.FormMain.GetComboY();
 			try {
 				if (timestamp == null) return;
 				if (range_t <= 0) return;
@@ -631,9 +633,7 @@ namespace ElogMtGraph
             }
 
 			// Graph描画
-			double period = Program.FormMain.GetComboPeriod();
-			double yrange = Program.FormMain.GetComboY();
-			DrawGraph(period, yrange);
+			DrawGraph();
 
 			return true;
 		}
