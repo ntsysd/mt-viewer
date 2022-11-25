@@ -36,6 +36,9 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxEY = new System.Windows.Forms.ComboBox();
+            this.labelHY = new System.Windows.Forms.Label();
+            this.labelEYUnit = new System.Windows.Forms.Label();
             this.buttonDetrendOff = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button1Hz = new System.Windows.Forms.Button();
@@ -78,7 +81,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(13, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(1733, 57);
+            this.menuStrip1.Size = new System.Drawing.Size(2406, 57);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -123,6 +126,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxEY);
+            this.groupBox1.Controls.Add(this.labelHY);
+            this.groupBox1.Controls.Add(this.labelEYUnit);
             this.groupBox1.Controls.Add(this.buttonDetrendOff);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button1Hz);
@@ -141,9 +147,57 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox1.Size = new System.Drawing.Size(1733, 90);
+            this.groupBox1.Size = new System.Drawing.Size(2406, 90);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // comboBoxEY
+            // 
+            this.comboBoxEY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBoxEY.FormattingEnabled = true;
+            this.comboBoxEY.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.comboBoxEY.Items.AddRange(new object[] {
+            "0.0001",
+            "0.0005",
+            "0.001",
+            "0.01",
+            "0.1",
+            "0.2",
+            "0.4",
+            "0.8",
+            "1",
+            "2.5",
+            "5.0",
+            "10",
+            "20",
+            "AUTO"});
+            this.comboBoxEY.Location = new System.Drawing.Point(2103, 27);
+            this.comboBoxEY.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBoxEY.Name = "comboBoxEY";
+            this.comboBoxEY.Size = new System.Drawing.Size(145, 41);
+            this.comboBoxEY.TabIndex = 10;
+            // 
+            // labelHY
+            // 
+            this.labelHY.AutoSize = true;
+            this.labelHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelHY.Location = new System.Drawing.Point(1916, 33);
+            this.labelHY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelHY.Name = "labelHY";
+            this.labelHY.Size = new System.Drawing.Size(177, 33);
+            this.labelHY.TabIndex = 14;
+            this.labelHY.Text = "Y (H Range)";
+            // 
+            // labelEYUnit
+            // 
+            this.labelEYUnit.AutoSize = true;
+            this.labelEYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelEYUnit.Location = new System.Drawing.Point(2256, 33);
+            this.labelEYUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelEYUnit.Name = "labelEYUnit";
+            this.labelEYUnit.Size = new System.Drawing.Size(122, 33);
+            this.labelEYUnit.TabIndex = 9;
+            this.labelEYUnit.Text = "Volt/FS";
             // 
             // buttonDetrendOff
             // 
@@ -215,7 +269,7 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxY.Location = new System.Drawing.Point(1424, 30);
+            this.comboBoxY.Location = new System.Drawing.Point(1572, 30);
             this.comboBoxY.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxY.Name = "comboBoxY";
             this.comboBoxY.Size = new System.Drawing.Size(145, 41);
@@ -249,7 +303,7 @@
             // 
             this.labelYUnit.AutoSize = true;
             this.labelYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelYUnit.Location = new System.Drawing.Point(1577, 36);
+            this.labelYUnit.Location = new System.Drawing.Point(1725, 36);
             this.labelYUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelYUnit.Name = "labelYUnit";
             this.labelYUnit.Size = new System.Drawing.Size(122, 33);
@@ -263,9 +317,9 @@
             this.labelY.Location = new System.Drawing.Point(1382, 36);
             this.labelY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(34, 33);
+            this.labelY.Size = new System.Drawing.Size(174, 33);
             this.labelY.TabIndex = 4;
-            this.labelY.Text = "Y";
+            this.labelY.Text = "Y (E Range)";
             // 
             // labelHour
             // 
@@ -329,8 +383,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1733, 714);
-            this.splitContainer1.SplitterDistance = 640;
+            this.splitContainer1.Size = new System.Drawing.Size(2406, 714);
+            this.splitContainer1.SplitterDistance = 632;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -342,7 +396,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1733, 640);
+            this.tabControl1.Size = new System.Drawing.Size(2406, 632);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -351,7 +405,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1717, 593);
+            this.tabPage1.Size = new System.Drawing.Size(2390, 585);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -364,7 +418,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1733, 66);
+            this.richTextBox1.Size = new System.Drawing.Size(2406, 74);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -373,7 +427,7 @@
             this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.hScrollBar1.Location = new System.Drawing.Point(0, 861);
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(1733, 17);
+            this.hScrollBar1.Size = new System.Drawing.Size(2406, 17);
             this.hScrollBar1.TabIndex = 3;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
@@ -385,7 +439,7 @@
             this.statusStrip1.Location = new System.Drawing.Point(0, 878);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1733, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(2406, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -404,7 +458,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1733, 900);
+            this.ClientSize = new System.Drawing.Size(2406, 900);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -465,6 +519,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDetrendOff;
         private System.Windows.Forms.ErrorProvider comboYErrorProvider;
+        private System.Windows.Forms.ComboBox comboBoxEY;
+        private System.Windows.Forms.Label labelHY;
+        private System.Windows.Forms.Label labelEYUnit;
     }
 }
 
