@@ -43,7 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1Hz = new System.Windows.Forms.Button();
             this.button32Hz = new System.Windows.Forms.Button();
-            this.comboBoxY = new System.Windows.Forms.ComboBox();
+            this.comboBoxHY = new System.Windows.Forms.ComboBox();
             this.comboBoxPeriod = new System.Windows.Forms.ComboBox();
             this.comboBoxDataMode = new System.Windows.Forms.ComboBox();
             this.labelYUnit = new System.Windows.Forms.Label();
@@ -59,7 +59,8 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.comboYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboHYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboEYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -68,7 +69,8 @@
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboYErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboHYErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboEYErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -133,7 +135,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button1Hz);
             this.groupBox1.Controls.Add(this.button32Hz);
-            this.groupBox1.Controls.Add(this.comboBoxY);
+            this.groupBox1.Controls.Add(this.comboBoxHY);
             this.groupBox1.Controls.Add(this.comboBoxPeriod);
             this.groupBox1.Controls.Add(this.comboBoxDataMode);
             this.groupBox1.Controls.Add(this.labelYUnit);
@@ -249,12 +251,12 @@
             this.button32Hz.UseVisualStyleBackColor = true;
             this.button32Hz.Click += new System.EventHandler(this.button32Hz_Click);
             // 
-            // comboBoxY
+            // comboBoxHY
             // 
-            this.comboBoxY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBoxY.FormattingEnabled = true;
-            this.comboBoxY.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.comboBoxY.Items.AddRange(new object[] {
+            this.comboBoxHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboBoxHY.FormattingEnabled = true;
+            this.comboBoxHY.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.comboBoxHY.Items.AddRange(new object[] {
             "0.0001",
             "0.0005",
             "0.001",
@@ -269,11 +271,11 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxY.Location = new System.Drawing.Point(1572, 30);
-            this.comboBoxY.Margin = new System.Windows.Forms.Padding(6);
-            this.comboBoxY.Name = "comboBoxY";
-            this.comboBoxY.Size = new System.Drawing.Size(145, 41);
-            this.comboBoxY.TabIndex = 8;
+            this.comboBoxHY.Location = new System.Drawing.Point(1572, 30);
+            this.comboBoxHY.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBoxHY.Name = "comboBoxHY";
+            this.comboBoxHY.Size = new System.Drawing.Size(145, 41);
+            this.comboBoxHY.TabIndex = 8;
             // 
             // comboBoxPeriod
             // 
@@ -384,7 +386,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(2406, 714);
-            this.splitContainer1.SplitterDistance = 632;
+            this.splitContainer1.SplitterDistance = 628;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -396,7 +398,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2406, 632);
+            this.tabControl1.Size = new System.Drawing.Size(2406, 628);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -405,7 +407,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(2390, 585);
+            this.tabPage1.Size = new System.Drawing.Size(2390, 581);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -418,7 +420,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(2406, 74);
+            this.richTextBox1.Size = new System.Drawing.Size(2406, 78);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -450,9 +452,13 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 12);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboYErrorProvider
+            // comboHYErrorProvider
             // 
-            this.comboYErrorProvider.ContainerControl = this;
+            this.comboHYErrorProvider.ContainerControl = this;
+            // 
+            // comboEYErrorProvicer
+            // 
+            this.comboEYErrorProvider.ContainerControl = this;
             // 
             // MainWindow
             // 
@@ -483,7 +489,8 @@
             this.tabControl1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.comboYErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboHYErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboEYErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,7 +510,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ComboBox comboBoxY;
+        private System.Windows.Forms.ComboBox comboBoxHY;
         private System.Windows.Forms.ComboBox comboBoxPeriod;
         private System.Windows.Forms.ComboBox comboBoxDataMode;
         private System.Windows.Forms.Label labelYUnit;
@@ -518,10 +525,11 @@
         private System.Windows.Forms.Button button1Hz;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonDetrendOff;
-        private System.Windows.Forms.ErrorProvider comboYErrorProvider;
+        private System.Windows.Forms.ErrorProvider comboHYErrorProvider;
         private System.Windows.Forms.ComboBox comboBoxEY;
         private System.Windows.Forms.Label labelHY;
         private System.Windows.Forms.Label labelEYUnit;
+        private System.Windows.Forms.ErrorProvider comboEYErrorProvider;
     }
 }
 
