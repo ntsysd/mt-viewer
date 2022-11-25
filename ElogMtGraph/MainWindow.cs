@@ -36,6 +36,7 @@ namespace ElogMtGraph
             }
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
 			comboBoxY.SelectedIndex = comboBoxY.Items.Count - 1;
+			comboBoxEY.SelectedIndex = comboBoxEY.Items.Count - 1;
 
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
@@ -630,5 +631,6 @@ namespace ElogMtGraph
 
 			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
 		}
+
     }
 }

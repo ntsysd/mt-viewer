@@ -637,6 +637,8 @@ namespace ElogMtGraph
 
 			return true;
 		}
+
+		
 		/*
 		 * ファイル読み込み　間引きあり
 		 * file_path 読み込むファイルのパス
