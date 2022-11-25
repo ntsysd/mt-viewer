@@ -204,26 +204,32 @@ namespace ElogMtGraph
 		}
 		// Yコンボの値set
 		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
-		public void SetComboY(double y)
+		public void SetComboY(ComboBox comboBox, string ystring)
 		{
-			if (y == -1)
+			double y;
+			if (!double.TryParse(ystring, out y))
 			{
-				// means AUTO
 				return;
 			}
 
-			string yValue = y.ToString();
-			this.comboBoxHY.SelectedIndex = comboBoxHY.FindStringExact(yValue);
-
-			if (this.comboBoxHY.SelectedIndex < 0)
+			if (y == -1)
 			{
-				this.comboBoxHY.Text = yValue;
+				comboBox.SelectedIndex = comboBox.Items.Count - 1;
+				return;
+			}
+
+			comboBox.SelectedIndex = comboBox.FindStringExact(ystring);
+
+			if (comboBox.SelectedIndex < 0)
+			{
+				comboBox.Text = ystring;
 			}
 
 		}
 
-		// descriptionBoxにテキスト設定
-		public void SetDescriptionBoxText(string text)
+
+        // descriptionBoxにテキスト設定
+        public void SetDescriptionBoxText(string text)
 		{
 			this.richTextBox1.Text = text;
 		}
@@ -603,8 +609,9 @@ namespace ElogMtGraph
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
-				this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
+                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
+                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
 				Console.WriteLine(this.dataFilename);
 			}
 		}
@@ -623,7 +630,8 @@ namespace ElogMtGraph
 				xView.Add(new System.Xml.Linq.XElement("AveFilter", IsAverageFilterEnable()?"On":"Off"));
 				xView.Add(new System.Xml.Linq.XElement("Mode", GetComboDataModeFreq()));
 				xView.Add(new System.Xml.Linq.XElement("Period", GetComboPeriod()));
-				xView.Add(new System.Xml.Linq.XElement("Y", GetComboHY()));
+				xView.Add(new System.Xml.Linq.XElement("HY", GetComboHY()));
+				xView.Add(new System.Xml.Linq.XElement("EY", GetComboEY()));
 				xSettings.Add(xSize);
 				xSettings.Add(xView);
                 var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
