@@ -147,12 +147,15 @@ namespace ElogMtGraph
         public static void DrawGraph()
 		{
             double range_t = Program.FormMain.GetComboPeriod();
-            double range_y = Program.FormMain.GetComboY();
-			try {
+            double range_hy = Program.FormMain.GetComboHY();
+            double range_ey = Program.FormMain.GetComboEY();
+
+            try {
 				if (timestamp == null) return;
 				if (range_t <= 0) return;
-				if (range_y <= 0 && range_y != -1.0) return;
-				if (data_length < 0) return;
+				if (range_hy <= 0 && range_hy != -1.0) return;
+                if (range_ey <= 0 && range_ey != -1.0) return;
+                if (data_length < 0) return;
                 // 描画中ならばreturn
                 if (mutex) return;
                 mutex = true;
@@ -219,11 +222,15 @@ namespace ElogMtGraph
 					double coef = VOLT_LSB_E;
 					double volt_max = VOLT_MAX_E;
 					double volt_min = VOLT_MIN_E;
+
+					double range_y = range_hy;
+
 					if (ch >= 2)
                     {
 						coef = VOLT_LSB_H;
 						volt_max = VOLT_MAX_H;
 						volt_min = VOLT_MIN_H;
+						range_y = range_ey;
 					}
 					
 
@@ -405,9 +412,7 @@ namespace ElogMtGraph
 				{
 					myMaster.AxisChange( g );
 				}
-				//
-//				range_h_save = range_t;
-//				range_y_save = range_y;
+			
 			}
 			catch(Exception e)
 			{
