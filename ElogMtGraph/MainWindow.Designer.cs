@@ -86,6 +86,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(2406, 57);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // fileToolStripMenuItem
             // 
@@ -173,32 +174,32 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxEY.Location = new System.Drawing.Point(2103, 27);
+            this.comboBoxEY.Location = new System.Drawing.Point(1809, 34);
             this.comboBoxEY.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxEY.Name = "comboBoxEY";
             this.comboBoxEY.Size = new System.Drawing.Size(145, 41);
-            this.comboBoxEY.TabIndex = 10;
+            this.comboBoxEY.TabIndex = 14;
             // 
             // labelHY
             // 
             this.labelHY.AutoSize = true;
             this.labelHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHY.Location = new System.Drawing.Point(1916, 33);
+            this.labelHY.Location = new System.Drawing.Point(1744, 38);
             this.labelHY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelHY.Name = "labelHY";
-            this.labelHY.Size = new System.Drawing.Size(177, 33);
-            this.labelHY.TabIndex = 14;
-            this.labelHY.Text = "Y (H Range)";
+            this.labelHY.Size = new System.Drawing.Size(55, 33);
+            this.labelHY.TabIndex = 13;
+            this.labelHY.Text = "HY";
             // 
             // labelEYUnit
             // 
             this.labelEYUnit.AutoSize = true;
             this.labelEYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelEYUnit.Location = new System.Drawing.Point(2256, 33);
+            this.labelEYUnit.Location = new System.Drawing.Point(1962, 40);
             this.labelEYUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelEYUnit.Name = "labelEYUnit";
             this.labelEYUnit.Size = new System.Drawing.Size(122, 33);
-            this.labelEYUnit.TabIndex = 9;
+            this.labelEYUnit.TabIndex = 15;
             this.labelEYUnit.Text = "Volt/FS";
             // 
             // buttonDetrendOff
@@ -209,10 +210,11 @@
             this.buttonDetrendOff.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDetrendOff.Name = "buttonDetrendOff";
             this.buttonDetrendOff.Size = new System.Drawing.Size(119, 52);
-            this.buttonDetrendOff.TabIndex = 13;
+            this.buttonDetrendOff.TabIndex = 2;
             this.buttonDetrendOff.Text = "OFF";
             this.buttonDetrendOff.UseVisualStyleBackColor = true;
             this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
+            this.buttonDetrendOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // label1
             // 
@@ -222,7 +224,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 33);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Detrend";
             // 
             // button1Hz
@@ -233,10 +235,11 @@
             this.button1Hz.Margin = new System.Windows.Forms.Padding(6);
             this.button1Hz.Name = "button1Hz";
             this.button1Hz.Size = new System.Drawing.Size(109, 52);
-            this.button1Hz.TabIndex = 10;
+            this.button1Hz.TabIndex = 4;
             this.button1Hz.Text = "1Hz";
             this.button1Hz.UseVisualStyleBackColor = true;
             this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
+            this.button1Hz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // button32Hz
             // 
@@ -246,10 +249,11 @@
             this.button32Hz.Margin = new System.Windows.Forms.Padding(6);
             this.button32Hz.Name = "button32Hz";
             this.button32Hz.Size = new System.Drawing.Size(110, 52);
-            this.button32Hz.TabIndex = 9;
+            this.button32Hz.TabIndex = 3;
             this.button32Hz.Text = "32Hz";
             this.button32Hz.UseVisualStyleBackColor = true;
             this.button32Hz.Click += new System.EventHandler(this.button32Hz_Click);
+            this.button32Hz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // comboBoxHY
             // 
@@ -271,11 +275,11 @@
             "10",
             "20",
             "AUTO"});
-            this.comboBoxHY.Location = new System.Drawing.Point(1572, 30);
+            this.comboBoxHY.Location = new System.Drawing.Point(1443, 32);
             this.comboBoxHY.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxHY.Name = "comboBoxHY";
             this.comboBoxHY.Size = new System.Drawing.Size(145, 41);
-            this.comboBoxHY.TabIndex = 8;
+            this.comboBoxHY.TabIndex = 11;
             // 
             // comboBoxPeriod
             // 
@@ -286,7 +290,7 @@
             this.comboBoxPeriod.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(125, 41);
-            this.comboBoxPeriod.TabIndex = 7;
+            this.comboBoxPeriod.TabIndex = 8;
             this.comboBoxPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // comboBoxDataMode
@@ -307,11 +311,11 @@
             // 
             this.labelYUnit.AutoSize = true;
             this.labelYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelYUnit.Location = new System.Drawing.Point(1725, 36);
+            this.labelYUnit.Location = new System.Drawing.Point(1596, 38);
             this.labelYUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelYUnit.Name = "labelYUnit";
             this.labelYUnit.Size = new System.Drawing.Size(122, 33);
-            this.labelYUnit.TabIndex = 5;
+            this.labelYUnit.TabIndex = 12;
             this.labelYUnit.Text = "Volt/FS";
             // 
             // labelY
@@ -321,9 +325,9 @@
             this.labelY.Location = new System.Drawing.Point(1382, 36);
             this.labelY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(174, 33);
-            this.labelY.TabIndex = 4;
-            this.labelY.Text = "Y (E Range)";
+            this.labelY.Size = new System.Drawing.Size(52, 33);
+            this.labelY.TabIndex = 10;
+            this.labelY.Text = "EY";
             // 
             // labelHour
             // 
@@ -333,7 +337,7 @@
             this.labelHour.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelHour.Name = "labelHour";
             this.labelHour.Size = new System.Drawing.Size(74, 33);
-            this.labelHour.TabIndex = 3;
+            this.labelHour.TabIndex = 9;
             this.labelHour.Text = "hour";
             // 
             // labelPeriod
@@ -344,7 +348,7 @@
             this.labelPeriod.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelPeriod.Name = "labelPeriod";
             this.labelPeriod.Size = new System.Drawing.Size(101, 33);
-            this.labelPeriod.TabIndex = 2;
+            this.labelPeriod.TabIndex = 7;
             this.labelPeriod.Text = "Period";
             // 
             // labelMode
@@ -355,7 +359,7 @@
             this.labelMode.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelMode.Name = "labelMode";
             this.labelMode.Size = new System.Drawing.Size(87, 33);
-            this.labelMode.TabIndex = 1;
+            this.labelMode.TabIndex = 5;
             this.labelMode.Text = "Mode";
             // 
             // buttonDetrendOn
@@ -366,15 +370,17 @@
             this.buttonDetrendOn.Margin = new System.Windows.Forms.Padding(6);
             this.buttonDetrendOn.Name = "buttonDetrendOn";
             this.buttonDetrendOn.Size = new System.Drawing.Size(101, 52);
-            this.buttonDetrendOn.TabIndex = 0;
+            this.buttonDetrendOn.TabIndex = 1;
             this.buttonDetrendOn.Text = "ON";
             this.buttonDetrendOn.UseVisualStyleBackColor = true;
             this.buttonDetrendOn.Click += new System.EventHandler(this.buttonDetrendOn_Click);
+            this.buttonDetrendOn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 147);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
@@ -387,10 +393,11 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(2406, 714);
-            this.splitContainer1.SplitterDistance = 624;
+            this.splitContainer1.Size = new System.Drawing.Size(2406, 698);
+            this.splitContainer1.SplitterDistance = 604;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // tabControl1
             // 
@@ -400,8 +407,9 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2406, 624);
+            this.tabControl1.Size = new System.Drawing.Size(2406, 604);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // tabPage1
             // 
@@ -409,7 +417,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(2390, 577);
+            this.tabPage1.Size = new System.Drawing.Size(2390, 557);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -422,7 +430,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(2406, 82);
+            this.richTextBox1.Size = new System.Drawing.Size(2406, 86);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
@@ -430,23 +438,25 @@
             // hScrollBar1
             // 
             this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBar1.Location = new System.Drawing.Point(0, 861);
+            this.hScrollBar1.Location = new System.Drawing.Point(0, 845);
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Size = new System.Drawing.Size(2406, 17);
-            this.hScrollBar1.TabIndex = 3;
+            this.hScrollBar1.TabIndex = 2;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            this.hScrollBar1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 878);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 862);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 30, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(2406, 22);
-            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Size = new System.Drawing.Size(2406, 38);
+            this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // toolStripStatusLabel1
             // 
