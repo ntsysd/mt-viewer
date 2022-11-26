@@ -184,12 +184,12 @@
             // 
             this.labelHY.AutoSize = true;
             this.labelHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHY.Location = new System.Drawing.Point(1744, 38);
+            this.labelHY.Location = new System.Drawing.Point(1761, 36);
             this.labelHY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelHY.Name = "labelHY";
-            this.labelHY.Size = new System.Drawing.Size(55, 33);
+            this.labelHY.Size = new System.Drawing.Size(36, 33);
             this.labelHY.TabIndex = 13;
-            this.labelHY.Text = "HY";
+            this.labelHY.Text = "H";
             // 
             // labelEYUnit
             // 
@@ -322,12 +322,12 @@
             // 
             this.labelY.AutoSize = true;
             this.labelY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelY.Location = new System.Drawing.Point(1382, 36);
+            this.labelY.Location = new System.Drawing.Point(1398, 36);
             this.labelY.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(52, 33);
+            this.labelY.Size = new System.Drawing.Size(33, 33);
             this.labelY.TabIndex = 10;
-            this.labelY.Text = "EY";
+            this.labelY.Text = "E";
             // 
             // labelHour
             // 
@@ -394,7 +394,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(2406, 698);
-            this.splitContainer1.SplitterDistance = 604;
+            this.splitContainer1.SplitterDistance = 600;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
@@ -407,7 +407,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2406, 604);
+            this.tabControl1.Size = new System.Drawing.Size(2406, 600);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
@@ -417,7 +417,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(2390, 557);
+            this.tabPage1.Size = new System.Drawing.Size(2390, 553);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -430,7 +430,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(2406, 86);
+            this.richTextBox1.Size = new System.Drawing.Size(2406, 90);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
@@ -462,7 +462,7 @@
             // 
             this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 12);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 28);
             this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboHYErrorProvider
