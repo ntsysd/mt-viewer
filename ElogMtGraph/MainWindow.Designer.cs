@@ -287,6 +287,7 @@
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(125, 41);
             this.comboBoxPeriod.TabIndex = 7;
+            this.comboBoxPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // comboBoxDataMode
             // 
@@ -300,6 +301,7 @@
             this.comboBoxDataMode.Name = "comboBoxDataMode";
             this.comboBoxDataMode.Size = new System.Drawing.Size(210, 41);
             this.comboBoxDataMode.TabIndex = 6;
+            this.comboBoxDataMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // labelYUnit
             // 
@@ -386,7 +388,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(2406, 714);
-            this.splitContainer1.SplitterDistance = 628;
+            this.splitContainer1.SplitterDistance = 624;
             this.splitContainer1.SplitterWidth = 8;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -398,7 +400,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2406, 628);
+            this.tabControl1.Size = new System.Drawing.Size(2406, 624);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -407,7 +409,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(2390, 581);
+            this.tabPage1.Size = new System.Drawing.Size(2390, 577);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -420,9 +422,10 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(2406, 78);
+            this.richTextBox1.Size = new System.Drawing.Size(2406, 82);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // hScrollBar1
             // 
@@ -456,7 +459,7 @@
             // 
             this.comboHYErrorProvider.ContainerControl = this;
             // 
-            // comboEYErrorProvicer
+            // comboEYErrorProvider
             // 
             this.comboEYErrorProvider.ContainerControl = this;
             // 
@@ -470,7 +473,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.statusStrip1);
-            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainWindow";
