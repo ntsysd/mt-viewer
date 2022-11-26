@@ -35,7 +35,8 @@ namespace ElogMtGraph
 				comboBoxPeriod.Items.Add(item);
             }
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
-			comboBoxY.SelectedIndex = comboBoxY.Items.Count - 1;
+			comboBoxHY.SelectedIndex = comboBoxHY.Items.Count - 1;
+			comboBoxEY.SelectedIndex = comboBoxEY.Items.Count - 1;
 
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
@@ -72,11 +73,13 @@ namespace ElogMtGraph
 			}
 			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-            this.comboBoxY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxY_Validating);
-			this.comboBoxY.Validated += new System.EventHandler(this.comboBoxY_Validated);
-			this.comboBoxY.SelectedIndexChanged += new System.EventHandler(this.comboBoxY_SelectedIndexChanged);
-
-			currentFreq = GetComboDataModeFreq();
+            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
+			this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
+			this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
+            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
+            this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
+            this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
 		}
 
@@ -135,20 +138,25 @@ namespace ElogMtGraph
 		{
 			return double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
 		}
-		// Yコンボの値get　単位:Volt
-		public double GetComboY()
-		{
-            try
+        // Yコンボの値get　単位:Volt
+        public double GetComboHY()
+        {
+            if (this.comboBoxHY.Text == "AUTO")
             {
-				return double.Parse(this.comboBoxY.Text);
-			}
-			catch(FormatException e)
-            {
-				return -1.0;
+                return -1.0;
             }
-		}
+            return double.Parse(this.comboBoxHY.Text);
+        }
+        public double GetComboEY()
+        {
+            if (this.comboBoxEY.Text == "AUTO")
+            {
+                return -1.0;
+            }
+            return double.Parse(this.comboBoxEY.Text);
+        }
 
-		private int GetComboDataModeFreq()
+        private int GetComboDataModeFreq()
         {
 			switch (this.comboBoxDataMode.Text)
 			{
@@ -196,26 +204,32 @@ namespace ElogMtGraph
 		}
 		// Yコンボの値set
 		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
-		public void SetComboY(double y)
+		public void SetComboY(ComboBox comboBox, string ystring)
 		{
-			if (y == -1)
+			double y;
+			if (!double.TryParse(ystring, out y))
 			{
-				// means AUTO
 				return;
 			}
 
-			string yValue = y.ToString();
-			this.comboBoxY.SelectedIndex = comboBoxY.FindStringExact(yValue);
-
-			if (this.comboBoxY.SelectedIndex < 0)
+			if (y == -1)
 			{
-				this.comboBoxY.Text = yValue;
+				comboBox.SelectedIndex = comboBox.Items.Count - 1;
+				return;
+			}
+
+			comboBox.SelectedIndex = comboBox.FindStringExact(ystring);
+
+			if (comboBox.SelectedIndex < 0)
+			{
+				comboBox.Text = ystring;
 			}
 
 		}
 
-		// descriptionBoxにテキスト設定
-		public void SetDescriptionBoxText(string text)
+
+        // descriptionBoxにテキスト設定
+        public void SetDescriptionBoxText(string text)
 		{
 			this.richTextBox1.Text = text;
 		}
@@ -340,7 +354,7 @@ namespace ElogMtGraph
 			// グラフ描画
 			//			Graph.ReadAndDraw();
 			// ファイル読み込まずに、読み込み済みのデータをプロット
-			Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			Graph.DrawGraph();
 		}
 
         private void comboBoxPeriod_SelectedIndexChanged(object sender, EventArgs e)
@@ -357,19 +371,19 @@ namespace ElogMtGraph
 				return;
 			}
 
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            Graph.DrawGraph();
 		}
 
-        private void comboBoxY_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxHY_SelectedIndexChanged(object sender, EventArgs e)
         {
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
-            this.comboYErrorProvider.SetError(combobox, String.Empty);
+            this.comboHYErrorProvider.SetError(combobox, String.Empty);
             // グラフ描画
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            Graph.DrawGraph();
 		}
 
-		private void comboBoxY_Validating(object sender, CancelEventArgs e)
+		private void comboBoxHY_Validating(object sender, CancelEventArgs e)
 		{
 			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
 			if (combobox == null) return;
@@ -380,7 +394,7 @@ namespace ElogMtGraph
 			double value;
 			if (!double.TryParse(combobox.Text, out value))
 			{
-				this.comboYErrorProvider.SetError(combobox, "数値を入力してください");
+				this.comboHYErrorProvider.SetError(combobox, "数値を入力してください");
 
                 e.Cancel = true;
 				return;
@@ -389,13 +403,51 @@ namespace ElogMtGraph
             Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
-		private void comboBoxY_Validated(object sender, EventArgs e)
+		private void comboBoxHY_Validated(object sender, EventArgs e)
 		{
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
-            this.comboYErrorProvider.SetError(combobox, String.Empty);
-            Graph.DrawGraph(GetComboPeriod(), GetComboY());
+            this.comboHYErrorProvider.SetError(combobox, String.Empty);
+            Graph.DrawGraph();
         }
+
+        private void comboBoxEY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
+            this.comboEYErrorProvider.SetError(combobox, String.Empty);
+            // グラフ描画
+            Graph.DrawGraph();
+        }
+
+        private void comboBoxEY_Validating(object sender, CancelEventArgs e)
+        {
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
+            if (combobox.Text == "AUTO")
+            {
+                return;
+            }
+            double value;
+            if (!double.TryParse(combobox.Text, out value))
+            {
+                this.comboEYErrorProvider.SetError(combobox, "数値を入力してください");
+
+                e.Cancel = true;
+                return;
+            }
+
+            Console.WriteLine("validate success on value:" + combobox.Text);
+        }
+
+        private void comboBoxEY_Validated(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
+            this.comboEYErrorProvider.SetError(combobox, String.Empty);
+            Graph.DrawGraph();
+        }
+
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
 			//受け取ったキーを表示する
@@ -454,7 +506,7 @@ namespace ElogMtGraph
 					else
 					{
 						this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
-						Graph.DrawGraph(GetComboPeriod(), GetComboY());
+						Graph.DrawGraph();
 					}
 				}
 				else if (e.KeyCode == Keys.Left)
@@ -473,7 +525,7 @@ namespace ElogMtGraph
 					else
 					{
 						this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
-						Graph.DrawGraph(GetComboPeriod(), GetComboY());
+						Graph.DrawGraph();
 					}
 				}
 
@@ -511,7 +563,7 @@ namespace ElogMtGraph
 				buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
 				buttonDetrendOff.BackColor = Color.Yellow;
 			}
-			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			if (draw) Graph.DrawGraph();
 		}
 
 		public bool IsDetrendEnable()
@@ -557,8 +609,9 @@ namespace ElogMtGraph
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-				SetComboY(double.Parse(xDocument.Element("Settings").Element("View").Element("Y").Value));
-				this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
+                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
+                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
 				Console.WriteLine(this.dataFilename);
 			}
 		}
@@ -577,7 +630,8 @@ namespace ElogMtGraph
 				xView.Add(new System.Xml.Linq.XElement("AveFilter", IsAverageFilterEnable()?"On":"Off"));
 				xView.Add(new System.Xml.Linq.XElement("Mode", GetComboDataModeFreq()));
 				xView.Add(new System.Xml.Linq.XElement("Period", GetComboPeriod()));
-				xView.Add(new System.Xml.Linq.XElement("Y", GetComboY()));
+				xView.Add(new System.Xml.Linq.XElement("HY", GetComboHY()));
+				xView.Add(new System.Xml.Linq.XElement("EY", GetComboEY()));
 				xSettings.Add(xSize);
 				xSettings.Add(xView);
                 var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
@@ -628,7 +682,8 @@ namespace ElogMtGraph
 				button32Hz.BackColor = Color.Yellow;
 			}
 
-			if (draw) Graph.DrawGraph(GetComboPeriod(), GetComboY());
+			if (draw) Graph.DrawGraph();
 		}
+
     }
 }
