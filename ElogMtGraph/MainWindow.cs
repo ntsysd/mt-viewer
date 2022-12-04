@@ -81,7 +81,7 @@ namespace ElogMtGraph
             this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
             currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
-			this.yRangeValueLabel.Text = "foobar";
+			this.yRangeValueLabel.Text = "";
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)

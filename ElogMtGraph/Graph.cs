@@ -418,7 +418,7 @@ namespace ElogMtGraph
 					string[] s = { "EX", "EY", "HX", "HY", "HZ" };
 					foreach(var entry in autoRanges)
 					{
-						label += s[entry.Key] + " " + entry.Value + " ";
+						label += s[entry.Key] + " " + entry.Value.ToString("G5") + " ";
 					}
 					Program.FormMain.SetYRangeValueLabel(label);
 
