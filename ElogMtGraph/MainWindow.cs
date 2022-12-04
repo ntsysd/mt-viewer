@@ -228,6 +228,10 @@ namespace ElogMtGraph
 
 		}
 
+		public void SetYRangeValueLabel(string text)
+		{
+			this.yRangeValueLabel.Text = text;
+		}
 
         // descriptionBoxにテキスト設定
         public void SetDescriptionBoxText(string text)
