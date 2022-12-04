@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ZedGraph;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ElogMtGraph
 {
@@ -19,7 +20,7 @@ namespace ElogMtGraph
 		// グラフ描画用　観測値
 		private static int[,] data;
 		// グラフ描画用　データ個数
-		private static UInt32 data_length = 0;
+		private static UInt32 data_length = 0;	
 
 		// データ読み込み用　タイムスタンプ
 		private static DateTime[] readTimestamp;
@@ -215,6 +216,7 @@ namespace ElogMtGraph
 				/*
 				 * グラフ描画
 				 */
+				Dictionary<int, double> autoRanges = new Dictionary<int, double>();
 				// CHループ
 				for (int ch = 0; ch < Constants.CHNUM; ch++) {
 					// AD bits
@@ -223,14 +225,14 @@ namespace ElogMtGraph
 					double volt_max = VOLT_MAX_E;
 					double volt_min = VOLT_MIN_E;
 
-					double range_y = range_hy;
+					double range_y = range_ey;
 
 					if (ch >= 2)
                     {
 						coef = VOLT_LSB_H;
 						volt_max = VOLT_MAX_H;
 						volt_min = VOLT_MIN_H;
-						range_y = range_ey;
+						range_y = range_hy;
 					}
 					
 
@@ -362,6 +364,8 @@ namespace ElogMtGraph
 
 							myp.YAxis.Scale.Min = rangemin;
 							myp.YAxis.Scale.Max = rangemax;
+							Console.WriteLine("autorange {0}: {1}", ch, range);
+							autoRanges.Add(ch, range);
 						}
 						// オートスケールではないときの処理
                         else
@@ -408,6 +412,20 @@ namespace ElogMtGraph
 					// myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
 					Console.WriteLine("DrawGraph() CH={0} end", ch);
                 } // CHループ
+				if (autoRanges.Count > 0)
+				{
+					string label = "Range(Volt/FS)  ";
+					string[] s = { "EX", "EY", "HX", "HY", "HZ" };
+					foreach(var entry in autoRanges)
+					{
+						label += s[entry.Key] + " " + entry.Value.ToString("G5") + " ";
+					}
+					Program.FormMain.SetYRangeValueLabel(label);
+
+				} else
+				{
+					Program.FormMain.SetYRangeValueLabel("");
+				}
 				using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
 				{
 					myMaster.AxisChange( g );
