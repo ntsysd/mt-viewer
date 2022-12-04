@@ -223,14 +223,14 @@ namespace ElogMtGraph
 					double volt_max = VOLT_MAX_E;
 					double volt_min = VOLT_MIN_E;
 
-					double range_y = range_hy;
+					double range_y = range_ey;
 
 					if (ch >= 2)
                     {
 						coef = VOLT_LSB_H;
 						volt_max = VOLT_MAX_H;
 						volt_min = VOLT_MIN_H;
-						range_y = range_ey;
+						range_y = range_hy;
 					}
 					
 
@@ -362,6 +362,7 @@ namespace ElogMtGraph
 
 							myp.YAxis.Scale.Min = rangemin;
 							myp.YAxis.Scale.Max = rangemax;
+							Console.WriteLine("autorange {0}: {1}", ch, range);
 						}
 						// オートスケールではないときの処理
                         else
