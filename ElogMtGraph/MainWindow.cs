@@ -35,8 +35,8 @@ namespace ElogMtGraph
 				comboBoxPeriod.Items.Add(item);
             }
 			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
-			comboBoxHY.SelectedIndex = comboBoxHY.Items.Count - 1;
 			comboBoxEY.SelectedIndex = comboBoxEY.Items.Count - 1;
+			comboBoxHY.SelectedIndex = comboBoxHY.Items.Count - 1;
 
 			SetAverageFilterEnable(false, false);
 			SetDetrendEnable(false, false);
@@ -73,14 +73,15 @@ namespace ElogMtGraph
 			}
 			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
-			this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
-			this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
-            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
-            this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
-            this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
+			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
+			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
+            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
+            this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
+            this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
             currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
+			this.yRangeValueLabel.Text = "foobar";
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
@@ -139,14 +140,6 @@ namespace ElogMtGraph
 			return double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
 		}
         // Yコンボの値get　単位:Volt
-        public double GetComboHY()
-        {
-            if (this.comboBoxHY.Text == "AUTO")
-            {
-                return -1.0;
-            }
-            return double.Parse(this.comboBoxHY.Text);
-        }
         public double GetComboEY()
         {
             if (this.comboBoxEY.Text == "AUTO")
@@ -154,6 +147,14 @@ namespace ElogMtGraph
                 return -1.0;
             }
             return double.Parse(this.comboBoxEY.Text);
+        }
+        public double GetComboHY()
+        {
+            if (this.comboBoxHY.Text == "AUTO")
+            {
+                return -1.0;
+            }
+            return double.Parse(this.comboBoxHY.Text);
         }
 
         private int GetComboDataModeFreq()
@@ -609,8 +610,8 @@ namespace ElogMtGraph
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
-                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
+                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
                 this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
 				Console.WriteLine(this.dataFilename);
 			}
