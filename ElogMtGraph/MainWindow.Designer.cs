@@ -159,9 +159,9 @@
             // yRangeValueLabel
             // 
             this.yRangeValueLabel.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.yRangeValueLabel.Location = new System.Drawing.Point(1062, 75);
+            this.yRangeValueLabel.Location = new System.Drawing.Point(760, 79);
             this.yRangeValueLabel.Name = "yRangeValueLabel";
-            this.yRangeValueLabel.Size = new System.Drawing.Size(536, 24);
+            this.yRangeValueLabel.Size = new System.Drawing.Size(853, 33);
             this.yRangeValueLabel.TabIndex = 16;
             this.yRangeValueLabel.Text = "EY: 0000 EX: 0000  HX: 0000 HY: 0000 HZ: 00000000";
             this.yRangeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
