@@ -453,8 +453,13 @@ namespace ElogMtGraph
             Graph.DrawGraph();
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
+		private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
+			if (this.ActiveControl == this.comboBoxEY || 
+				this.ActiveControl == this.comboBoxHY)
+			{
+				return;
+			}
 			//受け取ったキーを表示する
 			Console.WriteLine(e.KeyCode);
 			if (dir_index < 0) return;
