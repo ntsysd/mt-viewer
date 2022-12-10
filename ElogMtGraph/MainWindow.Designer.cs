@@ -87,7 +87,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1660, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // fileToolStripMenuItem
             // 
@@ -226,7 +225,6 @@
             this.buttonDetrendOff.Text = "OFF";
             this.buttonDetrendOff.UseVisualStyleBackColor = true;
             this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
-            this.buttonDetrendOff.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // label1
             // 
@@ -251,7 +249,6 @@
             this.button1Hz.Text = "1Hz";
             this.button1Hz.UseVisualStyleBackColor = true;
             this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
-            this.button1Hz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // button32Hz
             // 
@@ -265,7 +262,6 @@
             this.button32Hz.Text = "32Hz";
             this.button32Hz.UseVisualStyleBackColor = true;
             this.button32Hz.Click += new System.EventHandler(this.button32Hz_Click);
-            this.button32Hz.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // comboBoxEY
             // 
@@ -303,7 +299,6 @@
             this.comboBoxPeriod.Name = "comboBoxPeriod";
             this.comboBoxPeriod.Size = new System.Drawing.Size(97, 32);
             this.comboBoxPeriod.TabIndex = 8;
-            this.comboBoxPeriod.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // comboBoxDataMode
             // 
@@ -317,7 +312,6 @@
             this.comboBoxDataMode.Name = "comboBoxDataMode";
             this.comboBoxDataMode.Size = new System.Drawing.Size(162, 32);
             this.comboBoxDataMode.TabIndex = 6;
-            this.comboBoxDataMode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // labelYUnit
             // 
@@ -386,7 +380,6 @@
             this.buttonDetrendOn.Text = "ON";
             this.buttonDetrendOn.UseVisualStyleBackColor = true;
             this.buttonDetrendOn.Click += new System.EventHandler(this.buttonDetrendOn_Click);
-            this.buttonDetrendOn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // splitContainer1
             // 
@@ -406,10 +399,9 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1660, 554);
-            this.splitContainer1.SplitterDistance = 452;
+            this.splitContainer1.SplitterDistance = 448;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 2;
-            this.splitContainer1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // tabControl1
             // 
@@ -419,9 +411,8 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1660, 452);
+            this.tabControl1.Size = new System.Drawing.Size(1660, 448);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // tabPage1
             // 
@@ -429,7 +420,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1652, 420);
+            this.tabPage1.Size = new System.Drawing.Size(1652, 416);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -442,10 +433,9 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1660, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(1660, 100);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
-            this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // hScrollBar1
             // 
@@ -455,7 +445,6 @@
             this.hScrollBar1.Size = new System.Drawing.Size(1660, 17);
             this.hScrollBar1.TabIndex = 2;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
-            this.hScrollBar1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // statusStrip1
             // 
@@ -468,7 +457,6 @@
             this.statusStrip1.Size = new System.Drawing.Size(1660, 38);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
-            this.statusStrip1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             // 
             // toolStripStatusLabel1
             // 
@@ -495,13 +483,13 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.statusStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "MainWindow";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);

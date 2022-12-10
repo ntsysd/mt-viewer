@@ -453,91 +453,93 @@ namespace ElogMtGraph
             Graph.DrawGraph();
         }
 
-        private void MainWindow_KeyDown(object sender, KeyEventArgs e)
-		{
-			//受け取ったキーを表示する
-			Console.WriteLine(e.KeyCode);
-			if (dir_index < 0) return;
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+			if (this.ActiveControl == this.comboBoxEY ||
+				this.ActiveControl == this.comboBoxHY ||
+				dir_index < 0)
+			{
+				return base.ProcessCmdKey(ref msg, keyData);
+			}
+			if (keyData == Keys.PageUp || keyData == Keys.PageDown)
+			{
+                if (keyData == Keys.PageUp)
+                {
+                    dir_index++;
+                    if (dir_index >= dir_list.Count)
+                        dir_index = 0;
+                }
+                else if (keyData == Keys.PageDown)
+                {
+                    dir_index--;
+                    if (dir_index < 0)
+                        dir_index = dir_list.Count - 1;
+                }
 
-			if(e.KeyCode == Keys.PageUp || e.KeyCode == Keys.PageDown)
+                if (dir_index >= 0 && dir_index < dir_list.Count)
+                {
+                    Console.WriteLine("dir_list[{0}]={1}", dir_index, dir_list[dir_index]);
+                    // コンボsetする 24H 20V
+                    //this.SetComboPeriod(24);
+                    //this.SetComboY(5.0);
+
+                    // 時間を0:00にする
+                    TimeScrollBarSetValue(0.0);
+
+                    // ファイル読み込んでグラフ描く
+                    Graph.ReadAndDraw((string)dir_list[dir_index]);
+                }
+				return true;
+            }
+
+            if (keyData == Keys.Right || keyData == Keys.Left)
             {
-				if (e.KeyCode == Keys.PageUp)
-				{
-					dir_index++;
-					if (dir_index >= dir_list.Count)
-						dir_index = 0;
-				}
-				else if (e.KeyCode == Keys.PageDown)
-				{
-					dir_index--;
-					if (dir_index < 0)
-						dir_index = dir_list.Count-1;
-				}
+                int subMax = this.hScrollBar1.Maximum - this.hScrollBar1.LargeChange;
+                if (keyData == Keys.Right)
+                {
+                    if (subMax <= this.hScrollBar1.Value)
+                    {
+                        dir_index++;
+                        if (dir_index >= dir_list.Count)
+                            dir_index = 0;
 
-				if (dir_index >= 0 && dir_index < dir_list.Count)
-				{
-					Console.WriteLine("dir_list[{0}]={1}", dir_index, dir_list[dir_index]);
-					// コンボsetする 24H 20V
-					//this.SetComboPeriod(24);
-					//this.SetComboY(5.0);
+                        //時刻を0:00にする
+                        hScrollBar1.Value = 0;
+                        // ファイル読み込んでグラフ描く
+                        Graph.ReadAndDraw((string)dir_list[dir_index]);
+                    }
+                    else
+                    {
+                        this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
+                        Graph.DrawGraph();
+                    }
+                }
+                else if (keyData == Keys.Left)
+                {
+                    if (this.hScrollBar1.Minimum == this.hScrollBar1.Value)
+                    {
+                        dir_index--;
+                        if (dir_index < 0)
+                            dir_index = dir_list.Count - 1;
 
-					// 時間を0:00にする
-					TimeScrollBarSetValue(0.0);
-
-					// ファイル読み込んでグラフ描く
-					Graph.ReadAndDraw((string)dir_list[dir_index]);
-				}
+                        //時刻を一番うしろにする
+                        hScrollBar1.Value = subMax;
+                        // ファイル読み込んでグラフ描く
+                        Graph.ReadAndDraw((string)dir_list[dir_index]);
+                    }
+                    else
+                    {
+                        this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
+                        Graph.DrawGraph();
+                    }
+                }
 
 				// フォーカスのあるコンボボックスの値が変わってしまうことを抑制
-				e.Handled = true;
-			}
+				return true;
+            }
 
-			if(e.KeyCode == Keys.Right || e.KeyCode == Keys.Left)
-            {
-				int subMax = this.hScrollBar1.Maximum - this.hScrollBar1.LargeChange;
-				if (e.KeyCode == Keys.Right)
-				{
-					if (subMax <= this.hScrollBar1.Value)
-					{
-						dir_index++;
-						if (dir_index >= dir_list.Count)
-							dir_index = 0;
-
-						//時刻を0:00にする
-						hScrollBar1.Value = 0;
-						// ファイル読み込んでグラフ描く
-						Graph.ReadAndDraw((string)dir_list[dir_index]);
-					}
-					else
-					{
-						this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
-						Graph.DrawGraph();
-					}
-				}
-				else if (e.KeyCode == Keys.Left)
-				{
-					if (this.hScrollBar1.Minimum == this.hScrollBar1.Value)
-					{
-						dir_index--;
-						if (dir_index < 0)
-							dir_index = dir_list.Count-1;
-
-						//時刻を一番うしろにする
-						hScrollBar1.Value = subMax;
-						// ファイル読み込んでグラフ描く
-						Graph.ReadAndDraw((string)dir_list[dir_index]);
-					}
-					else
-					{
-						this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
-						Graph.DrawGraph();
-					}
-				}
-
-				// フォーカスのあるコンボボックスの値が変わってしまうことを抑制
-				e.Handled = true;
-			}
-		}
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
 
 		private void buttonDetrendOn_Click(object sender, EventArgs e)
 		{
@@ -689,6 +691,5 @@ namespace ElogMtGraph
 
 			if (draw) Graph.DrawGraph();
 		}
-
     }
 }
