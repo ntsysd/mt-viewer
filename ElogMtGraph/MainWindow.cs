@@ -73,12 +73,12 @@ namespace ElogMtGraph
 			}
 			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
-			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
-			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
-            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
-            this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
-            this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
+			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
+			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
+            this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
+            this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
             currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
 			this.yRangeValueLabel.Text = "";
@@ -146,7 +146,7 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-            return double.Parse(this.comboBoxEY.Text);
+			return UnitUtils.VoltRepToNumber(this.comboBoxEY.Text);
         }
         public double GetComboHY()
         {
@@ -154,7 +154,7 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-            return double.Parse(this.comboBoxHY.Text);
+			return UnitUtils.VoltRepToNumber(this.comboBoxHY.Text);
         }
 
         private int GetComboDataModeFreq()
@@ -396,14 +396,17 @@ namespace ElogMtGraph
 			{
                 return;
 			}
-			double value;
-			if (!double.TryParse(combobox.Text, out value))
-			{
-				this.comboHYErrorProvider.SetError(combobox, "数値を入力してください");
 
+            try
+            {
+                UnitUtils.VoltRepToNumber(combobox.Text);
+            }
+            catch
+            {
+                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
                 e.Cancel = true;
-				return;
-			}
+                return;
+            }
 
             Console.WriteLine("validate success on value:" + combobox.Text);
         }
@@ -433,11 +436,12 @@ namespace ElogMtGraph
             {
                 return;
             }
-            double value;
-            if (!double.TryParse(combobox.Text, out value))
-            {
-                this.comboEYErrorProvider.SetError(combobox, "数値を入力してください");
 
+			try
+			{
+				UnitUtils.VoltRepToNumber(combobox.Text);
+			} catch {
+                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
                 e.Cancel = true;
                 return;
             }
