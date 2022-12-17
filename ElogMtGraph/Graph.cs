@@ -414,7 +414,7 @@ namespace ElogMtGraph
                 } // CHループ
 				if (autoRanges.Count > 0)
 				{
-					string label = "Range(Volt/FS)  ";
+					string label = "Range ";
 					string[] s = { "EX", "EY", "HX", "HY", "HZ" };
 					foreach(var entry in autoRanges)
 					{
