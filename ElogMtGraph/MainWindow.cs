@@ -73,12 +73,12 @@ namespace ElogMtGraph
 			}
 			
 			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
-            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
-			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
-			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
-            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
-            this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
-            this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
+			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
+			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
+            this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
+            this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
             currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
 			this.yRangeValueLabel.Text = "";
@@ -146,7 +146,7 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-            return double.Parse(this.comboBoxEY.Text);
+			return UnitUtils.VoltRepToNumber(this.comboBoxEY.Text);
         }
         public double GetComboHY()
         {
@@ -154,7 +154,7 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-            return double.Parse(this.comboBoxHY.Text);
+			return UnitUtils.VoltRepToNumber(this.comboBoxHY.Text);
         }
 
         private int GetComboDataModeFreq()
@@ -208,7 +208,10 @@ namespace ElogMtGraph
 		public void SetComboY(ComboBox comboBox, string ystring)
 		{
 			double y;
-			if (!double.TryParse(ystring, out y))
+			try
+			{
+				y = UnitUtils.VoltRepToNumber(ystring);
+			} catch
 			{
 				return;
 			}
@@ -219,11 +222,12 @@ namespace ElogMtGraph
 				return;
 			}
 
-			comboBox.SelectedIndex = comboBox.FindStringExact(ystring);
+			string voltRep = UnitUtils.NumberToVoltRep(y);
+			comboBox.SelectedIndex = comboBox.FindStringExact(voltRep);
 
 			if (comboBox.SelectedIndex < 0)
 			{
-				comboBox.Text = ystring;
+				comboBox.Text = voltRep;
 			}
 
 		}
@@ -396,16 +400,18 @@ namespace ElogMtGraph
 			{
                 return;
 			}
-			double value;
-			if (!double.TryParse(combobox.Text, out value))
-			{
-				this.comboHYErrorProvider.SetError(combobox, "数値を入力してください");
 
+            try
+            {
+                combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
+            }
+            catch
+            {
+                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
                 e.Cancel = true;
-				return;
-			}
+                return;
+            }
 
-            Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
 		private void comboBoxHY_Validated(object sender, EventArgs e)
@@ -433,16 +439,14 @@ namespace ElogMtGraph
             {
                 return;
             }
-            double value;
-            if (!double.TryParse(combobox.Text, out value))
-            {
-                this.comboEYErrorProvider.SetError(combobox, "数値を入力してください");
-
+			try
+			{
+				combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
+			} catch {
+                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
                 e.Cancel = true;
                 return;
             }
-
-            Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
         private void comboBoxEY_Validated(object sender, EventArgs e)
@@ -616,8 +620,8 @@ namespace ElogMtGraph
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
-                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
                 this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
 				Console.WriteLine(this.dataFilename);
 			}

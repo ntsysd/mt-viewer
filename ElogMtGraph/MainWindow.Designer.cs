@@ -171,19 +171,19 @@
             this.comboBoxHY.FormattingEnabled = true;
             this.comboBoxHY.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.comboBoxHY.Items.AddRange(new object[] {
-            "0.0001",
-            "0.0005",
-            "0.001",
-            "0.01",
-            "0.1",
-            "0.2",
-            "0.4",
-            "0.8",
-            "1",
-            "2.5",
-            "5.0",
-            "10",
-            "20",
+            "0.1mV",
+            "0.5mV",
+            "1mV",
+            "10mV",
+            "100mV",
+            "200mV",
+            "400mV",
+            "800mV",
+            "1V",
+            "2.5V",
+            "5.0V",
+            "10V",
+            "20V",
             "AUTO"});
             this.comboBoxHY.Location = new System.Drawing.Point(1392, 26);
             this.comboBoxHY.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -209,9 +209,9 @@
             this.labelEYUnit.Location = new System.Drawing.Point(1509, 30);
             this.labelEYUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelEYUnit.Name = "labelEYUnit";
-            this.labelEYUnit.Size = new System.Drawing.Size(89, 24);
+            this.labelEYUnit.Size = new System.Drawing.Size(49, 24);
             this.labelEYUnit.TabIndex = 15;
-            this.labelEYUnit.Text = "Volt/FS";
+            this.labelEYUnit.Text = "/FS";
             // 
             // buttonDetrendOff
             // 
@@ -269,19 +269,19 @@
             this.comboBoxEY.FormattingEnabled = true;
             this.comboBoxEY.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.comboBoxEY.Items.AddRange(new object[] {
-            "0.0001",
-            "0.0005",
-            "0.001",
-            "0.01",
-            "0.1",
-            "0.2",
-            "0.4",
-            "0.8",
-            "1",
-            "2.5",
-            "5.0",
-            "10",
-            "20",
+            "0.1mV",
+            "0.5mV",
+            "1mV",
+            "10mV",
+            "100mV",
+            "200mV",
+            "400mV",
+            "800mV",
+            "1V",
+            "2.5V",
+            "5.0V",
+            "10V",
+            "20V",
             "AUTO"});
             this.comboBoxEY.Location = new System.Drawing.Point(1110, 24);
             this.comboBoxEY.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -320,9 +320,9 @@
             this.labelYUnit.Location = new System.Drawing.Point(1228, 28);
             this.labelYUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelYUnit.Name = "labelYUnit";
-            this.labelYUnit.Size = new System.Drawing.Size(89, 24);
+            this.labelYUnit.Size = new System.Drawing.Size(49, 24);
             this.labelYUnit.TabIndex = 12;
-            this.labelYUnit.Text = "Volt/FS";
+            this.labelYUnit.Text = "/FS";
             // 
             // labelY
             // 
@@ -399,7 +399,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1660, 554);
-            this.splitContainer1.SplitterDistance = 448;
+            this.splitContainer1.SplitterDistance = 446;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -411,7 +411,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1660, 448);
+            this.tabControl1.Size = new System.Drawing.Size(1660, 446);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -420,7 +420,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1652, 416);
+            this.tabPage1.Size = new System.Drawing.Size(1652, 414);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -433,7 +433,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1660, 100);
+            this.richTextBox1.Size = new System.Drawing.Size(1660, 102);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
