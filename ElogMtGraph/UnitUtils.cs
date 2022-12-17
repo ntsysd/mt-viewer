@@ -17,8 +17,8 @@ namespace ElogMtGraph
             }
 
         }
-        private static Regex mvregex = new Regex(@"^([0-9]+)mV", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        private static Regex vregex = new Regex(@"(^[0-9]+)V", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static Regex mvregex = new Regex(@"^(\d+\.?\d*)mV$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static Regex vregex = new Regex(@"^(\d+\.?\d*)V$", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         public static double VoltRepToNumber(string voltRep)
         {
@@ -32,7 +32,7 @@ namespace ElogMtGraph
                 match = mvregex.Match(voltRep);
                 if (match.Success)
                 {
-                    return double.Parse(match.Groups[1].Value) * 1000;
+                    return double.Parse(match.Groups[1].Value) / 1000;
                 }
                 match = vregex.Match(voltRep);
                 if (match.Success)
