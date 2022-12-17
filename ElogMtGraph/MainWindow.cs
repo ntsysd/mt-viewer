@@ -208,7 +208,10 @@ namespace ElogMtGraph
 		public void SetComboY(ComboBox comboBox, string ystring)
 		{
 			double y;
-			if (!double.TryParse(ystring, out y))
+			try
+			{
+				y = UnitUtils.VoltRepToNumber(ystring);
+			} catch
 			{
 				return;
 			}
@@ -219,11 +222,12 @@ namespace ElogMtGraph
 				return;
 			}
 
-			comboBox.SelectedIndex = comboBox.FindStringExact(ystring);
+			string voltRep = UnitUtils.NumberToVoltRep(y);
+			comboBox.SelectedIndex = comboBox.FindStringExact(voltRep);
 
 			if (comboBox.SelectedIndex < 0)
 			{
-				comboBox.Text = ystring;
+				comboBox.Text = voltRep;
 			}
 
 		}
@@ -620,8 +624,8 @@ namespace ElogMtGraph
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
 				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
 				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
-                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
+                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
                 this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
 				Console.WriteLine(this.dataFilename);
 			}
