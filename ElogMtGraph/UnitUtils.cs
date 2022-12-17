@@ -42,5 +42,10 @@ namespace ElogMtGraph
                 throw new Exception(voltRep + " はV/mV表現ではありません");
             }
         }
+
+        public static string NormalizeVoltRep(string voltRep)
+        {
+            return NumberToVoltRep(VoltRepToNumber(voltRep));
+        }
     }
 }

@@ -403,7 +403,7 @@ namespace ElogMtGraph
 
             try
             {
-                UnitUtils.VoltRepToNumber(combobox.Text);
+                combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
             }
             catch
             {
@@ -412,7 +412,6 @@ namespace ElogMtGraph
                 return;
             }
 
-            Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
 		private void comboBoxHY_Validated(object sender, EventArgs e)
@@ -440,17 +439,14 @@ namespace ElogMtGraph
             {
                 return;
             }
-
 			try
 			{
-				UnitUtils.VoltRepToNumber(combobox.Text);
+				combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
 			} catch {
                 this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
                 e.Cancel = true;
                 return;
             }
-
-            Console.WriteLine("validate success on value:" + combobox.Text);
         }
 
         private void comboBoxEY_Validated(object sender, EventArgs e)
