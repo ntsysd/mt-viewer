@@ -5,6 +5,7 @@ using ZedGraph;
 using System.Collections;
 using System.IO;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ElogMtGraph
 {
@@ -20,8 +21,10 @@ namespace ElogMtGraph
 		// グラフ描画用　観測値
 		private static int[,] data;
 		// グラフ描画用　データ個数
-		private static UInt32 data_length = 0;	
+		private static UInt32 data_length = 0;
 
+		// 読み込んだデータのディレクトリ名
+		private static string dataFileDirName = "";
 		// データ読み込み用　タイムスタンプ
 		private static DateTime[] readTimestamp;
 		// データ読み込み用　観測値
@@ -412,21 +415,20 @@ namespace ElogMtGraph
 					// myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
 					Console.WriteLine("DrawGraph() CH={0} end", ch);
                 } // CHループ
+				string label = dataFileDirName + " ";
 				if (autoRanges.Count > 0)
 				{
-					string label = "Range ";
+					label += "Range ";
 					string[] s = { "EX", "EY", "HX", "HY", "HZ" };
 					foreach(var entry in autoRanges)
 					{
 						label += s[entry.Key] + " " + UnitUtils.NumberToVoltRep(entry.Value) + " ";
 					}
-					Program.FormMain.SetYRangeValueLabel(label);
 
-				} else
-				{
-					Program.FormMain.SetYRangeValueLabel("");
-				}
-				using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
+                }
+                Program.FormMain.SetYRangeValueLabel(label);
+
+                using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
 				{
 					myMaster.AxisChange( g );
 				}
@@ -555,6 +557,8 @@ namespace ElogMtGraph
 				{
 					MessageBox.Show("ディレクトリが存在しません\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
+				Program.FormMain.SetYRangeValueLabel("");
+                dataFileDirName = "";
 				return false;
     		}
             // Graph Clear
@@ -567,6 +571,7 @@ namespace ElogMtGraph
 			Console.WriteLine ("dir={0}", input_dir);
 			DirectoryInfo dir = new DirectoryInfo(input_dir);
 			FileInfo[] file_list = dir.GetFiles();
+			dataFileDirName = dir.Name;
 
 			readData_length = 0;
 			if(Program.FormMain.GetDataModeFreq() == 15) {
@@ -581,7 +586,9 @@ namespace ElogMtGraph
 								{
 									MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 								}
-								return false;
+                                Program.FormMain.SetYRangeValueLabel("");
+                                dataFileDirName = "";
+                                return false;
 							}
                             else
                             {
@@ -596,7 +603,7 @@ namespace ElogMtGraph
 					{
 						MessageBox.Show("15Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
-					return false;
+                    return false;
 				}
 			}
 			if(Program.FormMain.GetDataModeFreq() == 32) {
