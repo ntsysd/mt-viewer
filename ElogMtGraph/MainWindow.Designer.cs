@@ -280,8 +280,6 @@
             "1V",
             "2.5V",
             "5.0V",
-            "10V",
-            "20V",
             "AUTO"});
             this.comboBoxEY.Location = new System.Drawing.Point(1110, 24);
             this.comboBoxEY.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
