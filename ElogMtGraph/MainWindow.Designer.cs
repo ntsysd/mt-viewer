@@ -157,8 +157,8 @@
             // 
             // yRangeValueLabel
             // 
-            this.yRangeValueLabel.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.yRangeValueLabel.Location = new System.Drawing.Point(760, 79);
+            this.yRangeValueLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.yRangeValueLabel.Location = new System.Drawing.Point(705, 81);
             this.yRangeValueLabel.Name = "yRangeValueLabel";
             this.yRangeValueLabel.Size = new System.Drawing.Size(853, 33);
             this.yRangeValueLabel.TabIndex = 16;
@@ -397,7 +397,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1660, 554);
-            this.splitContainer1.SplitterDistance = 446;
+            this.splitContainer1.SplitterDistance = 444;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -409,7 +409,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1660, 446);
+            this.tabControl1.Size = new System.Drawing.Size(1660, 444);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -418,7 +418,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1652, 414);
+            this.tabPage1.Size = new System.Drawing.Size(1652, 412);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -431,7 +431,7 @@
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1660, 102);
+            this.richTextBox1.Size = new System.Drawing.Size(1660, 104);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
