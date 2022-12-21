@@ -1602,22 +1602,34 @@
   <data name="labelHY.Text" xml:space="preserve">
     <value>H</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
     <value>ja</value>
-  </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>909, 17</value>
-  </metadata>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>700, 17</value>
-  </metadata>
-  <metadata name="comboEYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="comboEYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <metadata name="comboHYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  </data>
+  <data name="comboHYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>356, 17</value>
-  </metadata>
+  </data>
+  <data name="_Error_no_15Hz_data" xml:space="preserve">
+    <value>15Hz data not found</value>
+  </data>
+  <data name="_Error_no_32Hz_data" xml:space="preserve">
+    <value>32Hz data not found</value>
+  </data>
+  <data name="_Error_No_Directory" xml:space="preserve">
+    <value>Specified directory does not exists:</value>
+  </data>
+  <data name="_Error_Readng_File" xml:space="preserve">
+    <value>An error occured during reading a file:</value>
+  </data>
 </root>

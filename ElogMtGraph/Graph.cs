@@ -554,7 +554,7 @@ namespace ElogMtGraph
 		    if (!System.IO.Directory.Exists(input_dir)) {
 				if (interactive)
 				{
-					MessageBox.Show("ディレクトリが存在しません\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(Program.FormMain.rm.GetString("_Error_No_Directory") + "\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 				Program.FormMain.SetYRangeValueLabel("");
                 dataFileDirName = "";
@@ -583,8 +583,8 @@ namespace ElogMtGraph
 								// 読み込みエラー
 								if (interactive)
 								{
-									MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-								}
+                                    MessageBox.Show(Program.FormMain.rm.GetString("_Error_Readng_File") + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                                 Program.FormMain.SetYRangeValueLabel("");
                                 dataFileDirName = "";
                                 return false;
@@ -600,8 +600,8 @@ namespace ElogMtGraph
                 {
 					if (interactive)
 					{
-						MessageBox.Show("15Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					}
+                        MessageBox.Show(Program.FormMain.rm.GetString("_Error_no_15Hz_data"), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     return false;
 				}
 			}
@@ -615,7 +615,7 @@ namespace ElogMtGraph
 								// 読み込みエラー
 								if (interactive)
 								{
-									MessageBox.Show("ファイル読み込み中にエラー\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+									MessageBox.Show(Program.FormMain.rm.GetString("_Error_Readng_File") + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 								}
 								return false;
 							}
@@ -630,7 +630,7 @@ namespace ElogMtGraph
                 {
 					if (interactive)
 					{
-						MessageBox.Show("32Hzデータがありません", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show(Program.FormMain.rm.GetString("_Error_no_32Hz_data"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					}
 					return false;
 				}

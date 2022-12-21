@@ -149,4 +149,16 @@
   <data name="comboYError" xml:space="preserve">
     <value>数値、数値mVまたは数値Vを入力してください</value>
   </data>
+  <data name="_Error_no_15Hz_data" xml:space="preserve">
+    <value>15Hzデータがありません</value>
+  </data>
+  <data name="_Error_no_32Hz_data" xml:space="preserve">
+    <value>32Hzデータがありません</value>
+  </data>
+  <data name="_Error_No_Directory" xml:space="preserve">
+    <value>ディレクトリが存在しません</value>
+  </data>
+  <data name="_Error_Readng_File" xml:space="preserve">
+    <value>ファイル読み込み中にエラー</value>
+  </data>
 </root>
