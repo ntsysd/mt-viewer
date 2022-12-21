@@ -82,6 +82,10 @@ namespace ElogMtGraph
             currentFreq = GetComboDataModeFreq();
 			button32Hz.Text = currentFreq.ToString() + "Hz";
 			this.yRangeValueLabel.Text = "";
+			if (!System.Threading.Thread.CurrentThread.CurrentUICulture.Name.StartsWith("ja"))
+			{
+				this.richTextBox1.Font = new Font("Microsoft Sans Serif", 12);
+			}
 		}
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
