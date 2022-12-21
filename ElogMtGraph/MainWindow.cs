@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,9 @@ namespace ElogMtGraph
 		// 現在表示しているディレクトリリストの番号
 		private int dir_index = -1;
 		private int currentFreq = -1;
+
+		// 
+		public ResourceManager rm;
 
 		public MainWindow()
         {
@@ -86,7 +90,8 @@ namespace ElogMtGraph
 			{
 				this.richTextBox1.Font = new Font("Microsoft Sans Serif", 12);
 			}
-		}
+            this.rm = new ComponentResourceManager(typeof(MainWindow));
+        }
 
 		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
 		{
@@ -411,7 +416,7 @@ namespace ElogMtGraph
             }
             catch
             {
-                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
+                this.comboEYErrorProvider.SetError(combobox, this.rm.GetString("comboYError"));
                 e.Cancel = true;
                 return;
             }
@@ -447,7 +452,7 @@ namespace ElogMtGraph
 			{
 				combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
 			} catch {
-                this.comboEYErrorProvider.SetError(combobox, "数値、数値mVまたは数値Vを入力してください");
+                this.comboEYErrorProvider.SetError(combobox, this.rm.GetString("comboYError"));
                 e.Cancel = true;
                 return;
             }
