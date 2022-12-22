@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,59 +77,56 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
+            this.comboHYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error"));
+            this.comboEYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error1"));
             this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.comboEYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.menuStrip1, ((int)(resources.GetObject("menuStrip1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.menuStrip1, ((int)(resources.GetObject("menuStrip1.IconPadding1"))));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1660, 42);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.pageSetupToolStripMenuItem,
             this.printToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(67, 36);
-            this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
+            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(259, 40);
-            this.openToolStripMenuItem.Text = "Open(&O)";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // pageSetupToolStripMenuItem
             // 
+            resources.ApplyResources(this.pageSetupToolStripMenuItem, "pageSetupToolStripMenuItem");
             this.pageSetupToolStripMenuItem.Name = "pageSetupToolStripMenuItem";
-            this.pageSetupToolStripMenuItem.Size = new System.Drawing.Size(259, 40);
-            this.pageSetupToolStripMenuItem.Text = "PageSetup(&S)";
             this.pageSetupToolStripMenuItem.Click += new System.EventHandler(this.pageSetupToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
+            resources.ApplyResources(this.printToolStripMenuItem, "printToolStripMenuItem");
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(259, 40);
-            this.printToolStripMenuItem.Text = "Print(&P)";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(259, 40);
-            this.exitToolStripMenuItem.Text = "Exit(&X)";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.yRangeValueLabel);
             this.groupBox1.Controls.Add(this.comboBoxHY);
             this.groupBox1.Controls.Add(this.labelHY);
@@ -146,336 +144,362 @@
             this.groupBox1.Controls.Add(this.labelPeriod);
             this.groupBox1.Controls.Add(this.labelMode);
             this.groupBox1.Controls.Add(this.buttonDetrendOn);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 42);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboEYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error"));
+            this.comboHYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding"))));
+            this.comboHYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding1"))));
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1660, 128);
-            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // yRangeValueLabel
             // 
-            this.yRangeValueLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.yRangeValueLabel.Location = new System.Drawing.Point(705, 81);
+            resources.ApplyResources(this.yRangeValueLabel, "yRangeValueLabel");
+            this.comboHYErrorProvider.SetError(this.yRangeValueLabel, resources.GetString("yRangeValueLabel.Error"));
+            this.comboEYErrorProvider.SetError(this.yRangeValueLabel, resources.GetString("yRangeValueLabel.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.yRangeValueLabel, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("yRangeValueLabel.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.yRangeValueLabel, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("yRangeValueLabel.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.yRangeValueLabel, ((int)(resources.GetObject("yRangeValueLabel.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.yRangeValueLabel, ((int)(resources.GetObject("yRangeValueLabel.IconPadding1"))));
             this.yRangeValueLabel.Name = "yRangeValueLabel";
-            this.yRangeValueLabel.Size = new System.Drawing.Size(853, 33);
-            this.yRangeValueLabel.TabIndex = 16;
-            this.yRangeValueLabel.Text = "EY: 0000 EX: 0000  HX: 0000 HY: 0000 HZ: 00000000";
-            this.yRangeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // comboBoxHY
             // 
-            this.comboBoxHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            resources.ApplyResources(this.comboBoxHY, "comboBoxHY");
+            this.comboHYErrorProvider.SetError(this.comboBoxHY, resources.GetString("comboBoxHY.Error"));
+            this.comboEYErrorProvider.SetError(this.comboBoxHY, resources.GetString("comboBoxHY.Error1"));
             this.comboBoxHY.FormattingEnabled = true;
-            this.comboBoxHY.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.comboEYErrorProvider.SetIconAlignment(this.comboBoxHY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxHY.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.comboBoxHY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxHY.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.comboBoxHY, ((int)(resources.GetObject("comboBoxHY.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.comboBoxHY, ((int)(resources.GetObject("comboBoxHY.IconPadding1"))));
             this.comboBoxHY.Items.AddRange(new object[] {
-            "0.1mV",
-            "0.5mV",
-            "1mV",
-            "10mV",
-            "100mV",
-            "200mV",
-            "400mV",
-            "800mV",
-            "1V",
-            "2.5V",
-            "5.0V",
-            "10V",
-            "20V",
-            "AUTO"});
-            this.comboBoxHY.Location = new System.Drawing.Point(1392, 26);
-            this.comboBoxHY.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.GetString("comboBoxHY.Items"),
+            resources.GetString("comboBoxHY.Items1"),
+            resources.GetString("comboBoxHY.Items2"),
+            resources.GetString("comboBoxHY.Items3"),
+            resources.GetString("comboBoxHY.Items4"),
+            resources.GetString("comboBoxHY.Items5"),
+            resources.GetString("comboBoxHY.Items6"),
+            resources.GetString("comboBoxHY.Items7"),
+            resources.GetString("comboBoxHY.Items8"),
+            resources.GetString("comboBoxHY.Items9"),
+            resources.GetString("comboBoxHY.Items10"),
+            resources.GetString("comboBoxHY.Items11"),
+            resources.GetString("comboBoxHY.Items12"),
+            resources.GetString("comboBoxHY.Items13")});
             this.comboBoxHY.Name = "comboBoxHY";
-            this.comboBoxHY.Size = new System.Drawing.Size(112, 32);
-            this.comboBoxHY.TabIndex = 14;
             // 
             // labelHY
             // 
-            this.labelHY.AutoSize = true;
-            this.labelHY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHY.Location = new System.Drawing.Point(1355, 27);
-            this.labelHY.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelHY, "labelHY");
+            this.comboHYErrorProvider.SetError(this.labelHY, resources.GetString("labelHY.Error"));
+            this.comboEYErrorProvider.SetError(this.labelHY, resources.GetString("labelHY.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelHY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelHY.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelHY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelHY.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelHY, ((int)(resources.GetObject("labelHY.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelHY, ((int)(resources.GetObject("labelHY.IconPadding1"))));
             this.labelHY.Name = "labelHY";
-            this.labelHY.Size = new System.Drawing.Size(25, 24);
-            this.labelHY.TabIndex = 13;
-            this.labelHY.Text = "H";
             // 
             // labelEYUnit
             // 
-            this.labelEYUnit.AutoSize = true;
-            this.labelEYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelEYUnit.Location = new System.Drawing.Point(1509, 30);
-            this.labelEYUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelEYUnit, "labelEYUnit");
+            this.comboHYErrorProvider.SetError(this.labelEYUnit, resources.GetString("labelEYUnit.Error"));
+            this.comboEYErrorProvider.SetError(this.labelEYUnit, resources.GetString("labelEYUnit.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelEYUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelEYUnit.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelEYUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelEYUnit.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelEYUnit, ((int)(resources.GetObject("labelEYUnit.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelEYUnit, ((int)(resources.GetObject("labelEYUnit.IconPadding1"))));
             this.labelEYUnit.Name = "labelEYUnit";
-            this.labelEYUnit.Size = new System.Drawing.Size(49, 24);
-            this.labelEYUnit.TabIndex = 15;
-            this.labelEYUnit.Text = "/FS";
             // 
             // buttonDetrendOff
             // 
-            this.buttonDetrendOff.AutoSize = true;
-            this.buttonDetrendOff.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrendOff.Location = new System.Drawing.Point(189, 20);
-            this.buttonDetrendOff.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.buttonDetrendOff, "buttonDetrendOff");
+            this.comboHYErrorProvider.SetError(this.buttonDetrendOff, resources.GetString("buttonDetrendOff.Error"));
+            this.comboEYErrorProvider.SetError(this.buttonDetrendOff, resources.GetString("buttonDetrendOff.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.buttonDetrendOff, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonDetrendOff.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.buttonDetrendOff, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonDetrendOff.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.buttonDetrendOff, ((int)(resources.GetObject("buttonDetrendOff.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.buttonDetrendOff, ((int)(resources.GetObject("buttonDetrendOff.IconPadding1"))));
             this.buttonDetrendOff.Name = "buttonDetrendOff";
-            this.buttonDetrendOff.Size = new System.Drawing.Size(92, 39);
-            this.buttonDetrendOff.TabIndex = 2;
-            this.buttonDetrendOff.Text = "OFF";
             this.buttonDetrendOff.UseVisualStyleBackColor = true;
             this.buttonDetrendOff.Click += new System.EventHandler(this.buttonDetrendOff_Click);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(10, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.label1, "label1");
+            this.comboHYErrorProvider.SetError(this.label1, resources.GetString("label1.Error"));
+            this.comboEYErrorProvider.SetError(this.label1, resources.GetString("label1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.label1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.label1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("label1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.label1, ((int)(resources.GetObject("label1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.label1, ((int)(resources.GetObject("label1.IconPadding1"))));
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Detrend";
             // 
             // button1Hz
             // 
-            this.button1Hz.AutoSize = true;
-            this.button1Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1Hz.Location = new System.Drawing.Point(385, 20);
-            this.button1Hz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.button1Hz, "button1Hz");
+            this.comboHYErrorProvider.SetError(this.button1Hz, resources.GetString("button1Hz.Error"));
+            this.comboEYErrorProvider.SetError(this.button1Hz, resources.GetString("button1Hz.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.button1Hz, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button1Hz.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.button1Hz, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button1Hz.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.button1Hz, ((int)(resources.GetObject("button1Hz.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.button1Hz, ((int)(resources.GetObject("button1Hz.IconPadding1"))));
             this.button1Hz.Name = "button1Hz";
-            this.button1Hz.Size = new System.Drawing.Size(84, 39);
-            this.button1Hz.TabIndex = 4;
-            this.button1Hz.Text = "1Hz";
             this.button1Hz.UseVisualStyleBackColor = true;
             this.button1Hz.Click += new System.EventHandler(this.button1Hz_Click);
             // 
             // button32Hz
             // 
-            this.button32Hz.AutoSize = true;
-            this.button32Hz.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button32Hz.Location = new System.Drawing.Point(303, 20);
-            this.button32Hz.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.button32Hz, "button32Hz");
+            this.comboHYErrorProvider.SetError(this.button32Hz, resources.GetString("button32Hz.Error"));
+            this.comboEYErrorProvider.SetError(this.button32Hz, resources.GetString("button32Hz.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.button32Hz, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button32Hz.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.button32Hz, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("button32Hz.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.button32Hz, ((int)(resources.GetObject("button32Hz.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.button32Hz, ((int)(resources.GetObject("button32Hz.IconPadding1"))));
             this.button32Hz.Name = "button32Hz";
-            this.button32Hz.Size = new System.Drawing.Size(85, 39);
-            this.button32Hz.TabIndex = 3;
-            this.button32Hz.Text = "32Hz";
             this.button32Hz.UseVisualStyleBackColor = true;
             this.button32Hz.Click += new System.EventHandler(this.button32Hz_Click);
             // 
             // comboBoxEY
             // 
-            this.comboBoxEY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            resources.ApplyResources(this.comboBoxEY, "comboBoxEY");
+            this.comboHYErrorProvider.SetError(this.comboBoxEY, resources.GetString("comboBoxEY.Error"));
+            this.comboEYErrorProvider.SetError(this.comboBoxEY, resources.GetString("comboBoxEY.Error1"));
             this.comboBoxEY.FormattingEnabled = true;
-            this.comboBoxEY.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.comboEYErrorProvider.SetIconAlignment(this.comboBoxEY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxEY.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.comboBoxEY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxEY.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.comboBoxEY, ((int)(resources.GetObject("comboBoxEY.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.comboBoxEY, ((int)(resources.GetObject("comboBoxEY.IconPadding1"))));
             this.comboBoxEY.Items.AddRange(new object[] {
-            "0.1mV",
-            "0.5mV",
-            "1mV",
-            "10mV",
-            "100mV",
-            "200mV",
-            "400mV",
-            "800mV",
-            "1V",
-            "2.5V",
-            "5.0V",
-            "AUTO"});
-            this.comboBoxEY.Location = new System.Drawing.Point(1110, 24);
-            this.comboBoxEY.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.GetString("comboBoxEY.Items"),
+            resources.GetString("comboBoxEY.Items1"),
+            resources.GetString("comboBoxEY.Items2"),
+            resources.GetString("comboBoxEY.Items3"),
+            resources.GetString("comboBoxEY.Items4"),
+            resources.GetString("comboBoxEY.Items5"),
+            resources.GetString("comboBoxEY.Items6"),
+            resources.GetString("comboBoxEY.Items7"),
+            resources.GetString("comboBoxEY.Items8"),
+            resources.GetString("comboBoxEY.Items9"),
+            resources.GetString("comboBoxEY.Items10"),
+            resources.GetString("comboBoxEY.Items11")});
             this.comboBoxEY.Name = "comboBoxEY";
-            this.comboBoxEY.Size = new System.Drawing.Size(112, 32);
-            this.comboBoxEY.TabIndex = 11;
             // 
             // comboBoxPeriod
             // 
+            resources.ApplyResources(this.comboBoxPeriod, "comboBoxPeriod");
             this.comboBoxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboHYErrorProvider.SetError(this.comboBoxPeriod, resources.GetString("comboBoxPeriod.Error"));
+            this.comboEYErrorProvider.SetError(this.comboBoxPeriod, resources.GetString("comboBoxPeriod.Error1"));
             this.comboBoxPeriod.FormattingEnabled = true;
-            this.comboBoxPeriod.Location = new System.Drawing.Point(857, 22);
-            this.comboBoxPeriod.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboEYErrorProvider.SetIconAlignment(this.comboBoxPeriod, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxPeriod.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.comboBoxPeriod, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxPeriod.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.comboBoxPeriod, ((int)(resources.GetObject("comboBoxPeriod.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.comboBoxPeriod, ((int)(resources.GetObject("comboBoxPeriod.IconPadding1"))));
             this.comboBoxPeriod.Name = "comboBoxPeriod";
-            this.comboBoxPeriod.Size = new System.Drawing.Size(97, 32);
-            this.comboBoxPeriod.TabIndex = 8;
             // 
             // comboBoxDataMode
             // 
+            resources.ApplyResources(this.comboBoxDataMode, "comboBoxDataMode");
             this.comboBoxDataMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDataMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.comboHYErrorProvider.SetError(this.comboBoxDataMode, resources.GetString("comboBoxDataMode.Error"));
+            this.comboEYErrorProvider.SetError(this.comboBoxDataMode, resources.GetString("comboBoxDataMode.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.comboBoxDataMode, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxDataMode.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.comboBoxDataMode, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("comboBoxDataMode.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.comboBoxDataMode, ((int)(resources.GetObject("comboBoxDataMode.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.comboBoxDataMode, ((int)(resources.GetObject("comboBoxDataMode.IconPadding1"))));
             this.comboBoxDataMode.Items.AddRange(new object[] {
-            "PHX(15Hz)",
-            "ADU(32Hz)"});
-            this.comboBoxDataMode.Location = new System.Drawing.Point(565, 22);
-            this.comboBoxDataMode.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.GetString("comboBoxDataMode.Items"),
+            resources.GetString("comboBoxDataMode.Items1")});
             this.comboBoxDataMode.Name = "comboBoxDataMode";
-            this.comboBoxDataMode.Size = new System.Drawing.Size(162, 32);
-            this.comboBoxDataMode.TabIndex = 6;
             // 
             // labelYUnit
             // 
-            this.labelYUnit.AutoSize = true;
-            this.labelYUnit.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelYUnit.Location = new System.Drawing.Point(1228, 28);
-            this.labelYUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelYUnit, "labelYUnit");
+            this.comboHYErrorProvider.SetError(this.labelYUnit, resources.GetString("labelYUnit.Error"));
+            this.comboEYErrorProvider.SetError(this.labelYUnit, resources.GetString("labelYUnit.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelYUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelYUnit.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelYUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelYUnit.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelYUnit, ((int)(resources.GetObject("labelYUnit.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelYUnit, ((int)(resources.GetObject("labelYUnit.IconPadding1"))));
             this.labelYUnit.Name = "labelYUnit";
-            this.labelYUnit.Size = new System.Drawing.Size(49, 24);
-            this.labelYUnit.TabIndex = 12;
-            this.labelYUnit.Text = "/FS";
             // 
             // labelY
             // 
-            this.labelY.AutoSize = true;
-            this.labelY.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelY.Location = new System.Drawing.Point(1075, 27);
-            this.labelY.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelY, "labelY");
+            this.comboHYErrorProvider.SetError(this.labelY, resources.GetString("labelY.Error"));
+            this.comboEYErrorProvider.SetError(this.labelY, resources.GetString("labelY.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelY.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelY, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelY.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelY, ((int)(resources.GetObject("labelY.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelY, ((int)(resources.GetObject("labelY.IconPadding1"))));
             this.labelY.Name = "labelY";
-            this.labelY.Size = new System.Drawing.Size(24, 24);
-            this.labelY.TabIndex = 10;
-            this.labelY.Text = "E";
             // 
             // labelHour
             // 
-            this.labelHour.AutoSize = true;
-            this.labelHour.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelHour.Location = new System.Drawing.Point(967, 27);
-            this.labelHour.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelHour, "labelHour");
+            this.comboHYErrorProvider.SetError(this.labelHour, resources.GetString("labelHour.Error"));
+            this.comboEYErrorProvider.SetError(this.labelHour, resources.GetString("labelHour.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelHour, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelHour.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelHour, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelHour.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelHour, ((int)(resources.GetObject("labelHour.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelHour, ((int)(resources.GetObject("labelHour.IconPadding1"))));
             this.labelHour.Name = "labelHour";
-            this.labelHour.Size = new System.Drawing.Size(54, 24);
-            this.labelHour.TabIndex = 9;
-            this.labelHour.Text = "hour";
             // 
             // labelPeriod
             // 
-            this.labelPeriod.AutoSize = true;
-            this.labelPeriod.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelPeriod.Location = new System.Drawing.Point(768, 27);
-            this.labelPeriod.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelPeriod, "labelPeriod");
+            this.comboHYErrorProvider.SetError(this.labelPeriod, resources.GetString("labelPeriod.Error"));
+            this.comboEYErrorProvider.SetError(this.labelPeriod, resources.GetString("labelPeriod.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelPeriod, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelPeriod.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelPeriod, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelPeriod.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelPeriod, ((int)(resources.GetObject("labelPeriod.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelPeriod, ((int)(resources.GetObject("labelPeriod.IconPadding1"))));
             this.labelPeriod.Name = "labelPeriod";
-            this.labelPeriod.Size = new System.Drawing.Size(74, 24);
-            this.labelPeriod.TabIndex = 7;
-            this.labelPeriod.Text = "Period";
             // 
             // labelMode
             // 
-            this.labelMode.AutoSize = true;
-            this.labelMode.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelMode.Location = new System.Drawing.Point(495, 27);
-            this.labelMode.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            resources.ApplyResources(this.labelMode, "labelMode");
+            this.comboHYErrorProvider.SetError(this.labelMode, resources.GetString("labelMode.Error"));
+            this.comboEYErrorProvider.SetError(this.labelMode, resources.GetString("labelMode.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.labelMode, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelMode.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.labelMode, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("labelMode.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.labelMode, ((int)(resources.GetObject("labelMode.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.labelMode, ((int)(resources.GetObject("labelMode.IconPadding1"))));
             this.labelMode.Name = "labelMode";
-            this.labelMode.Size = new System.Drawing.Size(64, 24);
-            this.labelMode.TabIndex = 5;
-            this.labelMode.Text = "Mode";
             // 
             // buttonDetrendOn
             // 
-            this.buttonDetrendOn.AutoSize = true;
-            this.buttonDetrendOn.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.buttonDetrendOn.Location = new System.Drawing.Point(115, 20);
-            this.buttonDetrendOn.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.buttonDetrendOn, "buttonDetrendOn");
+            this.comboHYErrorProvider.SetError(this.buttonDetrendOn, resources.GetString("buttonDetrendOn.Error"));
+            this.comboEYErrorProvider.SetError(this.buttonDetrendOn, resources.GetString("buttonDetrendOn.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.buttonDetrendOn, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonDetrendOn.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.buttonDetrendOn, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("buttonDetrendOn.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.buttonDetrendOn, ((int)(resources.GetObject("buttonDetrendOn.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.buttonDetrendOn, ((int)(resources.GetObject("buttonDetrendOn.IconPadding1"))));
             this.buttonDetrendOn.Name = "buttonDetrendOn";
-            this.buttonDetrendOn.Size = new System.Drawing.Size(78, 39);
-            this.buttonDetrendOn.TabIndex = 1;
-            this.buttonDetrendOn.Text = "ON";
             this.buttonDetrendOn.UseVisualStyleBackColor = true;
             this.buttonDetrendOn.Click += new System.EventHandler(this.buttonDetrendOn_Click);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.comboEYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error1"));
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 170);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding1"))));
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
+            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
             this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
+            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding1"))));
             // 
             // splitContainer1.Panel2
             // 
+            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1660, 554);
-            this.splitContainer1.SplitterDistance = 444;
-            this.splitContainer1.SplitterWidth = 6;
-            this.splitContainer1.TabIndex = 2;
+            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding1"))));
             // 
             // tabControl1
             // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.comboHYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error"));
+            this.comboEYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding1"))));
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1660, 444);
-            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.comboEYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error"));
+            this.comboHYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding1"))));
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1652, 412);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "ELOG";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
+            this.comboHYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error"));
+            this.comboEYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding"))));
+            this.comboHYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding1"))));
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1660, 104);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
             // 
             // hScrollBar1
             // 
-            this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.hScrollBar1.Location = new System.Drawing.Point(0, 724);
+            resources.ApplyResources(this.hScrollBar1, "hScrollBar1");
+            this.comboHYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error"));
+            this.comboEYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding1"))));
             this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(1660, 17);
-            this.hScrollBar1.TabIndex = 2;
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
             // statusStrip1
             // 
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.comboEYErrorProvider.SetError(this.statusStrip1, resources.GetString("statusStrip1.Error"));
+            this.comboHYErrorProvider.SetError(this.statusStrip1, resources.GetString("statusStrip1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.statusStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("statusStrip1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.statusStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("statusStrip1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.statusStrip1, ((int)(resources.GetObject("statusStrip1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.statusStrip1, ((int)(resources.GetObject("statusStrip1.IconPadding1"))));
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 741);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 23, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1660, 38);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.AutoSize = false;
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 31);
-            this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboHYErrorProvider
             // 
             this.comboHYErrorProvider.ContainerControl = this;
+            resources.ApplyResources(this.comboHYErrorProvider, "comboHYErrorProvider");
             // 
             // comboEYErrorProvider
             // 
             this.comboEYErrorProvider.ContainerControl = this;
+            resources.ApplyResources(this.comboEYErrorProvider, "comboEYErrorProvider");
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1660, 779);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -483,9 +507,7 @@
             this.Controls.Add(this.statusStrip1);
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "MainWindow";
-            this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.menuStrip1.ResumeLayout(false);
