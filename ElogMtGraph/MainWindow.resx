@@ -125,6 +125,9 @@
   <data name="comboBoxDataMode.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="labelEYUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
   </data>
@@ -139,6 +142,9 @@
   </data>
   <data name="hScrollBar1.Error" xml:space="preserve">
     <value />
+  </data>
+  <data name="_Error_Readng_File" xml:space="preserve">
+    <value>An error occured during reading a file:</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
@@ -165,8 +171,11 @@
   <data name="labelMode.Text" xml:space="preserve">
     <value>Mode</value>
   </data>
-  <data name="comboBoxPeriod.Error" xml:space="preserve">
-    <value />
+  <data name="comboBoxEY.Items5" xml:space="preserve">
+    <value>200mV</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="labelY.Location" type="System.Drawing.Point, System.Drawing">
     <value>1075, 27</value>
@@ -195,9 +204,6 @@
   <data name="comboBoxHY.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="labelHY.Error1" xml:space="preserve">
-    <value />
-  </data>
   <data name="labelMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -213,11 +219,17 @@
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1660, 554</value>
   </data>
+  <data name="labelMode.Error" xml:space="preserve">
+    <value />
+  </data>
   <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="labelY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
+    <value>fileToolStripMenuItem</value>
   </data>
   <data name="splitContainer1.Error" xml:space="preserve">
     <value />
@@ -288,9 +300,6 @@
   <data name="&gt;&gt;comboBoxPeriod.Name" xml:space="preserve">
     <value>comboBoxPeriod</value>
   </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="comboBoxHY.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 12pt</value>
   </data>
@@ -299,6 +308,9 @@
   </data>
   <data name="labelYUnit.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 12pt</value>
+  </data>
+  <data name="statusStrip1.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="buttonDetrendOn.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 12pt</value>
@@ -311,6 +323,9 @@
   </data>
   <data name="&gt;&gt;labelEYUnit.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="comboBoxDataMode.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;richTextBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -345,8 +360,8 @@
   <data name="tabPage1.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="labelYUnit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 24</value>
+  <data name="labelY.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1660, 442</value>
@@ -366,11 +381,17 @@
   <data name="buttonDetrendOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 39</value>
   </data>
-  <data name="labelHY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 24</value>
+  <data name="labelY.Text" xml:space="preserve">
+    <value>E</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
+  </data>
+  <data name="comboBoxPeriod.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Error_no_32Hz_data" xml:space="preserve">
+    <value>32Hz data not found</value>
   </data>
   <data name="splitContainer1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
@@ -381,8 +402,8 @@
   <data name="comboBoxHY.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;comboBoxPeriod.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="labelHY.Error1" xml:space="preserve">
+    <value />
   </data>
   <data name="comboBoxDataMode.Location" type="System.Drawing.Point, System.Drawing">
     <value>565, 22</value>
@@ -420,8 +441,8 @@
   <data name="comboBoxHY.Items9" xml:space="preserve">
     <value>2.5V</value>
   </data>
-  <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
-    <value>fileToolStripMenuItem</value>
+  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="richTextBox1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
@@ -453,11 +474,8 @@
   <data name="splitContainer1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 27</value>
+  <data name="labelY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <data name="yRangeValueLabel.Error" xml:space="preserve">
     <value />
@@ -507,8 +525,8 @@
   <data name="buttonDetrendOn.Location" type="System.Drawing.Point, System.Drawing">
     <value>115, 20</value>
   </data>
-  <data name="labelMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 27</value>
   </data>
   <data name="menuStrip1.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
@@ -530,9 +548,6 @@
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelYUnit.Parent" xml:space="preserve">
-    <value>groupBox1</value>
   </data>
   <data name="labelMode.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
@@ -573,8 +588,8 @@
   <data name="comboBoxHY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
-  <data name="&gt;&gt;labelY.Name" xml:space="preserve">
-    <value>labelY</value>
+  <data name="menuStrip1.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="comboBoxHY.Error1" xml:space="preserve">
     <value />
@@ -588,6 +603,9 @@
   <data name="button1Hz.Location" type="System.Drawing.Point, System.Drawing">
     <value>385, 20</value>
   </data>
+  <data name="comboBoxHY.Items7" xml:space="preserve">
+    <value>800mV</value>
+  </data>
   <data name="&gt;&gt;labelHour.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
@@ -597,23 +615,23 @@
   <data name="label1.Error" xml:space="preserve">
     <value />
   </data>
+  <data name="comboBoxEY.Items" xml:space="preserve">
+    <value>0.1mV</value>
+  </data>
   <data name="comboBoxPeriod.Size" type="System.Drawing.Size, System.Drawing">
     <value>97, 32</value>
-  </data>
-  <data name="toolStripStatusLabel1.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;comboBoxPeriod.ZOrder" xml:space="preserve">
-    <value>9</value>
   </data>
   <data name="tabControl1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+  <data name="labelHY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 24</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 36</value>
+  </data>
+  <data name="labelYUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 24</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -640,9 +658,6 @@
     <value>MiddleRight</value>
   </data>
   <data name="comboBoxEY.Error1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labelPeriod.Error" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;comboBoxEY.Name" xml:space="preserve">
@@ -678,8 +693,8 @@
   <data name="&gt;&gt;labelPeriod.Name" xml:space="preserve">
     <value>labelPeriod</value>
   </data>
-  <data name="comboBoxEY.Items" xml:space="preserve">
-    <value>0.1mV</value>
+  <data name="&gt;&gt;comboBoxPeriod.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="statusStrip1.Text" xml:space="preserve">
     <value>statusStrip1</value>
@@ -696,14 +711,17 @@
   <data name="comboBoxEY.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 12pt</value>
   </data>
-  <data name="labelY.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
+  <data name="&gt;&gt;labelY.Name" xml:space="preserve">
+    <value>labelY</value>
   </data>
   <data name="comboBoxEY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>Off</value>
   </data>
   <data name="comboBoxDataMode.Error1" xml:space="preserve">
     <value />
+  </data>
+  <data name="tabControl1.IconPadding1" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="labelPeriod.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
@@ -731,6 +749,9 @@
   </data>
   <data name="comboBoxHY.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 32</value>
+  </data>
+  <data name="&gt;&gt;hScrollBar1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 24</value>
@@ -765,20 +786,20 @@
   <data name="button1Hz.IconAlignment1" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="labelHour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>967, 27</value>
-  </data>
   <data name="labelY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
   </data>
   <data name="splitContainer1.Panel2.Error" xml:space="preserve">
     <value />
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Form1</value>
+  </data>
   <data name="labelPeriod.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="labelPeriod.Font" type="System.Drawing.Font, System.Drawing">
-    <value>MS UI Gothic, 12pt</value>
+  <data name="statusStrip1.Error1" xml:space="preserve">
+    <value />
   </data>
   <data name="button32Hz.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 20</value>
@@ -795,17 +816,11 @@
   <data name="labelHY.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="labelHour.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 24</value>
-  </data>
   <data name="buttonDetrendOff.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;labelHY.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 28</value>
@@ -861,9 +876,6 @@
   <data name="comboBoxEY.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 32</value>
   </data>
-  <data name="comboBoxEY.Items7" xml:space="preserve">
-    <value>800mV</value>
-  </data>
   <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
     <value>tabControl1</value>
   </data>
@@ -909,8 +921,8 @@
   <data name="&gt;&gt;pageSetupToolStripMenuItem.Name" xml:space="preserve">
     <value>pageSetupToolStripMenuItem</value>
   </data>
-  <data name="comboBoxDataMode.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="hScrollBar1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="splitContainer1.Panel2.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
@@ -945,9 +957,6 @@
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;labelHour.Name" xml:space="preserve">
-    <value>labelHour</value>
-  </data>
   <data name="buttonDetrendOn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
@@ -981,8 +990,8 @@
   <data name="button1Hz.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
-  <data name="comboBoxHY.Items7" xml:space="preserve">
-    <value>800mV</value>
+  <data name="&gt;&gt;menuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="comboBoxHY.Items6" xml:space="preserve">
     <value>400mV</value>
@@ -1020,6 +1029,9 @@
   <data name="groupBox1.Error1" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;comboBoxPeriod.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
   <data name="labelMode.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -1047,9 +1059,6 @@
   <data name="labelHour.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="menuStrip1.Error" xml:space="preserve">
-    <value />
-  </data>
   <data name="&gt;&gt;labelMode.Name" xml:space="preserve">
     <value>labelMode</value>
   </data>
@@ -1076,9 +1085,6 @@
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>
-  </data>
-  <data name="button32Hz.IconPadding1" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="labelYUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 0, 5, 0</value>
@@ -1110,7 +1116,7 @@
   <data name="&gt;&gt;comboBoxDataMode.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="labelMode.Error" xml:space="preserve">
+  <data name="labelPeriod.Error" xml:space="preserve">
     <value />
   </data>
   <data name="&gt;&gt;labelMode.Type" xml:space="preserve">
@@ -1161,8 +1167,8 @@
   <data name="comboBoxEY.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="comboBoxPeriod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>857, 22</value>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
@@ -1221,20 +1227,17 @@
   <data name="pageSetupToolStripMenuItem.Text" xml:space="preserve">
     <value>PageSetup(&amp;S)</value>
   </data>
-  <data name="hScrollBar1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
-  </data>
-  <data name="pageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 40</value>
+  <data name="&gt;&gt;splitContainer1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="buttonDetrendOn.Text" xml:space="preserve">
     <value>ON</value>
   </data>
-  <data name="&gt;&gt;hScrollBar1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;labelYUnit.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="statusStrip1.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;labelHour.Name" xml:space="preserve">
+    <value>labelHour</value>
   </data>
   <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1248,11 +1251,11 @@
   <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="labelY.Text" xml:space="preserve">
-    <value>E</value>
+  <data name="_Error_no_15Hz_data" xml:space="preserve">
+    <value>15Hz data not found</value>
   </data>
-  <data name="&gt;&gt;button1Hz.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;labelY.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
@@ -1269,8 +1272,8 @@
   <data name="buttonDetrendOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 39</value>
   </data>
-  <data name="button32Hz.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+  <data name="labelY.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="comboBoxDataMode.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
@@ -1284,8 +1287,8 @@
   <data name="richTextBox1.Error1" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;buttonDetrendOn.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="pageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 40</value>
   </data>
   <data name="labelEYUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 24</value>
@@ -1293,14 +1296,14 @@
   <data name="toolStripStatusLabel1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Form1</value>
+  <data name="labelHour.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 24</value>
   </data>
-  <data name="labelHY.Error" xml:space="preserve">
-    <value />
+  <data name="comboBoxPeriod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>857, 22</value>
   </data>
-  <data name="tabControl1.IconPadding1" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="_Error_No_Directory" xml:space="preserve">
+    <value>Specified directory does not exists:</value>
   </data>
   <data name="&gt;&gt;comboEYErrorProvider.Name" xml:space="preserve">
     <value>comboEYErrorProvider</value>
@@ -1326,8 +1329,8 @@
   <data name="comboBoxDataMode.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="statusStrip1.Error1" xml:space="preserve">
-    <value />
+  <data name="labelMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 0, 5, 0</value>
   </data>
   <data name="&gt;&gt;button32Hz.Name" xml:space="preserve">
     <value>button32Hz</value>
@@ -1335,8 +1338,8 @@
   <data name="&gt;&gt;splitContainer1.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
-    <value>exitToolStripMenuItem</value>
+  <data name="toolStripStatusLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="menuStrip1.Error1" xml:space="preserve">
     <value />
@@ -1356,8 +1359,8 @@
   <data name="&gt;&gt;labelYUnit.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;buttonDetrendOn.Name" xml:space="preserve">
-    <value>buttonDetrendOn</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="labelHour.Font" type="System.Drawing.Font, System.Drawing">
     <value>MS UI Gothic, 12pt</value>
@@ -1392,14 +1395,14 @@
   <data name="labelPeriod.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="labelY.IconPadding" type="System.Int32, mscorlib">
+  <data name="labelHour.Location" type="System.Drawing.Point, System.Drawing">
+    <value>967, 27</value>
+  </data>
+  <data name="button32Hz.IconPadding1" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="labelY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="labelPeriod.Font" type="System.Drawing.Font, System.Drawing">
+    <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="buttonDetrendOff.Error" xml:space="preserve">
     <value />
@@ -1449,8 +1452,8 @@
   <data name="comboBoxEY.Items6" xml:space="preserve">
     <value>400mV</value>
   </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>MS UI Gothic, 12pt</value>
+  <data name="comboBoxEY.Items7" xml:space="preserve">
+    <value>800mV</value>
   </data>
   <data name="comboBoxEY.Items4" xml:space="preserve">
     <value>100mV</value>
@@ -1466,6 +1469,9 @@
   </data>
   <data name="comboBoxEY.Items1" xml:space="preserve">
     <value>0.5mV</value>
+  </data>
+  <data name="&gt;&gt;button1Hz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Exit(&amp;X)</value>
@@ -1491,8 +1497,8 @@
   <data name="button32Hz.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="comboBoxEY.Items5" xml:space="preserve">
-    <value>200mV</value>
+  <data name="&gt;&gt;buttonDetrendOn.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
   <data name="&gt;&gt;labelEYUnit.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -1530,6 +1536,9 @@
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
+    <value>exitToolStripMenuItem</value>
+  </data>
   <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 31</value>
   </data>
@@ -1554,6 +1563,9 @@
   <data name="richTextBox1.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="labelHY.Error" xml:space="preserve">
+    <value />
+  </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -1563,8 +1575,8 @@
   <data name="&gt;&gt;buttonDetrendOff.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="button32Hz.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="menuStrip1.Text" xml:space="preserve">
     <value>menuStrip1</value>
@@ -1572,8 +1584,8 @@
   <data name="splitContainer1.Panel2.IconAlignment1" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;labelY.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;buttonDetrendOn.Name" xml:space="preserve">
+    <value>buttonDetrendOn</value>
   </data>
   <data name="&gt;&gt;button1Hz.Name" xml:space="preserve">
     <value>button1Hz</value>
@@ -1602,34 +1614,22 @@
   <data name="labelHY.Text" xml:space="preserve">
     <value>H</value>
   </data>
-  <data name="$this.Language" type="System.Globalization.CultureInfo, mscorlib">
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>ja</value>
-  </data>
-  <data name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>909, 17</value>
-  </data>
-  <data name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  </metadata>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>700, 17</value>
-  </data>
-  <data name="comboEYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  </metadata>
+  <metadata name="comboEYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </data>
-  <data name="$this.Localizable" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="comboHYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing">
+  </metadata>
+  <metadata name="comboHYErrorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>356, 17</value>
-  </data>
-  <data name="_Error_no_15Hz_data" xml:space="preserve">
-    <value>15Hz data not found</value>
-  </data>
-  <data name="_Error_no_32Hz_data" xml:space="preserve">
-    <value>32Hz data not found</value>
-  </data>
-  <data name="_Error_No_Directory" xml:space="preserve">
-    <value>Specified directory does not exists:</value>
-  </data>
-  <data name="_Error_Readng_File" xml:space="preserve">
-    <value>An error occured during reading a file:</value>
-  </data>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>
