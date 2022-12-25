@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,35 +58,101 @@
             this.labelPeriod = new System.Windows.Forms.Label();
             this.labelMode = new System.Windows.Forms.Label();
             this.buttonDetrendOn = new System.Windows.Forms.Button();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.comboHYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.comboEYErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboHYErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboEYErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
+            // splitContainer1
+            // 
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.comboEYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error1"));
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding1"))));
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
+            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
+            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding1"))));
+            // 
+            // splitContainer1.Panel2
+            // 
+            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
+            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
+            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error"));
+            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding1"))));
+            // 
+            // tabControl1
+            // 
+            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.comboEYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error"));
+            this.comboHYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding1"))));
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.comboEYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error"));
+            this.comboHYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding"))));
+            this.comboHYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding1"))));
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
+            this.comboHYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error"));
+            this.comboEYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding"))));
+            this.comboHYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding1"))));
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            // 
             // menuStrip1
             // 
             resources.ApplyResources(this.menuStrip1, "menuStrip1");
-            this.comboHYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error"));
-            this.comboEYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error1"));
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
-            this.comboEYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment"))));
-            this.comboHYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error"));
+            this.comboHYErrorProvider.SetError(this.menuStrip1, resources.GetString("menuStrip1.Error1"));
+            this.comboHYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment"))));
+            this.comboEYErrorProvider.SetIconAlignment(this.menuStrip1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("menuStrip1.IconAlignment1"))));
             this.comboHYErrorProvider.SetIconPadding(this.menuStrip1, ((int)(resources.GetObject("menuStrip1.IconPadding"))));
             this.comboEYErrorProvider.SetIconPadding(this.menuStrip1, ((int)(resources.GetObject("menuStrip1.IconPadding1"))));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
@@ -144,12 +214,12 @@
             this.groupBox1.Controls.Add(this.labelPeriod);
             this.groupBox1.Controls.Add(this.labelMode);
             this.groupBox1.Controls.Add(this.buttonDetrendOn);
-            this.comboEYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error"));
-            this.comboHYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error1"));
-            this.comboHYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment1"))));
-            this.comboEYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding"))));
-            this.comboHYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding1"))));
+            this.comboHYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error"));
+            this.comboEYErrorProvider.SetError(this.groupBox1, resources.GetString("groupBox1.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.groupBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("groupBox1.IconAlignment1"))));
+            this.comboHYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding"))));
+            this.comboEYErrorProvider.SetIconPadding(this.groupBox1, ((int)(resources.GetObject("groupBox1.IconPadding1"))));
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -384,84 +454,13 @@
             this.buttonDetrendOn.UseVisualStyleBackColor = true;
             this.buttonDetrendOn.Click += new System.EventHandler(this.buttonDetrendOn_Click);
             // 
-            // splitContainer1
-            // 
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.comboEYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error"));
-            this.comboHYErrorProvider.SetError(this.splitContainer1, resources.GetString("splitContainer1.Error1"));
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.IconAlignment1"))));
-            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding"))));
-            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1, ((int)(resources.GetObject("splitContainer1.IconPadding1"))));
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
-            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
-            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error"));
-            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.Error1"));
-            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel1.IconAlignment1"))));
-            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding"))));
-            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel1, ((int)(resources.GetObject("splitContainer1.Panel1.IconPadding1"))));
-            // 
-            // splitContainer1.Panel2
-            // 
-            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
-            this.splitContainer1.Panel2.Controls.Add(this.richTextBox1);
-            this.comboEYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error"));
-            this.comboHYErrorProvider.SetError(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.Error1"));
-            this.comboHYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.splitContainer1.Panel2, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("splitContainer1.Panel2.IconAlignment1"))));
-            this.comboHYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding"))));
-            this.comboEYErrorProvider.SetIconPadding(this.splitContainer1.Panel2, ((int)(resources.GetObject("splitContainer1.Panel2.IconPadding1"))));
-            // 
-            // tabControl1
-            // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.comboHYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error"));
-            this.comboEYErrorProvider.SetError(this.tabControl1, resources.GetString("tabControl1.Error1"));
-            this.comboEYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment"))));
-            this.comboHYErrorProvider.SetIconAlignment(this.tabControl1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabControl1.IconAlignment1"))));
-            this.comboHYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding"))));
-            this.comboEYErrorProvider.SetIconPadding(this.tabControl1, ((int)(resources.GetObject("tabControl1.IconPadding1"))));
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            // 
-            // tabPage1
-            // 
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.comboEYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error"));
-            this.comboHYErrorProvider.SetError(this.tabPage1, resources.GetString("tabPage1.Error1"));
-            this.comboEYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment"))));
-            this.comboHYErrorProvider.SetIconAlignment(this.tabPage1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("tabPage1.IconAlignment1"))));
-            this.comboHYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding"))));
-            this.comboEYErrorProvider.SetIconPadding(this.tabPage1, ((int)(resources.GetObject("tabPage1.IconPadding1"))));
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            resources.ApplyResources(this.richTextBox1, "richTextBox1");
-            this.comboHYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error"));
-            this.comboEYErrorProvider.SetError(this.richTextBox1, resources.GetString("richTextBox1.Error1"));
-            this.comboHYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.richTextBox1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("richTextBox1.IconAlignment1"))));
-            this.comboEYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding"))));
-            this.comboHYErrorProvider.SetIconPadding(this.richTextBox1, ((int)(resources.GetObject("richTextBox1.IconPadding1"))));
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            // 
             // hScrollBar1
             // 
             resources.ApplyResources(this.hScrollBar1, "hScrollBar1");
-            this.comboHYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error"));
-            this.comboEYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error1"));
-            this.comboHYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment"))));
-            this.comboEYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment1"))));
+            this.comboEYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error"));
+            this.comboHYErrorProvider.SetError(this.hScrollBar1, resources.GetString("hScrollBar1.Error1"));
+            this.comboEYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment"))));
+            this.comboHYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment1"))));
             this.comboHYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding"))));
             this.comboEYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding1"))));
             this.hScrollBar1.Name = "hScrollBar1";
@@ -510,15 +509,15 @@
             this.Name = "MainWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Shown += new System.EventHandler(this.MainWindow_Shown);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.comboHYErrorProvider)).EndInit();

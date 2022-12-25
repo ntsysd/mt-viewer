@@ -118,47 +118,186 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1652, 408</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
   </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 440</value>
-  </data>
-  <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 108</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>440</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>996, 519</value>
   </data>
   <data name="yRangeValueLabel.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
+  <data name="yRangeValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 54</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="yRangeValueLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="yRangeValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>753, 22</value>
+  </data>
+  <data name="comboBoxHY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>835, 17</value>
+  </data>
+  <data name="comboBoxHY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 24</value>
+  </data>
+  <data name="labelHY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>813, 18</value>
+  </data>
+  <data name="labelHY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 16</value>
+  </data>
+  <data name="labelEYUnit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>905, 20</value>
+  </data>
+  <data name="labelEYUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 16</value>
+  </data>
+  <data name="buttonDetrendOff.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 13</value>
+  </data>
+  <data name="buttonDetrendOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 26</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 18</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 16</value>
+  </data>
+  <data name="button1Hz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>231, 13</value>
+  </data>
+  <data name="button1Hz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 26</value>
+  </data>
+  <data name="button32Hz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 13</value>
+  </data>
+  <data name="button32Hz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 26</value>
+  </data>
+  <data name="comboBoxEY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>666, 16</value>
+  </data>
+  <data name="comboBoxEY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 24</value>
+  </data>
+  <data name="comboBoxPeriod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>514, 15</value>
+  </data>
+  <data name="comboBoxPeriod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 24</value>
+  </data>
+  <data name="comboBoxDataMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>339, 15</value>
+  </data>
+  <data name="comboBoxDataMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 24</value>
+  </data>
+  <data name="labelYUnit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>737, 19</value>
+  </data>
+  <data name="labelYUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 16</value>
+  </data>
+  <data name="labelY.Location" type="System.Drawing.Point, System.Drawing">
+    <value>645, 18</value>
+  </data>
+  <data name="labelY.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="labelHour.Location" type="System.Drawing.Point, System.Drawing">
+    <value>580, 18</value>
+  </data>
+  <data name="labelHour.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 16</value>
+  </data>
+  <data name="labelPeriod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>461, 18</value>
+  </data>
+  <data name="labelPeriod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 16</value>
+  </data>
+  <data name="labelMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 18</value>
+  </data>
+  <data name="labelMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 16</value>
+  </data>
+  <data name="buttonDetrendOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="buttonDetrendOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 26</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 29</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 85</value>
+  </data>
   <data name="openToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 40</value>
+    <value>173, 26</value>
   </data>
   <data name="pageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 40</value>
+    <value>173, 26</value>
   </data>
   <data name="printToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 40</value>
+    <value>173, 26</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>270, 40</value>
+    <value>173, 26</value>
   </data>
-  <data name="comboYError" xml:space="preserve">
-    <value>数値、数値mVまたは数値Vを入力してください</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 25</value>
   </data>
-  <data name="_Error_no_15Hz_data" xml:space="preserve">
-    <value>15Hzデータがありません</value>
+  <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 29</value>
   </data>
-  <data name="_Error_no_32Hz_data" xml:space="preserve">
-    <value>32Hzデータがありません</value>
+  <data name="hScrollBar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 464</value>
   </data>
-  <data name="_Error_No_Directory" xml:space="preserve">
-    <value>ディレクトリが存在しません</value>
+  <data name="hScrollBar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 17</value>
   </data>
-  <data name="_Error_Readng_File" xml:space="preserve">
-    <value>ファイル読み込み中にエラー</value>
+  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 33</value>
+  </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 481</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 38</value>
+  </data>
+  <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 114</value>
+  </data>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>988, 210</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 236</value>
+  </data>
+  <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 110</value>
+  </data>
+  <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>996, 350</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
+    <value>236</value>
+  </data>
+  <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
 </root>
