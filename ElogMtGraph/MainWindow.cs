@@ -125,28 +125,37 @@ namespace ElogMtGraph
 			this.hScrollBar1.Enabled = false;
 //			this.hscrollbar.Refresh();
 		}
-		// 時間軸スクロールバー　範囲設定　単位:時
-		public void TimeScrollBarSetMinMax(double min, double max, double small, double large)
+		// 時間軸スクロールバー　範囲設定　単位:秒
+		public void TimeScrollBarSetMinMax(int min, int max, int small, int large)
 		{
-			this.hScrollBar1.Minimum = (int)(min * 100);
-			this.hScrollBar1.Maximum = (int)(max * 100);
-			this.hScrollBar1.SmallChange = (int)(small * 100);
-			this.hScrollBar1.LargeChange = (int)(large * 100);
+			this.hScrollBar1.Minimum = min;
+			this.hScrollBar1.Maximum = max;
+			this.hScrollBar1.SmallChange = small;
+			this.hScrollBar1.LargeChange = large;
 		}
-		// 時間軸スクロールバー　値設定　単位:時
-		public void TimeScrollBarSetValue(double value)
+		// 時間軸スクロールバー　値設定　単位:秒
+		public void TimeScrollBarSetValue(int value)
 		{
-			this.hScrollBar1.Value = (int)(value * 100);
+			this.hScrollBar1.Value = value;
 		}
-		// 時間軸スクロールバー　値get　単位:時
-		public double TimeScrollBarGetValue()
+		// 時間軸スクロールバー　値get　単位:秒
+		public int TimeScrollBarGetValue()
 		{
-			return this.hScrollBar1.Value / 100.0;
+			return this.hScrollBar1.Value;
 		}
-		// Periodコンボの値get　単位:時
-		public double GetComboPeriod()
+		// Periodコンボの値get　単位:秒
+		public int GetComboPeriod()
 		{
-			return double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
+			double hour = double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
+			int sec = (int)(hour * 60 * 60);
+			if (hour == 0.017)
+			{
+				sec = 60;
+			} else if (hour == 0.00833)
+			{
+				sec = 30;
+			}
+			return sec;
 		}
         // Yコンボの値get　単位:Volt
         public double GetComboEY()
@@ -497,7 +506,7 @@ namespace ElogMtGraph
                     //this.SetComboY(5.0);
 
                     // 時間を0:00にする
-                    TimeScrollBarSetValue(0.0);
+                    TimeScrollBarSetValue(0);
 
                     // ファイル読み込んでグラフ描く
                     Graph.ReadAndDraw((string)dir_list[dir_index]);
