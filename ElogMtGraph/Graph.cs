@@ -190,24 +190,20 @@ namespace ElogMtGraph
 					int h, m, s;
 					h = start / 60 / 60; h %= 24;
 					m = start % 3600 / 60;
-					s = (int)Math.Round((double)(start % 60) / 30.0) * 30;
-					if (s >= 60)
+					if (start % 60 < 15)
 					{
-						m += 1;
-						if (m >= 60)
-						{
-							m -= 60;
-							h += 1;
-						}
-						s -= 60;
+						s = 0;
+					} else
+					{
+						s = 30;
 					}
+					
 					ts = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, h, m, s);
 					// end
 					h = range_t / 60 / 60;
 					m = range_t % 3600 / 60;
 					s = range_t % 60;
 
-					//                    Console.WriteLine("DrawGraph() h={0}, m={1}, range_t={2}", h, m, range_t);
 					TimeSpan interval = new TimeSpan(h, m, s);
 					te = ts + interval;
 
@@ -218,7 +214,6 @@ namespace ElogMtGraph
 						ts -= over;
 						te = nextDay0000;
 					}
-					//                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
 				}
 
 				//int tsindex;
