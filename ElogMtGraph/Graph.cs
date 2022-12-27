@@ -149,7 +149,7 @@ namespace ElogMtGraph
 		// double range_y: Y軸レンジ　Volt/FS 中心値±range_y/2の範囲になる
         public static void DrawGraph()
 		{
-            double range_t = Program.FormMain.GetComboPeriod();
+            int range_t = Program.FormMain.GetComboPeriod();
             double range_hy = Program.FormMain.GetComboHY();
             double range_ey = Program.FormMain.GetComboEY();
 
@@ -169,7 +169,7 @@ namespace ElogMtGraph
 				// カーソルwait
 				Cursor.Current = Cursors.WaitCursor;
 				// スクロールバー設定
-				Program.FormMain.TimeScrollBarSetMinMax(0.0, 24, range_t/5, range_t);
+				Program.FormMain.TimeScrollBarSetMinMax(0, 24 * 60 * 60, (int)range_t/5, range_t);
 				Program.FormMain.Refresh();
 
 				Graph.RefreshData();
@@ -183,19 +183,31 @@ namespace ElogMtGraph
 
 				//　グラフの描画範囲(時間)を計算
 				{
-					// スクロールバーの値get　単位:時
-					double start = Program.FormMain.TimeScrollBarGetValue();
-                    // start
-					int h, m;
-                    h = (int)Math.Floor(start); h %= 24;
-					m = (int)Math.Floor((start - h) * 60); m %= 60;
-					ts = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, h, m, 0);
-                    // end
-                    h = (int)Math.Floor(range_t);
-                    m = (int)Math.Floor((range_t - h) * 60);
-//                    Console.WriteLine("DrawGraph() h={0}, m={1}, range_t={2}", h, m, range_t);
-                    if (h == 0 && m == 0) m = 1;
-					TimeSpan interval = new TimeSpan(h, m, 0);
+					// スクロールバーの値get　単位:秒
+					int start = Program.FormMain.TimeScrollBarGetValue();
+					// start
+					int h, m, s; 
+                    h = start / 60 / 60; h %= 24;
+					m = start % 3600 / 60;
+                    s = (int)Math.Round((double)(start % 60) / 30.0) * 30;
+                    if (s >= 60)
+                    {
+                        m += 1;
+						if (m >= 60)
+						{
+							m -= 60;
+							h += 1;
+						}
+                        s -= 60;
+                    }
+                    ts = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, h, m, s);
+					// end
+					h = range_t / 60 / 60;
+					m = range_t % 3600 / 60;
+					s = range_t % 60;
+
+                    //                    Console.WriteLine("DrawGraph() h={0}, m={1}, range_t={2}", h, m, range_t);
+					TimeSpan interval = new TimeSpan(h, m, s);
 					te = ts + interval;
 
 					DateTime nextDay0000 = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, 0, 0, 0) + new TimeSpan(1, 0, 0, 0);
@@ -248,7 +260,7 @@ namespace ElogMtGraph
                     // Console.WriteLine("XAxis.Scale.Min={0}", myp.XAxis.Scale.Min);
                     // Console.WriteLine("XAxis.Scale.Max={0}", myp.XAxis.Scale.Max);
                     // 時間軸目盛り
-                    if (range_t < 2) {
+                    if (range_t < 2 * 3600) {
                         myp.XAxis.Scale.Format = "HH:mm:ss";	// HH=24時間制
                     } else {
                         myp.XAxis.Scale.Format = "HH:mm";	// HH=24時間制
@@ -433,13 +445,8 @@ namespace ElogMtGraph
 				}
 			
 			}
-			catch(Exception e)
-			{
-				Console.Write("DrawGraph(): "+e.Message+"\n");
-				Console.Write(e.StackTrace.ToString()+"\n");
-				Debug.ShowStackTrace();
-				return;
-			} finally {
+
+			 finally {
                 Console.WriteLine("DrawGraph().finally()");
                 // スクロールバーEnable
 				Program.FormMain.TimeScrollBarEnable();
@@ -642,20 +649,22 @@ namespace ElogMtGraph
             {
 //				Program.FormMain.SetComboPeriod(Constants.comboPeriod_InitialList[0]);
 				//double span = (readTimestamp[readData_length-1] - readTimestamp[0]).TotalHours;
-				double Datastart = (readTimestamp[0] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalHours;
-				double Dataend = (readTimestamp[readData_length - 1] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalHours;
+				int Datastart = 
+					(int)(readTimestamp[0] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalSeconds;
+				int Dataend =
+					(int)(readTimestamp[readData_length - 1] - new DateTime(readTimestamp[0].Year, readTimestamp[0].Month, readTimestamp[0].Day, 0, 0, 0)).TotalSeconds;
 
 				for (int i=0; i< Constants.comboPeriod_InitialList.Length; ++i)
                 {
 					// 表示範囲の最初
-					var start = ((uint)(Datastart / Constants.comboPeriod_InitialList[i])) * Constants.comboPeriod_InitialList[i];
+					var start = ((uint)(Datastart / Constants.comboPeriod_InitialList[i] * 3600)) * Constants.comboPeriod_InitialList[i] * 3600;
 					// 表示範囲の終わり
-					var end = start + Constants.comboPeriod_InitialList[i];
+					var end = start + Constants.comboPeriod_InitialList[i] * 3600;
 
                     if (Dataend <= end)
                     {
 						Program.FormMain.SetComboPeriod(Constants.comboPeriod_InitialList[i]);
-						Program.FormMain.TimeScrollBarSetValue(start);
+						Program.FormMain.TimeScrollBarSetValue((int)start);
 						break;
                     }
 				}
@@ -685,7 +694,7 @@ namespace ElogMtGraph
 				// 一番最初のデータ読み込みならば、
 				if (firsttime == 1) {
 					// スクロールバー位置をゼロに
-					Program.FormMain.TimeScrollBarSetValue(0.0);
+					Program.FormMain.TimeScrollBarSetValue(0);
 	
 					firsttime = 0;
 				}
@@ -694,20 +703,22 @@ namespace ElogMtGraph
 				//
 				DateTime ts = new DateTime();
 				DateTime te = new DateTime();
-				double range_t = Program.FormMain.GetComboPeriod();
+				int range_t = Program.FormMain.GetComboPeriod();
 	
 				//　グラフの描画範囲(時間)を計算
-				// スクロールバーの値get　単位:時
-				double start = Program.FormMain.TimeScrollBarGetValue();
-				int h, m;
-				h = (int)Math.Floor(start);
-				m = (int)Math.Floor((start - h) * 60);
+				// スクロールバーの値get　単位:秒
+				int start = Program.FormMain.TimeScrollBarGetValue();
+				int h, m, s;
+				h = start / 60 / 60;
+				m = start % 3600 / 60;
+				s = start % 60;
 				// ファイルには年月日が記録されていないため1970/1/1にしておく
-				ts = new DateTime(1970, 1, 1, h, m, 0);
-	
-				h = (int)Math.Floor(range_t);
-				m = (int)Math.Floor((range_t - h) * 60);
-				TimeSpan interval = new TimeSpan(h, m, 0);
+				ts = new DateTime(1970, 1, 1, h, m, s);
+
+				h = range_t / 60 / 60;
+				m = range_t % 3600 / 60;
+				s = range_t % 60;
+				TimeSpan interval = new TimeSpan(h, m, s);
 				te = ts + interval;
 //                Console.WriteLine("ReadFile() ts={0}, te={1}, interval={2}", ts, te, interval);
 				
