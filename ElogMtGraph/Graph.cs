@@ -153,15 +153,16 @@ namespace ElogMtGraph
             double range_hy = Program.FormMain.GetComboHY();
             double range_ey = Program.FormMain.GetComboEY();
 
-            try {
+			try
+			{
 				if (timestamp == null) return;
 				if (range_t <= 0) return;
 				if (range_hy <= 0 && range_hy != -1.0) return;
-                if (range_ey <= 0 && range_ey != -1.0) return;
-                if (data_length < 0) return;
-                // 描画中ならばreturn
-                if (mutex) return;
-                mutex = true;
+				if (range_ey <= 0 && range_ey != -1.0) return;
+				if (data_length < 0) return;
+				// 描画中ならばreturn
+				if (mutex) return;
+				mutex = true;
 
 				Program.FormMain.StatusLabel_SetText("グラフ描画中");
 				// スクロールバーEnable/Disable　Disableにするとバーをドラッグ出来なくなる
@@ -169,11 +170,11 @@ namespace ElogMtGraph
 				// カーソルwait
 				Cursor.Current = Cursors.WaitCursor;
 				// スクロールバー設定
-				Program.FormMain.TimeScrollBarSetMinMax(0, 24 * 60 * 60, (int)range_t/5, range_t);
+				Program.FormMain.TimeScrollBarSetMinMax(0, 24 * 60 * 60, (int)range_t / 5, range_t);
 				Program.FormMain.Refresh();
 
 				Graph.RefreshData();
-				if (Program.FormMain.IsAverageFilterEnable())Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+				if (Program.FormMain.IsAverageFilterEnable()) Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
 
 				//
 				// 時間軸レンジ計算
@@ -186,39 +187,39 @@ namespace ElogMtGraph
 					// スクロールバーの値get　単位:秒
 					int start = Program.FormMain.TimeScrollBarGetValue();
 					// start
-					int h, m, s; 
-                    h = start / 60 / 60; h %= 24;
+					int h, m, s;
+					h = start / 60 / 60; h %= 24;
 					m = start % 3600 / 60;
-                    s = (int)Math.Round((double)(start % 60) / 30.0) * 30;
-                    if (s >= 60)
-                    {
-                        m += 1;
+					s = (int)Math.Round((double)(start % 60) / 30.0) * 30;
+					if (s >= 60)
+					{
+						m += 1;
 						if (m >= 60)
 						{
 							m -= 60;
 							h += 1;
 						}
-                        s -= 60;
-                    }
-                    ts = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, h, m, s);
+						s -= 60;
+					}
+					ts = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, h, m, s);
 					// end
 					h = range_t / 60 / 60;
 					m = range_t % 3600 / 60;
 					s = range_t % 60;
 
-                    //                    Console.WriteLine("DrawGraph() h={0}, m={1}, range_t={2}", h, m, range_t);
+					//                    Console.WriteLine("DrawGraph() h={0}, m={1}, range_t={2}", h, m, range_t);
 					TimeSpan interval = new TimeSpan(h, m, s);
 					te = ts + interval;
 
 					DateTime nextDay0000 = new DateTime(timestamp[0].Year, timestamp[0].Month, timestamp[0].Day, 0, 0, 0) + new TimeSpan(1, 0, 0, 0);
 					if (te > nextDay0000)
-                    {
+					{
 						TimeSpan over = te - nextDay0000;
 						ts -= over;
 						te = nextDay0000;
 					}
-//                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
-                }
+					//                    Console.WriteLine("DrawGraph() ts={0}, te={1}, interval={2}", ts, te, interval);
+				}
 
 				//int tsindex;
 				//int teindex;
@@ -232,7 +233,8 @@ namespace ElogMtGraph
 				 */
 				Dictionary<int, double> autoRanges = new Dictionary<int, double>();
 				// CHループ
-				for (int ch = 0; ch < Constants.CHNUM; ch++) {
+				for (int ch = 0; ch < Constants.CHNUM; ch++)
+				{
 					// AD bits
 					// 変換係数get Volt/LSB
 					double coef = VOLT_LSB_E;
@@ -242,40 +244,43 @@ namespace ElogMtGraph
 					double range_y = range_ey;
 
 					if (ch >= 2)
-                    {
+					{
 						coef = VOLT_LSB_H;
 						volt_max = VOLT_MAX_H;
 						volt_min = VOLT_MIN_H;
 						range_y = range_hy;
 					}
-					
+
 
 					Console.WriteLine("DrawGraph() CH={0} start, data_elngth={1}", ch, data_length);
-                    GraphPane myp;
+					GraphPane myp;
 					myp = myPane[ch];
 					// 
-                    // 時間軸レンジ設定
-                    myp.XAxis.Scale.Min = new XDate(ts.Year, ts.Month, ts.Day, ts.Hour, ts.Minute, ts.Second);
-                    myp.XAxis.Scale.Max = new XDate(te.Year, te.Month, te.Day, te.Hour, te.Minute, te.Second);
-                    // Console.WriteLine("XAxis.Scale.Min={0}", myp.XAxis.Scale.Min);
-                    // Console.WriteLine("XAxis.Scale.Max={0}", myp.XAxis.Scale.Max);
-                    // 時間軸目盛り
-                    if (range_t < 2 * 3600) {
-                        myp.XAxis.Scale.Format = "HH:mm:ss";	// HH=24時間制
-                    } else {
-                        myp.XAxis.Scale.Format = "HH:mm";	// HH=24時間制
-                    }
-                    //
-                    PointPairList list = new PointPairList();
+					// 時間軸レンジ設定
+					myp.XAxis.Scale.Min = new XDate(ts.Year, ts.Month, ts.Day, ts.Hour, ts.Minute, ts.Second);
+					myp.XAxis.Scale.Max = new XDate(te.Year, te.Month, te.Day, te.Hour, te.Minute, te.Second);
+					// Console.WriteLine("XAxis.Scale.Min={0}", myp.XAxis.Scale.Min);
+					// Console.WriteLine("XAxis.Scale.Max={0}", myp.XAxis.Scale.Max);
+					// 時間軸目盛り
+					if (range_t < 2 * 3600)
+					{
+						myp.XAxis.Scale.Format = "HH:mm:ss";    // HH=24時間制
+					}
+					else
+					{
+						myp.XAxis.Scale.Format = "HH:mm";   // HH=24時間制
+					}
+					//
+					PointPairList list = new PointPairList();
 					// データ数zeroの時はグラフクリアするのみ
-                    if (data_length > 0)
-                    {
-                        // データをグラフ用に抜き出すループ
-                        double yavg = 0;
+					if (data_length > 0)
+					{
+						// データをグラフ用に抜き出すループ
+						double yavg = 0;
 						double yMax = double.MinValue;
 						double yMin = double.MaxValue;
-                        int avg_num = 0;
-                        list.Clear();
+						int avg_num = 0;
+						list.Clear();
 
 						int WindowWidth = Program.FormMain.getScreenWidth();
 						int mabikiLen = WindowWidth * 3; // 高速化のための間引き後の点数の半分
@@ -298,8 +303,8 @@ namespace ElogMtGraph
 								yMin = Math.Min(yMin, y);
 							}
 						}
-                        else
-                        {
+						else
+						{
 							//double mabikiYmin, mabikiYmax;
 							//double mabikiXmin, mabikiXmax; 
 
@@ -368,7 +373,7 @@ namespace ElogMtGraph
 
 						// オートスケールのときの処理
 						if (range_y == -1.0)
-                        {
+						{
 							double rangemin = yMin == double.MaxValue ? -20.0 : yMin;
 							double rangemax = yMax == double.MinValue ? 20.0 : yMax;
 							double range = rangemax - rangemin;
@@ -382,8 +387,8 @@ namespace ElogMtGraph
 							autoRanges.Add(ch, range);
 						}
 						// オートスケールではないときの処理
-                        else
-                        {
+						else
+						{
 							// Y軸中心値計算
 							if (avg_num <= 0) avg_num = 1;
 							double ycenter = yavg / avg_num;
@@ -403,21 +408,21 @@ namespace ElogMtGraph
 							myp.YAxis.Scale.Min = min;
 							myp.YAxis.Scale.Max = max;
 						}
-                        
-                    } // if (data_length > 0)
-                    // プロットする
+
+					} // if (data_length > 0)
+					  // プロットする
 					myp.CurveList.Clear();
-					myp.AddCurve( "", list, Color.Red, SymbolType.None );
+					myp.AddCurve("", list, Color.Red, SymbolType.None);
 					// グラフタイトル・サイズ
-//					myp.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir);
-//					Program.FormMain.dataText = Path.GetFileName(input_dir);
+					//					myp.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir);
+					//					Program.FormMain.dataText = Path.GetFileName(input_dir);
 					myp.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / (Program.FormMain.Size.Height));
 					myp.Title.IsVisible = false;
 					myp.XAxis.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
 					myp.XAxis.Title.IsVisible = false;
 					myp.XAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
-//					myp.XAxis.IsVisible = false;
-//					myp.YAxis.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir)+"\n\nVolt";
+					//					myp.XAxis.IsVisible = false;
+					//					myp.YAxis.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir)+"\n\nVolt";
 					myp.YAxis.Title.Text = graphCaption[ch] + "\n" + "Volt";
 					myp.YAxis.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
 					myp.YAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
@@ -425,35 +430,42 @@ namespace ElogMtGraph
 
 					// myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
 					Console.WriteLine("DrawGraph() CH={0} end", ch);
-                } // CHループ
+				} // CHループ
 				string label = dataFileDirName + " ";
 				if (autoRanges.Count > 0)
 				{
 					label += "Range ";
 					string[] s = { "EX", "EY", "HX", "HY", "HZ" };
-					foreach(var entry in autoRanges)
+					foreach (var entry in autoRanges)
 					{
 						label += s[entry.Key] + " " + UnitUtils.NumberToVoltRep(entry.Value) + " ";
 					}
 
-                }
-                Program.FormMain.SetYRangeValueLabel(label);
-
-                using ( Graphics g = myZedGraphCtrl.CreateGraphics() )
-				{
-					myMaster.AxisChange( g );
 				}
-			
-			}
+				Program.FormMain.SetYRangeValueLabel(label);
 
-			 finally {
-                Console.WriteLine("DrawGraph().finally()");
-                // スクロールバーEnable
+				using (Graphics g = myZedGraphCtrl.CreateGraphics())
+				{
+					myMaster.AxisChange(g);
+				}
+
+			}
+			catch (Exception e)
+			{
+				Console.Write("DrawGraph(): " + e.Message + "\n");
+				Console.Write(e.StackTrace.ToString() + "\n");
+				Debug.ShowStackTrace();
+				return;
+			}
+			finally
+			{
+				Console.WriteLine("DrawGraph().finally()");
+				// スクロールバーEnable
 				Program.FormMain.TimeScrollBarEnable();
 				// カーソル戻す
 				Cursor.Current = Cursors.Default;
 				Program.FormMain.Refresh();
-                mutex = false;
+				mutex = false;
 				Program.FormMain.StatusLabel_SetText("");
 			}		
 		}
