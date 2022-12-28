@@ -675,7 +675,7 @@ namespace ElogMtGraph
                 for (int i = 0; i < Constants.comboPeriod_InitialList.Length; ++i)
                 {
                     // 表示範囲の最初
-                    var start = ((uint)(Datastart / Constants.comboPeriod_InitialList[i] * 3600)) * Constants.comboPeriod_InitialList[i] * 3600;
+                    var start = ((uint)(Datastart / Constants.comboPeriod_InitialList[i])) * Constants.comboPeriod_InitialList[i];
                     // 表示範囲の終わり
                     var end = start + Constants.comboPeriod_InitialList[i] * 3600;
 
