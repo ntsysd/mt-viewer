@@ -463,6 +463,7 @@
             this.comboHYErrorProvider.SetIconAlignment(this.hScrollBar1, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("hScrollBar1.IconAlignment1"))));
             this.comboHYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding"))));
             this.comboEYErrorProvider.SetIconPadding(this.hScrollBar1, ((int)(resources.GetObject("hScrollBar1.IconPadding1"))));
+            this.hScrollBar1.Maximum = 86400;
             this.hScrollBar1.Name = "hScrollBar1";
             this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
             // 
