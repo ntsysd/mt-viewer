@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 
 namespace ElogMtGraph
@@ -11,7 +10,8 @@ namespace ElogMtGraph
             if (volt >= 1)
             {
                 return string.Format("{0:G3}V", volt);
-            } else
+            }
+            else
             {
                 return string.Format("{0:G3}mV", volt * 1000.0);
             }
@@ -27,7 +27,9 @@ namespace ElogMtGraph
             if (double.TryParse(voltRep, out volt))
             {
                 return volt;
-            } else { 
+            }
+            else
+            {
                 Match match;
                 match = mvregex.Match(voltRep);
                 if (match.Success)

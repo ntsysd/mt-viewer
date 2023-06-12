@@ -1,153 +1,157 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Resources;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ElogMtGraph
 {
     public partial class MainWindow : Form
     {
-		// データファイルのディレクトリリスト
-		private ArrayList dir_list = new ArrayList();
-		// データファイル名
-		private string dataFilename = "";
-		// 現在表示しているディレクトリリストの番号
-		private int dir_index = -1;
-		private int currentFreq = -1;
+        // データファイルのディレクトリリスト
+        private ArrayList dir_list = new ArrayList();
+        // データファイル名
+        private string dataFilename = "";
+        // 現在表示しているディレクトリリストの番号
+        private int dir_index = -1;
+        private int currentFreq = -1;
 
-		// 
-		public ResourceManager rm;
+        // 
+        public ResourceManager rm;
 
-		public MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
 
             Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
 
-			comboBoxDataMode.SelectedIndex = 0;
+            comboBoxDataMode.SelectedIndex = 0;
             foreach (var item in Constants.comboPeriod_InitialList)
             {
-				comboBoxPeriod.Items.Add(item);
+                comboBoxPeriod.Items.Add(item);
             }
-			comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
-			comboBoxEY.SelectedIndex = comboBoxEY.Items.Count - 1;
-			comboBoxHY.SelectedIndex = comboBoxHY.Items.Count - 1;
+            comboBoxPeriod.SelectedIndex = comboBoxPeriod.Items.Count - 1;
+            comboBoxEY.SelectedIndex = comboBoxEY.Items.Count - 1;
+            comboBoxHY.SelectedIndex = comboBoxHY.Items.Count - 1;
 
-			SetAverageFilterEnable(false, false);
-			SetDetrendEnable(false, false);
+            SetAverageFilterEnable(false, false);
+            SetDetrendEnable(false, false);
 
-			LoadSettings(@"settings.xml");
+            LoadSettings(@"settings.xml");
 
-			bool sizeFix = false;
-			Size newSize = this.Size;
-			Point newLocation = this.Location;
-				
-			if(this.Size.Width > Screen.GetWorkingArea(this).Width)
-			{
-				sizeFix = true;
-				newSize.Width = Screen.GetWorkingArea(this).Width;
-				newLocation.X = 0;
-			}
-			if (this.Size.Height > Screen.GetWorkingArea(this).Height)
-			{
-				sizeFix = true;
-				newSize.Height = Screen.GetWorkingArea(this).Height;
-				newLocation.Y = 0;
-			}
+            bool sizeFix = false;
+            Size newSize = this.Size;
+            Point newLocation = this.Location;
 
-			// タスクバーが上にあったときの処理
-			if (Screen.GetWorkingArea(this).Top > newLocation.Y)
-			{
-				newLocation.Y = Screen.GetWorkingArea(this).Top;
-			}
+            if (this.Size.Width > Screen.GetWorkingArea(this).Width)
+            {
+                sizeFix = true;
+                newSize.Width = Screen.GetWorkingArea(this).Width;
+                newLocation.X = 0;
+            }
+            if (this.Size.Height > Screen.GetWorkingArea(this).Height)
+            {
+                sizeFix = true;
+                newSize.Height = Screen.GetWorkingArea(this).Height;
+                newLocation.Y = 0;
+            }
 
-			if (sizeFix)
-			{
-				this.Size = newSize;
-				this.Location = newLocation;
-			}
-			
-			this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
+            // タスクバーが上にあったときの処理
+            if (Screen.GetWorkingArea(this).Top > newLocation.Y)
+            {
+                newLocation.Y = Screen.GetWorkingArea(this).Top;
+            }
+
+            if (sizeFix)
+            {
+                this.Size = newSize;
+                this.Location = newLocation;
+            }
+
+            this.comboBoxPeriod.SelectedIndexChanged += new System.EventHandler(this.comboBoxPeriod_SelectedIndexChanged);
             this.comboBoxEY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxEY_Validating);
-			this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
-			this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
+            this.comboBoxEY.Validated += new System.EventHandler(this.comboBoxEY_Validated);
+            this.comboBoxEY.SelectedIndexChanged += new System.EventHandler(this.comboBoxEY_SelectedIndexChanged);
             this.comboBoxHY.Validating += new System.ComponentModel.CancelEventHandler(this.comboBoxHY_Validating);
             this.comboBoxHY.Validated += new System.EventHandler(this.comboBoxHY_Validated);
             this.comboBoxHY.SelectedIndexChanged += new System.EventHandler(this.comboBoxHY_SelectedIndexChanged);
             currentFreq = GetComboDataModeFreq();
-			button32Hz.Text = currentFreq.ToString() + "Hz";
-			this.yRangeValueLabel.Text = "";
-			if (!System.Threading.Thread.CurrentThread.CurrentUICulture.Name.StartsWith("ja"))
-			{
-				this.richTextBox1.Font = new Font("Microsoft Sans Serif", 12);
-			}
+            button32Hz.Text = currentFreq.ToString() + "Hz";
+            this.yRangeValueLabel.Text = "";
+            if (!System.Threading.Thread.CurrentThread.CurrentUICulture.Name.StartsWith("ja"))
+            {
+                this.richTextBox1.Font = new Font("Microsoft Sans Serif", 12);
+            }
             this.rm = new ComponentResourceManager(typeof(MainWindow));
         }
 
-		public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
-		{
-			tabPage1.Controls.Clear();
-			tabPage1.Controls.Add(myZedGraphCtrl);
+        public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
+        {
+            tabPage1.Controls.Clear();
+            tabPage1.Controls.Add(myZedGraphCtrl);
 
-			myZedGraphCtrl.Width = tabPage1.Width;
-			myZedGraphCtrl.Height = tabPage1.Height;
+            myZedGraphCtrl.Width = tabPage1.Width;
+            myZedGraphCtrl.Height = tabPage1.Height;
 
-			myZedGraphCtrl.Anchor = AnchorStyles.Left | AnchorStyles.Top
-												| AnchorStyles.Right | AnchorStyles.Bottom;
+            myZedGraphCtrl.Anchor = AnchorStyles.Left | AnchorStyles.Top
+                                                | AnchorStyles.Right | AnchorStyles.Bottom;
 
-			richTextBox1.Text = "";
+            richTextBox1.Text = "";
 
-			// tell the control to rescale itself
-			myZedGraphCtrl.AxisChange();
+            // tell the control to rescale itself
+            myZedGraphCtrl.AxisChange();
 
-			// redraw the entire form
-			Invalidate();
-		}
+            // redraw the entire form
+            Invalidate();
+        }
 
-		// 時間軸スクロールバー　Enable
-		public void TimeScrollBarEnable()
-		{
-			this.hScrollBar1.Enabled = true;
-//			this.hscrollbar.Refresh();
-		}
-		// 時間軸スクロールバー　Disable
-		public void TimeScrollBarDisable()
-		{
-			this.hScrollBar1.Enabled = false;
-//			this.hscrollbar.Refresh();
-		}
-		// 時間軸スクロールバー　範囲設定　単位:時
-		public void TimeScrollBarSetMinMax(double min, double max, double small, double large)
-		{
-			this.hScrollBar1.Minimum = (int)(min * 100);
-			this.hScrollBar1.Maximum = (int)(max * 100);
-			this.hScrollBar1.SmallChange = (int)(small * 100);
-			this.hScrollBar1.LargeChange = (int)(large * 100);
-		}
-		// 時間軸スクロールバー　値設定　単位:時
-		public void TimeScrollBarSetValue(double value)
-		{
-			this.hScrollBar1.Value = (int)(value * 100);
-		}
-		// 時間軸スクロールバー　値get　単位:時
-		public double TimeScrollBarGetValue()
-		{
-			return this.hScrollBar1.Value / 100.0;
-		}
-		// Periodコンボの値get　単位:時
-		public double GetComboPeriod()
-		{
-			return double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
-		}
+        // 時間軸スクロールバー　Enable
+        public void TimeScrollBarEnable()
+        {
+            this.hScrollBar1.Enabled = true;
+            //			this.hscrollbar.Refresh();
+        }
+        // 時間軸スクロールバー　Disable
+        public void TimeScrollBarDisable()
+        {
+            this.hScrollBar1.Enabled = false;
+            //			this.hscrollbar.Refresh();
+        }
+        // 時間軸スクロールバー　範囲設定　単位:秒
+        public void TimeScrollBarSetMinMax(int min, int max, int small, int large)
+        {
+            this.hScrollBar1.Minimum = min;
+            this.hScrollBar1.Maximum = max;
+            this.hScrollBar1.SmallChange = small;
+            this.hScrollBar1.LargeChange = large;
+        }
+        // 時間軸スクロールバー　値設定　単位:秒
+        public void TimeScrollBarSetValue(int value)
+        {
+            this.hScrollBar1.Value = value;
+        }
+        // 時間軸スクロールバー　値get　単位:秒
+        public int TimeScrollBarGetValue()
+        {
+            return this.hScrollBar1.Value;
+        }
+        // Periodコンボの値get　単位:秒
+        public int GetComboPeriod()
+        {
+            double hour = double.Parse(this.comboBoxPeriod.SelectedItem.ToString());
+            int sec = (int)(hour * 60 * 60);
+            if (hour == 0.017)
+            {
+                sec = 60;
+            }
+            else if (hour == 0.00833)
+            {
+                sec = 30;
+            }
+            return sec;
+        }
         // Yコンボの値get　単位:Volt
         public double GetComboEY()
         {
@@ -155,7 +159,7 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-			return UnitUtils.VoltRepToNumber(this.comboBoxEY.Text);
+            return UnitUtils.VoltRepToNumber(this.comboBoxEY.Text);
         }
         public double GetComboHY()
         {
@@ -163,120 +167,122 @@ namespace ElogMtGraph
             {
                 return -1.0;
             }
-			return UnitUtils.VoltRepToNumber(this.comboBoxHY.Text);
+            return UnitUtils.VoltRepToNumber(this.comboBoxHY.Text);
         }
 
         private int GetComboDataModeFreq()
         {
-			switch (this.comboBoxDataMode.Text)
-			{
-				case "PHX(15Hz)": return 15;
-				case "ADU(32Hz)": return 32;
-				default: return -1;
-			}
-		}
+            switch (this.comboBoxDataMode.Text)
+            {
+                case "PHX(15Hz)": return 15;
+                case "ADU(32Hz)": return 32;
+                default: return -1;
+            }
+        }
 
-		private void SetComboDataModeFreq(int freq)
-		{
+        private void SetComboDataModeFreq(int freq)
+        {
             if (freq == 15)
             {
-				this.comboBoxDataMode.Text = "PHX(15Hz)";
-			}
-			else if(freq == 32)
+                this.comboBoxDataMode.Text = "PHX(15Hz)";
+            }
+            else if (freq == 32)
             {
-				this.comboBoxDataMode.Text = "ADU(32Hz)";
-			}
-		}
+                this.comboBoxDataMode.Text = "ADU(32Hz)";
+            }
+        }
 
-		public int GetDataModeFreq()
-		{
-			return currentFreq;
-		}
+        public int GetDataModeFreq()
+        {
+            return currentFreq;
+        }
 
-		public int getScreenWidth()
-		{
-			return Screen.GetWorkingArea(this).Width;
-		}
+        public int getScreenWidth()
+        {
+            return Screen.GetWorkingArea(this).Width;
+        }
 
-		// Periodコンボの値set
-		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
-		public void SetComboPeriod(double period)
-		{
-			foreach (object item in this.comboBoxPeriod.Items)
-			{
-				//				Console.WriteLine(item.ToString());
-				if (double.Parse(item.ToString()) == period)
-				{
-					this.comboBoxPeriod.SelectedItem = item;
-					break;
-				}
-			}
-		}
-		// Yコンボの値set
-		// コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
-		public void SetComboY(ComboBox comboBox, string ystring)
-		{
-			double y;
-			try
-			{
-				y = UnitUtils.VoltRepToNumber(ystring);
-			} catch
-			{
-				return;
-			}
+        // Periodコンボの値set
+        // コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
+        public void SetComboPeriod(double period)
+        {
+            foreach (object item in this.comboBoxPeriod.Items)
+            {
+                //				Console.WriteLine(item.ToString());
+                if (double.Parse(item.ToString()) == period)
+                {
+                    this.comboBoxPeriod.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+        // Yコンボの値set
+        // コンボにセットされているitemと同じ値が指定されたら、コンボの選択をそれに変更する
+        public void SetComboY(ComboBox comboBox, string ystring)
+        {
+            double y;
+            try
+            {
+                y = UnitUtils.VoltRepToNumber(ystring);
+            }
+            catch
+            {
+                return;
+            }
 
-			if (y == -1)
-			{
-				comboBox.SelectedIndex = comboBox.Items.Count - 1;
-				return;
-			}
+            if (y == -1)
+            {
+                comboBox.SelectedIndex = comboBox.Items.Count - 1;
+                return;
+            }
 
-			string voltRep = UnitUtils.NumberToVoltRep(y);
-			comboBox.SelectedIndex = comboBox.FindStringExact(voltRep);
+            string voltRep = UnitUtils.NumberToVoltRep(y);
+            comboBox.SelectedIndex = comboBox.FindStringExact(voltRep);
 
-			if (comboBox.SelectedIndex < 0)
-			{
-				comboBox.Text = voltRep;
-			}
+            if (comboBox.SelectedIndex < 0)
+            {
+                comboBox.Text = voltRep;
+            }
 
-		}
+        }
 
-		public void SetYRangeValueLabel(string text)
-		{
-			this.yRangeValueLabel.Text = text;
-		}
+        public void SetYRangeValueLabel(string text)
+        {
+            this.yRangeValueLabel.Text = text;
+        }
 
         // descriptionBoxにテキスト設定
         public void SetDescriptionBoxText(string text)
-		{
-			this.richTextBox1.Text = text;
-		}
+        {
+            this.richTextBox1.Text = text;
+        }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			OpenFileDialog ofd = new OpenFileDialog();
+            OpenFileDialog ofd = new OpenFileDialog();
 
-			ofd.CheckFileExists = false;
-			ofd.FileName = "Folder Select";
+            ofd.CheckFileExists = false;
+            ofd.FileName = "Folder Select";
             ofd.FileOk += Ofd_FileOk;
 
-			//ダイアログを表示する
-			if (ofd.ShowDialog() == DialogResult.OK)
+            //ダイアログを表示する
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 //OKボタンがクリックされた
                 string filename = ofd.FileName;
                 if (LoadAndDraw(filename))
-				{
-					this.dataFilename = filename;
-				} else
-				{
-					this.dataFilename = "";
-				}
+                {
+                    this.dataFilename = filename;
+                }
+                else
+                {
+                    this.dataFilename = "";
+                }
             }
         }
 
         private bool LoadAndDraw(string filename, bool intaractive = true)
-		{
+        {
             Console.WriteLine(filename);
             /*
 			 * 親directory内のデータdirリストを取得しておく
@@ -286,10 +292,10 @@ namespace ElogMtGraph
             string dirName = System.IO.Path.GetDirectoryName(filename);
             if (!System.IO.Directory.Exists(dirName))
             {
-				if (intaractive)
-				{
-					MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
+                if (intaractive)
+                {
+                    MessageBox.Show("ディレクトリが存在しません\n" + dirName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return false;
             }
             DirectoryInfo dirInfo = System.IO.Directory.GetParent(dirName);
@@ -332,19 +338,19 @@ namespace ElogMtGraph
         {
             try
             {
-				var ofd = sender as OpenFileDialog;
+                var ofd = sender as OpenFileDialog;
 
-				var filename = ofd.FileName;
+                var filename = ofd.FileName;
 
-				string directoryName = Path.GetDirectoryName(filename);
+                string directoryName = Path.GetDirectoryName(filename);
 
-				var list = Directory.GetFiles(directoryName);
+                var list = Directory.GetFiles(directoryName);
 
-				if(list.Length == 0)
+                if (list.Length == 0)
                 {
-					e.Cancel = true;
-				}
-			}
+                    e.Cancel = true;
+                }
+            }
             catch
             {
 
@@ -353,62 +359,62 @@ namespace ElogMtGraph
 
         private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			Graph.PageSetup();
-		}
+            Graph.PageSetup();
+        }
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			Graph.PrintGraph();
-		}
+            Graph.PrintGraph();
+        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			System.Environment.Exit(0);
-		}
+            System.Environment.Exit(0);
+        }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
-			//			Console.WriteLine("hscrollbar_ValueChaged(): " + this.hscrollbar.Value );
-			// グラフ描画
-			//			Graph.ReadAndDraw();
-			// ファイル読み込まずに、読み込み済みのデータをプロット
-			Graph.DrawGraph();
-		}
+            //			Console.WriteLine("hscrollbar_ValueChaged(): " + this.hscrollbar.Value );
+            // グラフ描画
+            //			Graph.ReadAndDraw();
+            // ファイル読み込まずに、読み込み済みのデータをプロット
+            Graph.DrawGraph();
+        }
 
         private void comboBoxPeriod_SelectedIndexChanged(object sender, EventArgs e)
         {
-			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
-			if (combobox == null) return;
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
 
-			Console.WriteLine("comboPeriod_SelectedIndexChanged() " + combobox.SelectedIndex);
-			Console.WriteLine("combo: " + combobox.SelectedItem.ToString());
+            Console.WriteLine("comboPeriod_SelectedIndexChanged() " + combobox.SelectedIndex);
+            Console.WriteLine("combo: " + combobox.SelectedItem.ToString());
 
-			if (combobox.SelectedItem == null)
-			{
-				Console.WriteLine("comboPeriod_SelectedIndexChanged(): SelectedIndex == NULL!");
-				return;
-			}
+            if (combobox.SelectedItem == null)
+            {
+                Console.WriteLine("comboPeriod_SelectedIndexChanged(): SelectedIndex == NULL!");
+                return;
+            }
 
             Graph.DrawGraph();
-		}
+        }
 
         private void comboBoxHY_SelectedIndexChanged(object sender, EventArgs e)
         {
-			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
-			if (combobox == null) return;
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
             this.comboHYErrorProvider.SetError(combobox, String.Empty);
             // グラフ描画
             Graph.DrawGraph();
-		}
+        }
 
-		private void comboBoxHY_Validating(object sender, CancelEventArgs e)
-		{
-			System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
-			if (combobox == null) return;
-			if (combobox.Text == "AUTO")
-			{
+        private void comboBoxHY_Validating(object sender, CancelEventArgs e)
+        {
+            System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
+            if (combobox == null) return;
+            if (combobox.Text == "AUTO")
+            {
                 return;
-			}
+            }
 
             try
             {
@@ -423,8 +429,8 @@ namespace ElogMtGraph
 
         }
 
-		private void comboBoxHY_Validated(object sender, EventArgs e)
-		{
+        private void comboBoxHY_Validated(object sender, EventArgs e)
+        {
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
             this.comboHYErrorProvider.SetError(combobox, String.Empty);
@@ -448,10 +454,12 @@ namespace ElogMtGraph
             {
                 return;
             }
-			try
-			{
-				combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
-			} catch {
+            try
+            {
+                combobox.Text = UnitUtils.NormalizeVoltRep(combobox.Text);
+            }
+            catch
+            {
                 this.comboEYErrorProvider.SetError(combobox, this.rm.GetString("comboYError"));
                 e.Cancel = true;
                 return;
@@ -468,14 +476,14 @@ namespace ElogMtGraph
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-			if (this.ActiveControl == this.comboBoxEY ||
-				this.ActiveControl == this.comboBoxHY ||
-				dir_index < 0)
-			{
-				return base.ProcessCmdKey(ref msg, keyData);
-			}
-			if (keyData == Keys.PageUp || keyData == Keys.PageDown)
-			{
+            if (this.ActiveControl == this.comboBoxEY ||
+                this.ActiveControl == this.comboBoxHY ||
+                dir_index < 0)
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+            if (keyData == Keys.PageUp || keyData == Keys.PageDown)
+            {
                 if (keyData == Keys.PageUp)
                 {
                     dir_index++;
@@ -497,12 +505,12 @@ namespace ElogMtGraph
                     //this.SetComboY(5.0);
 
                     // 時間を0:00にする
-                    TimeScrollBarSetValue(0.0);
+                    TimeScrollBarSetValue(0);
 
                     // ファイル読み込んでグラフ描く
                     Graph.ReadAndDraw((string)dir_list[dir_index]);
                 }
-				return true;
+                return true;
             }
 
             if (keyData == Keys.Right || keyData == Keys.Left)
@@ -547,162 +555,162 @@ namespace ElogMtGraph
                     }
                 }
 
-				// フォーカスのあるコンボボックスの値が変わってしまうことを抑制
-				return true;
+                // フォーカスのあるコンボボックスの値が変わってしまうことを抑制
+                return true;
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-		private void buttonDetrendOn_Click(object sender, EventArgs e)
-		{
-			SetDetrendEnable(true);
-		}
-
-		private void buttonDetrendOff_Click(object sender, EventArgs e)
-		{
-			SetDetrendEnable(false);
-		}
-
-		private void SetDetrendEnable(bool enable, bool draw = true)
+        private void buttonDetrendOn_Click(object sender, EventArgs e)
         {
-			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
-			this.ActiveControl = richTextBox1;
-
-			if (enable)
-			{
-				buttonDetrendOn.Enabled = false;
-				buttonDetrendOff.Enabled = true;
-				buttonDetrendOn.BackColor = Color.Yellow;
-				buttonDetrendOff.BackColor = Color.FromKnownColor(KnownColor.Control);
-			}
-			else
-			{
-				buttonDetrendOn.Enabled = true;
-				buttonDetrendOff.Enabled = false;
-				buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
-				buttonDetrendOff.BackColor = Color.Yellow;
-			}
-			if (draw) Graph.DrawGraph();
-		}
-
-		public bool IsDetrendEnable()
-        {
-			return !buttonDetrendOn.Enabled;
+            SetDetrendEnable(true);
         }
 
-		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			e.Cancel = false;
-			string filename = @"settings.xml";
+        private void buttonDetrendOff_Click(object sender, EventArgs e)
+        {
+            SetDetrendEnable(false);
+        }
 
-			SaveSettings(filename);
-		}
+        private void SetDetrendEnable(bool enable, bool draw = true)
+        {
+            // フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
+            this.ActiveControl = richTextBox1;
 
-		private void MainWindow_Shown(object sender, EventArgs e)
-		{
-			if (this.dataFilename.Length > 0)
-			{
-				if (!this.LoadAndDraw(this.dataFilename, false))	
-				{
-					this.dataFilename = "";
-				}
-			}
-		}
+            if (enable)
+            {
+                buttonDetrendOn.Enabled = false;
+                buttonDetrendOff.Enabled = true;
+                buttonDetrendOn.BackColor = Color.Yellow;
+                buttonDetrendOff.BackColor = Color.FromKnownColor(KnownColor.Control);
+            }
+            else
+            {
+                buttonDetrendOn.Enabled = true;
+                buttonDetrendOff.Enabled = false;
+                buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
+                buttonDetrendOff.BackColor = Color.Yellow;
+            }
+            if (draw) Graph.DrawGraph();
+        }
 
-		private void LoadSettings(string filename)
-		{
-			if (!File.Exists(filename))
-			{
-				return;
-			}
-			using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
-			{
+        public bool IsDetrendEnable()
+        {
+            return !buttonDetrendOn.Enabled;
+        }
 
-				var xDocument = System.Xml.Linq.XDocument.Load(stream);
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+            string filename = @"settings.xml";
 
-				this.Size = new Size(
-					int.Parse(xDocument.Element("Settings").Element("Size").Element("Width").Value),
-					int.Parse(xDocument.Element("Settings").Element("Size").Element("Height").Value));
+            SaveSettings(filename);
+        }
 
-				SetDetrendEnable(xDocument.Element("Settings").Element("View").Element("Detrend").Value == "On", false);
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            if (this.dataFilename.Length > 0)
+            {
+                if (!this.LoadAndDraw(this.dataFilename, false))
+                {
+                    this.dataFilename = "";
+                }
+            }
+        }
+
+        private void LoadSettings(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return;
+            }
+            using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+
+                var xDocument = System.Xml.Linq.XDocument.Load(stream);
+
+                this.Size = new Size(
+                    int.Parse(xDocument.Element("Settings").Element("Size").Element("Width").Value),
+                    int.Parse(xDocument.Element("Settings").Element("Size").Element("Height").Value));
+
+                SetDetrendEnable(xDocument.Element("Settings").Element("View").Element("Detrend").Value == "On", false);
                 SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
-				SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
-				SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
+                SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
+                SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
                 SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
                 SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
                 this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
-				Console.WriteLine(this.dataFilename);
-			}
-		}
+                Console.WriteLine(this.dataFilename);
+            }
+        }
 
-		private void SaveSettings(string filename)
-		{
-			using (var stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
-			{
-				var xDocument = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "utf-8", "Yes"));
-				var xSettings = new System.Xml.Linq.XElement("Settings");
-				var xSize = new System.Xml.Linq.XElement("Size");
-				xSize.Add(new System.Xml.Linq.XElement("Height", this.Size.Height));
-				xSize.Add(new System.Xml.Linq.XElement("Width", this.Size.Width));
-				var xView = new System.Xml.Linq.XElement("View");
-				xView.Add(new System.Xml.Linq.XElement("Detrend", IsDetrendEnable()?"On":"Off"));
-				xView.Add(new System.Xml.Linq.XElement("AveFilter", IsAverageFilterEnable()?"On":"Off"));
-				xView.Add(new System.Xml.Linq.XElement("Mode", GetComboDataModeFreq()));
-				xView.Add(new System.Xml.Linq.XElement("Period", GetComboPeriod()));
-				xView.Add(new System.Xml.Linq.XElement("HY", GetComboHY()));
-				xView.Add(new System.Xml.Linq.XElement("EY", GetComboEY()));
-				xSettings.Add(xSize);
-				xSettings.Add(xView);
+        private void SaveSettings(string filename)
+        {
+            using (var stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
+            {
+                var xDocument = new System.Xml.Linq.XDocument(new System.Xml.Linq.XDeclaration("1.0", "utf-8", "Yes"));
+                var xSettings = new System.Xml.Linq.XElement("Settings");
+                var xSize = new System.Xml.Linq.XElement("Size");
+                xSize.Add(new System.Xml.Linq.XElement("Height", this.Size.Height));
+                xSize.Add(new System.Xml.Linq.XElement("Width", this.Size.Width));
+                var xView = new System.Xml.Linq.XElement("View");
+                xView.Add(new System.Xml.Linq.XElement("Detrend", IsDetrendEnable() ? "On" : "Off"));
+                xView.Add(new System.Xml.Linq.XElement("AveFilter", IsAverageFilterEnable() ? "On" : "Off"));
+                xView.Add(new System.Xml.Linq.XElement("Mode", GetComboDataModeFreq()));
+                xView.Add(new System.Xml.Linq.XElement("Period", GetComboPeriod()));
+                xView.Add(new System.Xml.Linq.XElement("HY", GetComboHY()));
+                xView.Add(new System.Xml.Linq.XElement("EY", GetComboEY()));
+                xSettings.Add(xSize);
+                xSettings.Add(xView);
                 var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
-				xSettings.Add(xDataFilename);
+                xSettings.Add(xDataFilename);
                 xDocument.Add(xSettings);
                 xDocument.Save(stream);
-			}
-		}
+            }
+        }
 
-		public void StatusLabel_SetText(string text)
+        public void StatusLabel_SetText(string text)
         {
-			toolStripStatusLabel1.Text = text;
-			statusStrip1.Refresh();
+            toolStripStatusLabel1.Text = text;
+            statusStrip1.Refresh();
         }
 
         private void button32Hz_Click(object sender, EventArgs e)
         {
-			SetAverageFilterEnable(false);
+            SetAverageFilterEnable(false);
         }
 
         private void button1Hz_Click(object sender, EventArgs e)
         {
-			SetAverageFilterEnable(true);
+            SetAverageFilterEnable(true);
         }
 
-		public bool IsAverageFilterEnable()
+        public bool IsAverageFilterEnable()
         {
-			return button32Hz.Enabled;
-		}
+            return button32Hz.Enabled;
+        }
 
-		private void SetAverageFilterEnable(bool enable, bool draw = true)
+        private void SetAverageFilterEnable(bool enable, bool draw = true)
         {
-			// フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
-			this.ActiveControl = richTextBox1;
+            // フォーカスがボタンに行ってしまって選択されているか紛らわしいので適当なコントロールにフォーカスをずらす
+            this.ActiveControl = richTextBox1;
 
-			if (enable)
+            if (enable)
             {
-				button1Hz.Enabled = false;
-				button32Hz.Enabled = true;
-				button1Hz.BackColor = Color.Yellow;
-				button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-			}
+                button1Hz.Enabled = false;
+                button32Hz.Enabled = true;
+                button1Hz.BackColor = Color.Yellow;
+                button32Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
+            }
             else
             {
-				button1Hz.Enabled = true;
-				button32Hz.Enabled = false;
-				button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
-				button32Hz.BackColor = Color.Yellow;
-			}
+                button1Hz.Enabled = true;
+                button32Hz.Enabled = false;
+                button1Hz.BackColor = Color.FromKnownColor(KnownColor.Control);
+                button32Hz.BackColor = Color.Yellow;
+            }
 
-			if (draw) Graph.DrawGraph();
-		}
+            if (draw) Graph.DrawGraph();
+        }
     }
 }
