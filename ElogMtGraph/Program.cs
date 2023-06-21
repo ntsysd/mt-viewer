@@ -25,7 +25,6 @@ namespace ElogMtGraph
 
     public static class Constants
     {
-        public const int CHNUM = 5;
         public const int SAMP_FREQ = 32;
 
         public static double[] comboPeriod_InitialList = { 0.00833, 0.017, 0.1, 0.2, 0.5, 1, 2, 4, 8, 12, 24 };

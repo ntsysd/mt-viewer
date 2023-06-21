@@ -64,9 +64,9 @@ namespace ElogMtGraph
                 //				data = new int[2560*10*24, Constants.CHNUM];
                 // 間引きを無くしたので15Hzデータ1日分のメモリを確保する
                 timestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                data = new int[86400 * Constants.SAMP_FREQ + 1024, Constants.CHNUM];
+                data = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.CHNUM];
                 readTimestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                readData = new int[86400 * Constants.SAMP_FREQ + 1024, Constants.CHNUM];
+                readData = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.CHNUM];
 
                 firsttime = 1;
                 //				input_dir = "";
@@ -133,7 +133,7 @@ namespace ElogMtGraph
             data_length = (uint)(teindex - tsindex) + 1;
             for (int i = 0; i < data_length; ++i)
             {
-                for (int ch = 0; ch < Constants.CHNUM; ++ch)
+                for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
                 {
                     data[i, ch] = data[i + tsindex, ch];
                 }
@@ -228,7 +228,7 @@ namespace ElogMtGraph
 				 */
                 Dictionary<int, double> autoRanges = new Dictionary<int, double>();
                 // CHループ
-                for (int ch = 0; ch < Constants.CHNUM; ch++)
+                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
                 {
                     // AD bits
                     // 変換係数get Volt/LSB
@@ -471,7 +471,7 @@ namespace ElogMtGraph
 		 */
         public static void Detrend()
         {
-            for (int ch = 0; ch < Constants.CHNUM; ++ch)
+            for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
             {
                 double S_xy = 0.0;
                 double S_xx = 0.0;
@@ -519,7 +519,7 @@ namespace ElogMtGraph
 		 */
         public static void AverageFilter(int filter_length)
         {
-            for (int ch = 0; ch < Constants.CHNUM; ++ch)
+            for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
             {
                 int sum = 0;
                 for (int i = 0; i < data_length; ++i)
@@ -561,7 +561,7 @@ namespace ElogMtGraph
          * ディレクトリから1日分のファイル読み込んでグラフ描画する
 		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
          */
-        public static bool ReadAndDraw(String input_dir0, bool first = false, bool interactive = true)
+        public static bool ReadAndDraw(String input_dir0, int channels, bool first = false, bool interactive = true)
         {
             input_dir = input_dir0;
             // dir存在チェック
@@ -576,7 +576,7 @@ namespace ElogMtGraph
                 return false;
             }
             // Graph Clear
-            for (int ch = 0; ch < Constants.CHNUM; ch++)
+            for (int ch = 0; ch < MainWindow.CHNUM; ch++)
             {
                 myPane[ch].CurveList.Clear();
             }
@@ -820,12 +820,12 @@ namespace ElogMtGraph
             myMaster.Margin.All = 0;
             myMaster.InnerPaneGap = 0;
 
-            myPane = new GraphPane[Constants.CHNUM];
+            myPane = new GraphPane[MainWindow.CHNUM];
 
             //空白のグラフを挿入するので+1
             //myPane = new GraphPane[Constants.CHNUM + 1];
 
-            for (int ch = 0; ch < Constants.CHNUM; ch++)
+            for (int ch = 0; ch < MainWindow.CHNUM; ch++)
             {
                 //			// ch2とch3の間に空白のグラフを挿入する。
                 //            if (ch == 2)
