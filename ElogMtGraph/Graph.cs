@@ -753,7 +753,7 @@ namespace ElogMtGraph
                 // 指定した時間範囲(ts〜te)のデータだけをファイルから読み込む
                 // ts,teの指定は機能してない
                 // 間引き有り
-                decode.ReadFile(file_path, ref readTimestamp, ref readData, ref cnt, ts, te, mabiki);
+                decode.ReadFile(file_path, channels, ref readTimestamp, ref readData, ref cnt, ts, te, mabiki);
                 return 0;
             } // try()
             catch (Exception e)
