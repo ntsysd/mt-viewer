@@ -26,9 +26,9 @@ namespace ElogMtGraph
         public static int ReadFile(string filepath, ref DateTime[] timestamp, ref int[,] data, ref UInt32 out_cnt, DateTime ts, DateTime te, int mabiki)
         {
             samp_freq = Program.FormMain.GetDataModeFreq();
-            int ONEBLOCK = (TIME_LEN + (DATA_LEN * Constants.CHNUM) * samp_freq); // 1block(1sec)データ長
+            int ONEBLOCK = (TIME_LEN + (DATA_LEN * MainWindow.CHNUM) * samp_freq); // 1block(1sec)データ長
             DateTime[] timestamp0 = new DateTime[samp_freq];
-            int[,] data0 = new int[samp_freq, Constants.CHNUM];
+            int[,] data0 = new int[samp_freq, MainWindow.CHNUM];
             FileStream fs = null;
             //			int out_cnt = 0; // 出力データ　書き込み位置
             try
@@ -53,7 +53,7 @@ namespace ElogMtGraph
                             if (in_cnt % mabiki == 0)
                             {
                                 timestamp[out_cnt] = timestamp0[i];
-                                for (int ch = 0; ch < Constants.CHNUM; ch++)
+                                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
                                 {
                                     data[out_cnt, ch] = data0[i, ch];
                                 }
@@ -105,7 +105,7 @@ namespace ElogMtGraph
                 timestamp[i] = new DateTime(1970, 1, 1, h, m, s, msec);
                 //				Console.Write(timestamp[i].ToString("HH:mm:ss.fff"));
 
-                for (int ch = 0; ch < Constants.CHNUM; ch++)
+                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
                 {
                     data[i, ch] = Byte3_to_int32(ref buf, index);  // 電圧に変換するか？
                     index += DATA_LEN;

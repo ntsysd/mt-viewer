@@ -10,6 +10,7 @@ namespace ElogMtGraph
 {
     public partial class MainWindow : Form
     {
+        public static int CHNUM = 5;
         // データファイルのディレクトリリスト
         private ArrayList dir_list = new ArrayList();
         // データファイル名
@@ -330,7 +331,8 @@ namespace ElogMtGraph
             // フィルタの周波数を設定
             currentFreq = GetComboDataModeFreq();
             button32Hz.Text = currentFreq.ToString() + "Hz";
-            return Graph.ReadAndDraw(dirName, true, intaractive);
+
+            return Graph.ReadAndDraw(dirName, MainWindow.CHNUM, true, intaractive);
         }
 
         // 中身がなにもないフォルダを開こうとしたらキャンセルする
@@ -508,7 +510,7 @@ namespace ElogMtGraph
                     TimeScrollBarSetValue(0);
 
                     // ファイル読み込んでグラフ描く
-                    Graph.ReadAndDraw((string)dir_list[dir_index]);
+                    Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
                 }
                 return true;
             }
@@ -527,7 +529,7 @@ namespace ElogMtGraph
                         //時刻を0:00にする
                         hScrollBar1.Value = 0;
                         // ファイル読み込んでグラフ描く
-                        Graph.ReadAndDraw((string)dir_list[dir_index]);
+                        Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
                     }
                     else
                     {
@@ -546,7 +548,7 @@ namespace ElogMtGraph
                         //時刻を一番うしろにする
                         hScrollBar1.Value = subMax;
                         // ファイル読み込んでグラフ描く
-                        Graph.ReadAndDraw((string)dir_list[dir_index]);
+                        Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
                     }
                     else
                     {
