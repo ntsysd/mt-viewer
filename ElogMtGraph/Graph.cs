@@ -64,9 +64,9 @@ namespace ElogMtGraph
                 //				data = new int[2560*10*24, Constants.CHNUM];
                 // 間引きを無くしたので15Hzデータ1日分のメモリを確保する
                 timestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                data = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.CHNUM];
+                data = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
                 readTimestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                readData = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.CHNUM];
+                readData = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
 
                 firsttime = 1;
                 //				input_dir = "";
@@ -92,7 +92,7 @@ namespace ElogMtGraph
                 Program.FormMain.SetZedGraph(ref myZedGraphCtrl);
 
                 // グラフPaneの生成しておく
-                MakePane();
+                MakePane(MainWindow.MAX_CHNUM);
 
                 // デフォルトで用紙を横向きに
                 myZedGraphCtrl.PrintDocument.DefaultPageSettings.Landscape = true;
@@ -124,7 +124,7 @@ namespace ElogMtGraph
         //
         // データとtimestampを描画範囲に応じて切り取る
         //
-        private static void DataCrop(DateTime ts, DateTime te)
+        private static void DataCrop(int channels, DateTime ts, DateTime te)
         {
             int tsindex;
             int teindex;
@@ -133,7 +133,7 @@ namespace ElogMtGraph
             data_length = (uint)(teindex - tsindex) + 1;
             for (int i = 0; i < data_length; ++i)
             {
-                for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
+                for (int ch = 0; ch < channels; ++ch)
                 {
                     data[i, ch] = data[i + tsindex, ch];
                 }
@@ -146,7 +146,7 @@ namespace ElogMtGraph
         //
         // double range_t: 時間軸レンジ　Hour 
         // double range_y: Y軸レンジ　Volt/FS 中心値±range_y/2の範囲になる
-        public static void DrawGraph()
+        public static void DrawGraph(int channels)
         {
             int range_t = Program.FormMain.GetComboPeriod();
             double range_hy = Program.FormMain.GetComboHY();
@@ -173,7 +173,7 @@ namespace ElogMtGraph
                 Program.FormMain.Refresh();
 
                 Graph.RefreshData();
-                if (Program.FormMain.IsAverageFilterEnable()) Graph.AverageFilter(Program.FormMain.GetDataModeFreq());
+                if (Program.FormMain.IsAverageFilterEnable()) Graph.AverageFilter(channels, Program.FormMain.GetDataModeFreq());
 
                 //
                 // 時間軸レンジ計算
@@ -219,16 +219,16 @@ namespace ElogMtGraph
                 //int tsindex;
                 //int teindex;
                 //(tsindex, teindex) = searchTsTe(timestamp, (int)data_length, ts, te);
-                DataCrop(ts, te);
+                DataCrop(channels, ts, te);
 
-                if (Program.FormMain.IsDetrendEnable()) Graph.Detrend();
+                if (Program.FormMain.IsDetrendEnable()) Graph.Detrend(channels);
 
                 /*
 				 * グラフ描画
 				 */
                 Dictionary<int, double> autoRanges = new Dictionary<int, double>();
                 // CHループ
-                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
+                for (int ch = 0; ch < channels; ch++)
                 {
                     // AD bits
                     // 変換係数get Volt/LSB
@@ -469,9 +469,9 @@ namespace ElogMtGraph
 		 * データのトレンドを除去する
 		 * 
 		 */
-        public static void Detrend()
+        public static void Detrend(int channels)
         {
-            for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
+            for (int ch = 0; ch < channels; ++ch)
             {
                 double S_xy = 0.0;
                 double S_xx = 0.0;
@@ -517,9 +517,9 @@ namespace ElogMtGraph
 		 * xxHzのデータを1Hzに平均化する
 		 * arg:filter_length 平均化するデータの個数
 		 */
-        public static void AverageFilter(int filter_length)
+        public static void AverageFilter(int channels, int filter_length)
         {
-            for (int ch = 0; ch < MainWindow.CHNUM; ++ch)
+            for (int ch = 0; ch < channels; ++ch)
             {
                 int sum = 0;
                 for (int i = 0; i < data_length; ++i)
@@ -689,7 +689,7 @@ namespace ElogMtGraph
             }
 
             // Graph描画
-            DrawGraph();
+            DrawGraph(channels);
 
             return true;
         }
@@ -812,7 +812,7 @@ namespace ElogMtGraph
         /*
 		 * グラフPaneの生成
 		 */
-        private static void MakePane()
+        private static void MakePane(int channels)
         {
             // Remove the default pane that comes with the ZedGraphControl.MasterPane
             myMaster.PaneList.Clear();
@@ -821,12 +821,12 @@ namespace ElogMtGraph
             myMaster.Margin.All = 0;
             myMaster.InnerPaneGap = 0;
 
-            myPane = new GraphPane[MainWindow.CHNUM];
+            myPane = new GraphPane[channels];
 
             //空白のグラフを挿入するので+1
             //myPane = new GraphPane[Constants.CHNUM + 1];
 
-            for (int ch = 0; ch < MainWindow.CHNUM; ch++)
+            for (int ch = 0; ch < channels; ch++)
             {
                 //			// ch2とch3の間に空白のグラフを挿入する。
                 //            if (ch == 2)

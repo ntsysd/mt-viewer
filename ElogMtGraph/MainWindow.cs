@@ -10,7 +10,8 @@ namespace ElogMtGraph
 {
     public partial class MainWindow : Form
     {
-        public static int CHNUM = 5;
+        public static int MAX_CHNUM = 5;
+        private int cHNUM = 5;
         // データファイルのディレクトリリスト
         private ArrayList dir_list = new ArrayList();
         // データファイル名
@@ -21,6 +22,8 @@ namespace ElogMtGraph
 
         // 
         public ResourceManager rm;
+
+        public int CHNUM { get => cHNUM; set => cHNUM = value; }
 
         public MainWindow()
         {
@@ -271,7 +274,7 @@ namespace ElogMtGraph
             {
                 //OKボタンがクリックされた
                 string filename = ofd.FileName;
-                if (LoadAndDraw(filename))
+                if (LoadAndDraw(filename, this.CHNUM))
                 {
                     this.dataFilename = filename;
                 }
@@ -282,7 +285,7 @@ namespace ElogMtGraph
             }
         }
 
-        private bool LoadAndDraw(string filename, bool intaractive = true)
+        private bool LoadAndDraw(string filename, int channels, bool intaractive = true)
         {
             Console.WriteLine(filename);
             /*
@@ -332,7 +335,7 @@ namespace ElogMtGraph
             currentFreq = GetComboDataModeFreq();
             button32Hz.Text = currentFreq.ToString() + "Hz";
 
-            return Graph.ReadAndDraw(dirName, MainWindow.CHNUM, true, intaractive);
+            return Graph.ReadAndDraw(dirName, channels, true, intaractive);
         }
 
         // 中身がなにもないフォルダを開こうとしたらキャンセルする
@@ -380,7 +383,7 @@ namespace ElogMtGraph
             // グラフ描画
             //			Graph.ReadAndDraw();
             // ファイル読み込まずに、読み込み済みのデータをプロット
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         private void comboBoxPeriod_SelectedIndexChanged(object sender, EventArgs e)
@@ -397,7 +400,7 @@ namespace ElogMtGraph
                 return;
             }
 
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         private void comboBoxHY_SelectedIndexChanged(object sender, EventArgs e)
@@ -406,7 +409,7 @@ namespace ElogMtGraph
             if (combobox == null) return;
             this.comboHYErrorProvider.SetError(combobox, String.Empty);
             // グラフ描画
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         private void comboBoxHY_Validating(object sender, CancelEventArgs e)
@@ -436,7 +439,7 @@ namespace ElogMtGraph
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
             this.comboHYErrorProvider.SetError(combobox, String.Empty);
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         private void comboBoxEY_SelectedIndexChanged(object sender, EventArgs e)
@@ -445,7 +448,7 @@ namespace ElogMtGraph
             if (combobox == null) return;
             this.comboEYErrorProvider.SetError(combobox, String.Empty);
             // グラフ描画
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         private void comboBoxEY_Validating(object sender, CancelEventArgs e)
@@ -473,7 +476,7 @@ namespace ElogMtGraph
             System.Windows.Forms.ComboBox combobox = (System.Windows.Forms.ComboBox)sender;
             if (combobox == null) return;
             this.comboEYErrorProvider.SetError(combobox, String.Empty);
-            Graph.DrawGraph();
+            Graph.DrawGraph(this.CHNUM);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -510,7 +513,7 @@ namespace ElogMtGraph
                     TimeScrollBarSetValue(0);
 
                     // ファイル読み込んでグラフ描く
-                    Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
+                    Graph.ReadAndDraw((string)dir_list[dir_index], this.CHNUM);
                 }
                 return true;
             }
@@ -529,12 +532,12 @@ namespace ElogMtGraph
                         //時刻を0:00にする
                         hScrollBar1.Value = 0;
                         // ファイル読み込んでグラフ描く
-                        Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
+                        Graph.ReadAndDraw((string)dir_list[dir_index], this.CHNUM);
                     }
                     else
                     {
                         this.hScrollBar1.Value = Math.Min(subMax, this.hScrollBar1.Value + this.hScrollBar1.LargeChange);
-                        Graph.DrawGraph();
+                        Graph.DrawGraph(this.CHNUM);
                     }
                 }
                 else if (keyData == Keys.Left)
@@ -548,12 +551,12 @@ namespace ElogMtGraph
                         //時刻を一番うしろにする
                         hScrollBar1.Value = subMax;
                         // ファイル読み込んでグラフ描く
-                        Graph.ReadAndDraw((string)dir_list[dir_index], MainWindow.CHNUM);
+                        Graph.ReadAndDraw((string)dir_list[dir_index], this.CHNUM);
                     }
                     else
                     {
                         this.hScrollBar1.Value = Math.Max(this.hScrollBar1.Minimum, this.hScrollBar1.Value - this.hScrollBar1.LargeChange);
-                        Graph.DrawGraph();
+                        Graph.DrawGraph(this.CHNUM);
                     }
                 }
 
@@ -593,7 +596,7 @@ namespace ElogMtGraph
                 buttonDetrendOn.BackColor = Color.FromKnownColor(KnownColor.Control);
                 buttonDetrendOff.BackColor = Color.Yellow;
             }
-            if (draw) Graph.DrawGraph();
+            if (draw) Graph.DrawGraph(this.CHNUM);
         }
 
         public bool IsDetrendEnable()
@@ -613,7 +616,7 @@ namespace ElogMtGraph
         {
             if (this.dataFilename.Length > 0)
             {
-                if (!this.LoadAndDraw(this.dataFilename, false))
+                if (!this.LoadAndDraw(this.dataFilename, this.CHNUM, false))
                 {
                     this.dataFilename = "";
                 }
@@ -712,7 +715,7 @@ namespace ElogMtGraph
                 button32Hz.BackColor = Color.Yellow;
             }
 
-            if (draw) Graph.DrawGraph();
+            if (draw) Graph.DrawGraph(this.CHNUM);
         }
     }
 }
