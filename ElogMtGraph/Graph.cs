@@ -576,7 +576,7 @@ namespace ElogMtGraph
                 return false;
             }
             // Graph Clear
-            for (int ch = 0; ch < MainWindow.CHNUM; ch++)
+            for (int ch = 0; ch < channels; ch++)
             {
                 myPane[ch].CurveList.Clear();
             }
@@ -598,7 +598,7 @@ namespace ElogMtGraph
                         if (f.Name.IndexOf("_15Hz") >= 0)
                         {
                             Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, ref readData_length) < 0)
+                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
                             {
                                 // 読み込みエラー
                                 if (interactive)
@@ -635,7 +635,7 @@ namespace ElogMtGraph
                         if (f.Name.IndexOf("_32Hz") >= 0)
                         {
                             Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, ref readData_length) < 0)
+                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
                             {
                                 // 読み込みエラー
                                 if (interactive)
@@ -698,10 +698,11 @@ namespace ElogMtGraph
         /*
 		 * ファイル読み込み　間引きあり
 		 * file_path 読み込むファイルのパス
+		 * channels チャンネル数
 		 * cnt 読み込んだ結果としての全体のデータ数 間引き後
 		 * return: 0=OK -1=ERROR
 		 */
-        private static int ReadFile(string file_path, ref UInt32 cnt)
+        private static int ReadFile(string file_path, int channels, ref UInt32 cnt)
         {
             try
             {
