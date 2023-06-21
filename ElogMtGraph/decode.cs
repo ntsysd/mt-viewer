@@ -23,12 +23,12 @@ namespace ElogMtGraph
 		 * mabiki 読み込みデータを間引く間隔
 		 * return 0=OK -1=ERR
 		 */
-        public static int ReadFile(string filepath, ref DateTime[] timestamp, ref int[,] data, ref UInt32 out_cnt, DateTime ts, DateTime te, int mabiki)
+        public static int ReadFile(string filepath, int channels, ref DateTime[] timestamp, ref int[,] data, ref UInt32 out_cnt, DateTime ts, DateTime te, int mabiki)
         {
             samp_freq = Program.FormMain.GetDataModeFreq();
-            int ONEBLOCK = (TIME_LEN + (DATA_LEN * MainWindow.CHNUM) * samp_freq); // 1block(1sec)データ長
+            int ONEBLOCK = (TIME_LEN + (DATA_LEN * channels) * samp_freq); // 1block(1sec)データ長
             DateTime[] timestamp0 = new DateTime[samp_freq];
-            int[,] data0 = new int[samp_freq, MainWindow.CHNUM];
+            int[,] data0 = new int[samp_freq, channels];
             FileStream fs = null;
             //			int out_cnt = 0; // 出力データ　書き込み位置
             try
@@ -53,7 +53,7 @@ namespace ElogMtGraph
                             if (in_cnt % mabiki == 0)
                             {
                                 timestamp[out_cnt] = timestamp0[i];
-                                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
+                                for (int ch = 0; ch < channels; ch++)
                                 {
                                     data[out_cnt, ch] = data0[i, ch];
                                 }
