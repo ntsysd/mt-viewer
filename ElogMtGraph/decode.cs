@@ -46,7 +46,7 @@ namespace ElogMtGraph
                         // 1block読み込んでデコード
                         int readSize = fs.Read(buf, 0, ONEBLOCK);
                         remain -= readSize;
-                        DecodeBlock(ref buf, ref timestamp0, ref data0);
+                        DecodeBlock(channels, ref buf, ref timestamp0, ref data0);
                         // 間引く
                         for (int i = 0; i < samp_freq; i++)
                         {
@@ -88,7 +88,7 @@ namespace ElogMtGraph
         /**
 		 * 1block(1sec)データをデコード
 		 */
-        private static int DecodeBlock(ref byte[] buf, ref DateTime[] timestamp, ref int[,] data)
+        private static int DecodeBlock(int channels, ref byte[] buf, ref DateTime[] timestamp, ref int[,] data)
         {
             ulong index = 0;
             int msec;
@@ -105,7 +105,7 @@ namespace ElogMtGraph
                 timestamp[i] = new DateTime(1970, 1, 1, h, m, s, msec);
                 //				Console.Write(timestamp[i].ToString("HH:mm:ss.fff"));
 
-                for (int ch = 0; ch < MainWindow.CHNUM; ch++)
+                for (int ch = 0; ch < channels; ch++)
                 {
                     data[i, ch] = Byte3_to_int32(ref buf, index);  // 電圧に変換するか？
                     index += DATA_LEN;
