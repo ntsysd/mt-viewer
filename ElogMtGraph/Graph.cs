@@ -88,8 +88,7 @@ namespace ElogMtGraph
                 myZedGraphCtrl = new ZedGraphControl();
                 myMaster = myZedGraphCtrl.MasterPane;
 
-                // tabにZedGraphControl配置
-                Program.FormMain.SetZedGraph(ref myZedGraphCtrl);
+
 
                 // グラフPaneの生成しておく
                 MakePane(channels);
@@ -814,9 +813,12 @@ namespace ElogMtGraph
 		 */
         public static void MakePane(int channels)
         {
+            // tabにZedGraphControl配置
+            Program.FormMain.SetZedGraph(ref myZedGraphCtrl);
 
             // Remove the default pane that comes with the ZedGraphControl.MasterPane
             myMaster.PaneList.Clear();
+
 
             // Set the margins and the space between panes to 10 points
             myMaster.Margin.All = 0;
