@@ -20,18 +20,7 @@ namespace ElogMtGraph
 
         // 
         public static int MAX_CHNUM = 5;
-        public int GetChannels
-        {
-            get
-            {
-                switch (this.comboBoxChannelMode.Text)
-                {
-                    case "MT": return 5;
-                    case "DUAL": return 2;
-                    default: return -1;
-                }
-            }
-        }
+
 
         public MainWindow()
         {
@@ -264,6 +253,30 @@ namespace ElogMtGraph
             }
 
         }
+        public int GetChannels
+        {
+            get
+            {
+                switch (this.comboBoxChannelMode.Text)
+                {
+                    case "MT": return 5;
+                    case "DUAL": return 2;
+                    default: return -1;
+                }
+            }
+        }
+
+        public void SetComboBoxChannelMode(int channel)
+        {
+            if (channel == 5)
+            {
+                this.comboBoxChannelMode.Text = "MT";
+            }
+            else if (channel == 2)
+            {
+                this.comboBoxChannelMode.Text = "DUAL";
+            }
+        }
 
         public void SetYRangeValueLabel(string text)
         {
@@ -304,8 +317,8 @@ namespace ElogMtGraph
         {
             Console.WriteLine(filename);
             /*
-			 * 親directory内のデータdirリストを取得しておく
-			 */
+             * 親directory内のデータdirリストを取得しておく
+             */
             dir_list.Clear();
             // 親Dir取得
             string dirName = System.IO.Path.GetDirectoryName(filename);
@@ -673,6 +686,7 @@ namespace ElogMtGraph
                 SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
                 SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
                 SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
+                SetComboBoxChannelMode(int.Parse(xDocument.Element("Settings").Element("ChannelMode")?.Value));
                 this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
                 Console.WriteLine(this.dataFilename);
             }
@@ -698,6 +712,8 @@ namespace ElogMtGraph
                 xSettings.Add(xView);
                 var xDataFilename = new System.Xml.Linq.XElement("DataFilename", this.dataFilename);
                 xSettings.Add(xDataFilename);
+                var xChannelMode = new System.Xml.Linq.XElement("ChannelMode", GetChannels);
+                xSettings.Add(xChannelMode);
                 xDocument.Add(xSettings);
                 xDocument.Save(stream);
             }
