@@ -3,7 +3,6 @@ using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Resources;
 using System.Windows.Forms;
 
 namespace ElogMtGraph
@@ -20,7 +19,6 @@ namespace ElogMtGraph
         private int currentFreq = -1;
 
         // 
-        public ResourceManager rm;
         public static int MAX_CHNUM = 5;
         public int GetChannels
         {
@@ -100,8 +98,7 @@ namespace ElogMtGraph
             if (!System.Threading.Thread.CurrentThread.CurrentUICulture.Name.StartsWith("ja"))
             {
                 this.richTextBox1.Font = new Font("Microsoft Sans Serif", 12);
-            }
-            this.rm = new ComponentResourceManager(typeof(MainWindow));
+            };
         }
 
         private void ComboBoxChannelMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -445,7 +442,7 @@ namespace ElogMtGraph
             }
             catch
             {
-                this.comboEYErrorProvider.SetError(combobox, this.rm.GetString("comboYError"));
+                this.comboEYErrorProvider.SetError(combobox, Properties.Resources.comboYError);
                 e.Cancel = true;
                 return;
             }
@@ -483,7 +480,7 @@ namespace ElogMtGraph
             }
             catch
             {
-                this.comboEYErrorProvider.SetError(combobox, this.rm.GetString("comboYError"));
+                this.comboEYErrorProvider.SetError(combobox, Properties.Resources.comboYError);
                 e.Cancel = true;
                 return;
             }
