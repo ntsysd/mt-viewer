@@ -18,7 +18,7 @@ namespace ElogMtGraph
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             FormMain = new MainWindow();
-            Graph.Init();
+            Graph.Init(FormMain.CHNUM);
             Application.Run(FormMain);
         }
     }
