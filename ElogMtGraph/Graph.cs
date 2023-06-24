@@ -81,7 +81,7 @@ namespace ElogMtGraph
 
         }
         // ウィンドウ絡みの初期設定
-        public static void Init()
+        public static void Init(int channels)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace ElogMtGraph
                 Program.FormMain.SetZedGraph(ref myZedGraphCtrl);
 
                 // グラフPaneの生成しておく
-                MakePane(MainWindow.MAX_CHNUM);
+                MakePane(channels);
 
                 // デフォルトで用紙を横向きに
                 myZedGraphCtrl.PrintDocument.DefaultPageSettings.Landscape = true;
@@ -812,8 +812,9 @@ namespace ElogMtGraph
         /*
 		 * グラフPaneの生成
 		 */
-        private static void MakePane(int channels)
+        public static void MakePane(int channels)
         {
+
             // Remove the default pane that comes with the ZedGraphControl.MasterPane
             myMaster.PaneList.Clear();
 
