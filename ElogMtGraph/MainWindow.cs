@@ -10,8 +10,7 @@ namespace ElogMtGraph
 {
     public partial class MainWindow : Form
     {
-        public static int MAX_CHNUM = 5;
-        private int cHNUM = 5;
+
         // データファイルのディレクトリリスト
         private ArrayList dir_list = new ArrayList();
         // データファイル名
@@ -22,8 +21,19 @@ namespace ElogMtGraph
 
         // 
         public ResourceManager rm;
-
-        public int CHNUM { get => cHNUM; set => cHNUM = value; }
+        public static int MAX_CHNUM = 5;
+        public int CHNUM
+        {
+            get
+            {
+                switch (this.comboBoxChannelMode.Text)
+                {
+                    case "MT": return 5;
+                    case "DUAL": return 2;
+                    default: return -1;
+                }
+            }
+        }
 
         public MainWindow()
         {
@@ -32,6 +42,7 @@ namespace ElogMtGraph
             Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
 
             comboBoxDataMode.SelectedIndex = 0;
+            comboBoxChannelMode.SelectedIndex = 0;
             foreach (var item in Constants.comboPeriod_InitialList)
             {
                 comboBoxPeriod.Items.Add(item);
@@ -716,6 +727,11 @@ namespace ElogMtGraph
             }
 
             if (draw) Graph.DrawGraph(this.CHNUM);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
