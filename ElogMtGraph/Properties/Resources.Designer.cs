@@ -59,5 +59,50 @@ namespace ElogMtGraph.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   15Hz data not found に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_no_15Hz_data {
+            get {
+                return ResourceManager.GetString("_Error_no_15Hz_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   32Hz data not found に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_no_32Hz_data {
+            get {
+                return ResourceManager.GetString("_Error_no_32Hz_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Specified directory does not exist: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_No_Directory {
+            get {
+                return ResourceManager.GetString("_Error_No_Directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   An error occured during reading a file: に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_Readng_File {
+            get {
+                return ResourceManager.GetString("_Error_Readng_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Input number, number mV or number V に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string comboYError {
+            get {
+                return ResourceManager.GetString("comboYError", resourceCulture);
+            }
+        }
     }
 }

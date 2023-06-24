@@ -568,7 +568,7 @@ namespace ElogMtGraph
             {
                 if (interactive)
                 {
-                    MessageBox.Show(Program.FormMain.rm.GetString("_Error_No_Directory") + "\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Properties.Resources._Error_No_Directory + "\n" + input_dir, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Program.FormMain.SetYRangeValueLabel("");
                 dataFileDirName = "";
@@ -602,7 +602,7 @@ namespace ElogMtGraph
                                 // 読み込みエラー
                                 if (interactive)
                                 {
-                                    MessageBox.Show(Program.FormMain.rm.GetString("_Error_Readng_File") + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 Program.FormMain.SetYRangeValueLabel("");
                                 dataFileDirName = "";
@@ -619,7 +619,7 @@ namespace ElogMtGraph
                 {
                     if (interactive)
                     {
-                        MessageBox.Show(Program.FormMain.rm.GetString("_Error_no_15Hz_data"), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Properties.Resources._Error_no_15Hz_data, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     return false;
                 }
@@ -639,7 +639,7 @@ namespace ElogMtGraph
                                 // 読み込みエラー
                                 if (interactive)
                                 {
-                                    MessageBox.Show(Program.FormMain.rm.GetString("_Error_Readng_File") + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 return false;
                             }
@@ -654,7 +654,7 @@ namespace ElogMtGraph
                 {
                     if (interactive)
                     {
-                        MessageBox.Show(Program.FormMain.rm.GetString("_Error_no_32Hz_data"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Properties.Resources._Error_no_32Hz_data, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     return false;
                 }
