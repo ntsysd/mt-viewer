@@ -763,9 +763,5 @@ namespace ElogMtGraph
             if (draw) Graph.DrawGraph(this.GetChannels);
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
