@@ -127,25 +127,25 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 176</value>
+    <value>0, 199</value>
   </data>
   <data name="splitContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="splitContainer1.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 28</value>
+    <value>4, 31</value>
   </data>
   <data name="tabPage1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1652, 400</value>
+    <value>1818, 501</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -172,10 +172,10 @@
     <value>0, 0</value>
   </data>
   <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 432</value>
+    <value>1826, 536</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -214,10 +214,10 @@
     <value>0, 0</value>
   </data>
   <data name="richTextBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 110</value>
+    <value>1826, 112</value>
   </data>
   <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -250,13 +250,13 @@
     <value>1</value>
   </data>
   <data name="splitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 548</value>
+    <value>1826, 655</value>
   </data>
   <data name="splitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>432</value>
+    <value>536</value>
   </data>
   <data name="splitContainer1.SplitterWidth" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -313,10 +313,10 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>10, 3, 0, 3</value>
+    <value>11, 4, 0, 4</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 48</value>
+    <value>1826, 50</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -346,10 +346,13 @@
     <value>DUAL</value>
   </data>
   <data name="comboBoxChannelMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 80</value>
+    <value>126, 93</value>
+  </data>
+  <data name="comboBoxChannelMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="comboBoxChannelMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 36</value>
+    <value>104, 36</value>
   </data>
   <data name="comboBoxChannelMode.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -373,16 +376,16 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 81</value>
+    <value>9, 94</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 28</value>
+    <value>81, 28</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Channel</value>
+    <value>Model</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -400,10 +403,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="yRangeValueLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>705, 81</value>
+    <value>776, 94</value>
   </data>
   <data name="yRangeValueLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>853, 33</value>
+    <value>938, 38</value>
   </data>
   <data name="yRangeValueLabel.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -475,13 +478,13 @@
     <value>AUTO</value>
   </data>
   <data name="comboBoxHY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1392, 26</value>
+    <value>1531, 30</value>
   </data>
   <data name="comboBoxHY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="comboBoxHY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 36</value>
+    <value>123, 36</value>
   </data>
   <data name="comboBoxHY.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -505,10 +508,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelHY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1355, 27</value>
+    <value>1490, 31</value>
   </data>
   <data name="labelHY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelHY.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 28</value>
@@ -538,10 +541,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelEYUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1509, 30</value>
+    <value>1660, 35</value>
   </data>
   <data name="labelEYUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelEYUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 28</value>
@@ -571,13 +574,13 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="buttonDetrendOff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 20</value>
+    <value>208, 23</value>
   </data>
   <data name="buttonDetrendOff.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="buttonDetrendOff.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 39</value>
+    <value>101, 46</value>
   </data>
   <data name="buttonDetrendOff.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -604,10 +607,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 27</value>
+    <value>11, 31</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 28</value>
@@ -637,13 +640,13 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="button1Hz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>385, 20</value>
+    <value>424, 23</value>
   </data>
   <data name="button1Hz.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="button1Hz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 39</value>
+    <value>92, 46</value>
   </data>
   <data name="button1Hz.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -670,13 +673,13 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="button32Hz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 20</value>
+    <value>333, 23</value>
   </data>
   <data name="button32Hz.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="button32Hz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 39</value>
+    <value>94, 46</value>
   </data>
   <data name="button32Hz.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -739,13 +742,13 @@
     <value>AUTO</value>
   </data>
   <data name="comboBoxEY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1110, 24</value>
+    <value>1221, 28</value>
   </data>
   <data name="comboBoxEY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="comboBoxEY.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 36</value>
+    <value>123, 36</value>
   </data>
   <data name="comboBoxEY.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -766,13 +769,13 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="comboBoxPeriod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>857, 22</value>
+    <value>943, 26</value>
   </data>
   <data name="comboBoxPeriod.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="comboBoxPeriod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 36</value>
+    <value>106, 36</value>
   </data>
   <data name="comboBoxPeriod.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -799,13 +802,13 @@
     <value>ADU(32Hz)</value>
   </data>
   <data name="comboBoxDataMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>565, 22</value>
+    <value>622, 26</value>
   </data>
   <data name="comboBoxDataMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="comboBoxDataMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 36</value>
+    <value>178, 36</value>
   </data>
   <data name="comboBoxDataMode.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -829,10 +832,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelYUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1228, 28</value>
+    <value>1351, 33</value>
   </data>
   <data name="labelYUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelYUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 28</value>
@@ -862,10 +865,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelY.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1075, 27</value>
+    <value>1182, 31</value>
   </data>
   <data name="labelY.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelY.Size" type="System.Drawing.Size, System.Drawing">
     <value>28, 28</value>
@@ -895,10 +898,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelHour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>967, 27</value>
+    <value>1064, 31</value>
   </data>
   <data name="labelHour.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelHour.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 28</value>
@@ -928,10 +931,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelPeriod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>768, 27</value>
+    <value>845, 31</value>
   </data>
   <data name="labelPeriod.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelPeriod.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 28</value>
@@ -961,10 +964,10 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="labelMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>495, 27</value>
+    <value>544, 31</value>
   </data>
   <data name="labelMode.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 0, 5, 0</value>
+    <value>6, 0, 6, 0</value>
   </data>
   <data name="labelMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 28</value>
@@ -994,13 +997,13 @@
     <value>MS UI Gothic, 12pt</value>
   </data>
   <data name="buttonDetrendOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 20</value>
+    <value>126, 23</value>
   </data>
   <data name="buttonDetrendOn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="buttonDetrendOn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 39</value>
+    <value>86, 46</value>
   </data>
   <data name="buttonDetrendOn.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1024,16 +1027,16 @@
     <value>Top</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 48</value>
+    <value>0, 50</value>
   </data>
   <data name="groupBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="groupBox1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 128</value>
+    <value>1826, 149</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1054,10 +1057,10 @@
     <value>Bottom</value>
   </data>
   <data name="hScrollBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 724</value>
+    <value>0, 854</value>
   </data>
   <data name="hScrollBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 17</value>
+    <value>1826, 17</value>
   </data>
   <data name="hScrollBar1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1087,13 +1090,13 @@
     <value>MiddleLeft</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 741</value>
+    <value>0, 871</value>
   </data>
   <data name="statusStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 23, 0</value>
+    <value>2, 0, 25, 0</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 38</value>
+    <value>1826, 38</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1120,13 +1123,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>10, 18</value>
+    <value>11, 21</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1660, 779</value>
+    <value>1826, 909</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>6, 5, 6, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Form1</value>
