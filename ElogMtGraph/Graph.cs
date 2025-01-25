@@ -226,6 +226,16 @@ namespace ElogMtGraph
 				 * グラフ描画
 				 */
                 Dictionary<int, double> autoRanges = new Dictionary<int, double>();
+                string format;
+                // 時間軸目盛り; 先に設定しておく。Issue 33でありうるのはここくらい。
+                if (range_t < 2 * 3600)
+                {
+                    format = "HH:mm:ss";    // HH=24時間制
+                }
+                else
+                {
+                    format = "HH:mm";   // HH=24時間制
+                }
                 // CHループ
                 for (int ch = 0; ch < channels; ch++)
                 {
@@ -256,15 +266,9 @@ namespace ElogMtGraph
                     // Console.WriteLine("XAxis.Scale.Min={0}", myp.XAxis.Scale.Min);
                     // Console.WriteLine("XAxis.Scale.Max={0}", myp.XAxis.Scale.Max);
                     // 時間軸目盛り
-                    if (range_t < 2 * 3600)
-                    {
-                        myp.XAxis.Scale.Format = "HH:mm:ss";    // HH=24時間制
-                    }
-                    else
-                    {
-                        myp.XAxis.Scale.Format = "HH:mm";   // HH=24時間制
-                    }
-                    //
+
+                    myp.XAxis.Scale.Format = format;
+                   //
                     PointPairList list = new PointPairList();
                     // データ数zeroの時はグラフクリアするのみ
                     if (data_length > 0)
