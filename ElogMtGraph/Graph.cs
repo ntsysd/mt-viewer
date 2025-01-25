@@ -423,7 +423,8 @@ namespace ElogMtGraph
                     //					myp.YAxis.Title.Text = graphCaption[ch] + "\n" + Path.GetFileName(input_dir)+"\n\nVolt";
                     myp.YAxis.Title.Text = graphCaption[ch] + "\n" + "Volt";
                     myp.YAxis.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
-                    myp.YAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);
+                    myp.YAxis.Scale.FontSpec.Size = (int)(14 * 1000 * 2.0 / Program.FormMain.Size.Height);   
+ 
                     myp.YAxis.MinSpace = 300;
 
                     // myp.Title.Text = "CH"+ (ch+1).ToString() + "\n" + Path.GetFileName(input_dir);
@@ -853,6 +854,7 @@ namespace ElogMtGraph
                 //myp.XAxis.Title.Text = "t";
                 //myp.YAxis.Title.Text = "Volt";
                 //myp.Margin.All = 0;	
+                myp.Margin.Left = 0;
                 myp.XAxis.Scale.Format = "HH:mm";   // HH=24時間制
 
                 myp.Title.FontSpec.Size = (int)(14 * 1000 * 2.0 / (Program.FormMain.Size.Height));
