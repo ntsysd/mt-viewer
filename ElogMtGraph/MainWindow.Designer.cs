@@ -185,7 +185,8 @@
             this.comboBoxChannelMode.FormattingEnabled = true;
             this.comboBoxChannelMode.Items.AddRange(new object[] {
             resources.GetString("comboBoxChannelMode.Items"),
-            resources.GetString("comboBoxChannelMode.Items1")});
+            resources.GetString("comboBoxChannelMode.Items1"),
+            "AMT"});
             this.comboBoxChannelMode.Name = "comboBoxChannelMode";
             // 
             // label2
