@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 
@@ -559,12 +560,59 @@ namespace ElogMtGraph
             data_length = (uint)(data_length / filter_length);
         }
 
+        private static bool ReadDataFiles(string[] targetPatterns, int channels, ref uint readData_length, bool interactive)
+        {
+            int fileCount = 0;
+            DirectoryInfo dir = new DirectoryInfo(input_dir);
+            FileInfo[] file_list = dir.GetFiles();
 
+            foreach (FileInfo f in file_list)
+            {
+                if (f != null)
+                {
+                    // いずれかのパターンにマッチするかチェック
+                    foreach (string pattern in targetPatterns)
+                    {
+                        if (f.Name.IndexOf(pattern) >= 0)
+                        {
+                            Console.WriteLine("{0}", f.Name);
+                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
+                            {
+                                // 読み込みエラー
+                                if (interactive)
+                                {
+                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                return false;
+                            }
+                            else
+                            {
+                                fileCount++;
+                            }
+                            break;  // パターンにマッチしたのでinner loopを抜ける
+                        }
+                    }
+                }
+            }
 
-        /*
-         * ディレクトリから1日分のファイル読み込んでグラフ描画する
-		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
-         */
+            if (fileCount == 0)
+            {
+                if (interactive)
+                {
+                    string errorMessage = "";
+                    // エラーメッセージの選択
+                    if (targetPatterns.Contains("_15Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_15Hz_data;
+                    else if (targetPatterns.Contains("_32Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_32Hz_data;
+                    else if (targetPatterns.Contains("_120Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_120Hz_data;
+                    
+                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+
+            return true;
+        }
+
         public static bool ReadAndDraw(String input_dir0, int channels, bool first = false, bool interactive = true)
         {
             input_dir = input_dir0;
@@ -579,126 +627,39 @@ namespace ElogMtGraph
                 dataFileDirName = "";
                 return false;
             }
+
             // Graph Clear
             for (int ch = 0; ch < channels; ch++)
             {
                 myPane[ch].CurveList.Clear();
             }
             Program.FormMain.SetDescriptionBoxText(input_dir);
-            // ディレクトリからファイル一覧をget
-            Console.WriteLine("dir={0}", input_dir);
-            DirectoryInfo dir = new DirectoryInfo(input_dir);
-            FileInfo[] file_list = dir.GetFiles();
-            dataFileDirName = dir.Name;
 
             readData_length = 0;
-            if (Program.FormMain.GetDataModeFreq() == 15)
+            bool result = false;
+
+            // サンプリングレートに応じたファイル読み込み
+            int freq = Program.FormMain.GetDataModeFreq();
+            switch (freq)
             {
-                int fileCount = 0;
-                foreach (FileInfo f in file_list)
-                {
-                    if (f != null)
-                    {
-                        if (f.Name.IndexOf("_15Hz") >= 0)
-                        {
-                            Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
-                            {
-                                // 読み込みエラー
-                                if (interactive)
-                                {
-                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                Program.FormMain.SetYRangeValueLabel("");
-                                dataFileDirName = "";
-                                return false;
-                            }
-                            else
-                            {
-                                fileCount++;
-                            }
-                        }
-                    }
-                }
-                if (fileCount == 0)
-                {
+                case 15:
+                    result = ReadDataFiles(new[] { "_15Hz" }, channels, ref readData_length, interactive);
+                    break;
+                case 32:
+                    result = ReadDataFiles(new[] { "_32Hz" }, channels, ref readData_length, interactive);
+                    break;
+                case 120:
+                    result = ReadDataFiles(new[] { "_120Hz" }, channels, ref readData_length, interactive);
+                    break;
+                default:
                     if (interactive)
                     {
-                        MessageBox.Show(Properties.Resources._Error_no_15Hz_data, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Unsupported sampling frequency: {freq}Hz", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     return false;
-                }
             }
-            if (Program.FormMain.GetDataModeFreq() == 32)
-            {
-                int fileCount = 0;
-                foreach (FileInfo f in file_list)
-                {
-                    if (f != null)
-                    {
-                        if (f.Name.IndexOf("_32Hz") >= 0)
-                        {
-                            Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
-                            {
-                                // 読み込みエラー
-                                if (interactive)
-                                {
-                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                return false;
-                            }
-                            else
-                            {
-                                fileCount++;
-                            }
-                        }
-                    }
-                }
-                if (fileCount == 0)
-                {
-                    if (interactive)
-                    {
-                        MessageBox.Show(Properties.Resources._Error_no_32Hz_data, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    return false;
-                }
-            }
-            if (Program.FormMain.GetDataModeFreq() == 120)
-            {
-                int fileCount = 0;
-                foreach (FileInfo f in file_list)
-                {
-                    if (f != null)
-                    {
-                        if (f.Name.IndexOf("_120Hz") >= 0)
-                        {
-                            Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
-                            {
-                                // 読み込みエラー
-                                if (interactive)
-                                {
-                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                return false;
-                            }
-                            else
-                            {
-                                fileCount++;
-                            }
-                        }
-                    }
-                }
-                if (fileCount == 0)
-                {
-                    if (interactive)
-                    {
-                        MessageBox.Show(Properties.Resources._Error_no_120Hz_data, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    return false;
-                }
-            }
+
+            if (!result) return false;
 
             RefreshData();
 
@@ -732,7 +693,6 @@ namespace ElogMtGraph
 
             return true;
         }
-
 
         /*
 		 * ファイル読み込み　間引きあり
