@@ -126,6 +126,9 @@
   <data name="_Error_no_32Hz_data" xml:space="preserve">
     <value>32Hz data not found</value>
   </data>
+  <data name="_Error_no_120Hz_data" xml:space="preserve">
+    <value>120Hz data not found</value>
+  </data>
   <data name="_Error_No_Directory" xml:space="preserve">
     <value>Specified directory does not exist:</value>
   </data>
