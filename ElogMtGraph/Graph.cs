@@ -34,14 +34,21 @@ namespace ElogMtGraph
         //		private static double range_h_save = -1;
         //		private static double range_y_save = -1;
 
+        // 15Hz, 32Hz用
         private const double VOLT_MAX_E = 2.5;
         private const double VOLT_MIN_E = -2.5;
         private const double VOLT_MAX_H = 10.0;
         private const double VOLT_MIN_H = -10.0;
-
-        // Volt/LSB 
         private const double VOLT_LSB_E = 2.5 / 8388608;
         private const double VOLT_LSB_H = 10.0 / 8388608;
+
+        // 120Hz用
+        private const double VOLT_MAX_E_120 = 2.048;
+        private const double VOLT_MIN_E_120 = -2.048;
+        private const double VOLT_MAX_H_120 = 8.192;
+        private const double VOLT_MIN_H_120 = -8.192;
+        private const double VOLT_LSB_E_120 = 2.048 / 8388608;
+        private const double VOLT_LSB_H_120 = 8.192 / 8388608;
 
         // 1=ファイルが読み込まれていない
         private static int firsttime;
@@ -242,20 +249,8 @@ namespace ElogMtGraph
                 {
                     // AD bits
                     // 変換係数get Volt/LSB
-                    double coef = VOLT_LSB_E;
-                    double volt_max = VOLT_MAX_E;
-                    double volt_min = VOLT_MIN_E;
-
-                    double range_y = range_ey;
-
-                    if (ch >= 2)
-                    {
-                        coef = VOLT_LSB_H;
-                        volt_max = VOLT_MAX_H;
-                        volt_min = VOLT_MIN_H;
-                        range_y = range_hy;
-                    }
-
+                    var (volt_max, volt_min, coef) = GetVoltageParameters(Program.FormMain.GetDataModeFreq(), ch >= 2);
+                    double range_y = ch >= 2 ? range_hy : range_ey;
 
                     Console.WriteLine("DrawGraph() CH={0} start, data_elngth={1}", ch, data_length);
                     GraphPane myp;
@@ -882,6 +877,23 @@ namespace ElogMtGraph
                 myMaster.SetLayout(g, PaneLayout.SingleColumn);
                 myMaster.AxisChange(g);
                 //g.Dispose();
+            }
+        }
+
+        // サンプリングレートに応じた変換係数とレンジを取得するメソッド
+        private static (double voltMax, double voltMin, double voltLsb) GetVoltageParameters(int freq, bool isMagnetic)
+        {
+            if (freq == 120)
+            {
+                return isMagnetic ? 
+                    (VOLT_MAX_H_120, VOLT_MIN_H_120, VOLT_LSB_H_120) : 
+                    (VOLT_MAX_E_120, VOLT_MIN_E_120, VOLT_LSB_E_120);
+            }
+            else // 15Hz, 32Hz
+            {
+                return isMagnetic ? 
+                    (VOLT_MAX_H, VOLT_MIN_H, VOLT_LSB_H) : 
+                    (VOLT_MAX_E, VOLT_MIN_E, VOLT_LSB_E);
             }
         }
     }
