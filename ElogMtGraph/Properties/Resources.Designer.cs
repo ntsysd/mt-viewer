@@ -79,6 +79,15 @@ namespace ElogMtGraph.Properties {
         }
         
         /// <summary>
+        ///   120Hz data not found に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_no_120Hz_data {
+            get {
+                return ResourceManager.GetString("_Error_no_120Hz_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Specified directory does not exist: に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _Error_No_Directory {

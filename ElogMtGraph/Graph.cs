@@ -664,6 +664,41 @@ namespace ElogMtGraph
                     return false;
                 }
             }
+            if (Program.FormMain.GetDataModeFreq() == 120)
+            {
+                int fileCount = 0;
+                foreach (FileInfo f in file_list)
+                {
+                    if (f != null)
+                    {
+                        if (f.Name.IndexOf("_120Hz") >= 0)
+                        {
+                            Console.WriteLine("{0}", f.Name);
+                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
+                            {
+                                // 読み込みエラー
+                                if (interactive)
+                                {
+                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                return false;
+                            }
+                            else
+                            {
+                                fileCount++;
+                            }
+                        }
+                    }
+                }
+                if (fileCount == 0)
+                {
+                    if (interactive)
+                    {
+                        MessageBox.Show(Properties.Resources._Error_no_120Hz_data, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    return false;
+                }
+            }
 
             RefreshData();
 
