@@ -285,7 +285,14 @@ namespace ElogMtGraph
             else if (channel == 4)
             {
                 this.comboBoxChannelMode.Text = "AMT";
+                // AMT(120Hz)オプションを追加
+                if (!this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
+                {
+                    this.comboBoxDataMode.Items.Add("AMT(120Hz)");
+                }
                 this.comboBoxDataMode.Text = "AMT(120Hz)";
+                this.comboBoxDataMode.Enabled = false;
+
             }
         }
 
@@ -540,15 +547,11 @@ namespace ElogMtGraph
                 this.comboBoxDataMode.Text = "AMT(120Hz)";
                 this.comboBoxDataMode.Enabled = false;
             }
-            else
+            else if (this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
             {
-                // AMT(120Hz)オプションを削除
-                if (this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
-                {
-                    this.comboBoxDataMode.Items.Remove("AMT(120Hz)");
-                }
+                // AMT(120Hz)からの遷移の場合
+                this.comboBoxDataMode.Items.Remove("AMT(120Hz)");
                 this.comboBoxDataMode.Enabled = true;
-                // MT/DUALモードの時はPHX(15Hz)に設定
                 this.comboBoxDataMode.Text = "PHX(15Hz)";
             }
 
