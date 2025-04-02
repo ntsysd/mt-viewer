@@ -560,6 +560,7 @@ namespace ElogMtGraph
             int fileCount = 0;
             DirectoryInfo dir = new DirectoryInfo(input_dir);
             FileInfo[] file_list = dir.GetFiles();
+            dataFileDirName = dir.Name;
 
             foreach (FileInfo f in file_list)
             {
