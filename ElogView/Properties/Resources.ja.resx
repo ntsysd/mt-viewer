@@ -126,6 +126,9 @@
   <data name="_Error_no_32Hz_data" xml:space="preserve">
     <value>32Hzデータがありません</value>
   </data>
+  <data name="_Error_no_120Hz_data" xml:space="preserve">
+    <value>120Hzデータがありません</value>
+  </data>
   <data name="_Error_No_Directory" xml:space="preserve">
     <value>ディレクトリが存在しません</value>
   </data>

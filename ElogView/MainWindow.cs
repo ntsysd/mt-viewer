@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public partial class MainWindow : Form
     {
@@ -26,7 +26,7 @@ namespace ElogMtGraph
         {
             InitializeComponent();
 
-            Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
+            Text = "ELOG Series Data Viewer " + Application.ProductVersion;
 
             comboBoxDataMode.SelectedIndex = 0;
             comboBoxChannelMode.SelectedIndex = 0;
@@ -184,6 +184,7 @@ namespace ElogMtGraph
             {
                 case "PHX(15Hz)": return 15;
                 case "ADU(32Hz)": return 32;
+                case "AMT(120Hz)": return 120;
                 default: return -1;
             }
         }
@@ -197,6 +198,10 @@ namespace ElogMtGraph
             else if (freq == 32)
             {
                 this.comboBoxDataMode.Text = "ADU(32Hz)";
+            }
+            else if (freq == 120)
+            {
+                this.comboBoxDataMode.Text = "AMT(120Hz)";
             }
         }
 
@@ -261,6 +266,7 @@ namespace ElogMtGraph
                 {
                     case "MT": return 5;
                     case "DUAL": return 2;
+                    case "AMT": return 4;
                     default: return -1;
                 }
             }
@@ -275,6 +281,18 @@ namespace ElogMtGraph
             else if (channel == 2)
             {
                 this.comboBoxChannelMode.Text = "DUAL";
+            }
+            else if (channel == 4)
+            {
+                this.comboBoxChannelMode.Text = "AMT";
+                // AMT(120Hz)オプションを追加
+                if (!this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
+                {
+                    this.comboBoxDataMode.Items.Add("AMT(120Hz)");
+                }
+                this.comboBoxDataMode.Text = "AMT(120Hz)";
+                this.comboBoxDataMode.Enabled = false;
+
             }
         }
 
@@ -517,6 +535,26 @@ namespace ElogMtGraph
                 Console.WriteLine("comboBoxChannelMode_IndexChanged(): SelectedIndex == NULL!");
                 return;
             }
+
+            // AMTモード選択時はModeを120Hzに固定
+            if (combobox.Text == "AMT")
+            {
+                // AMT(120Hz)オプションを追加
+                if (!this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
+                {
+                    this.comboBoxDataMode.Items.Add("AMT(120Hz)");
+                }
+                this.comboBoxDataMode.Text = "AMT(120Hz)";
+                this.comboBoxDataMode.Enabled = false;
+            }
+            else if (this.comboBoxDataMode.Items.Contains("AMT(120Hz)"))
+            {
+                // AMT(120Hz)からの遷移の場合
+                this.comboBoxDataMode.Items.Remove("AMT(120Hz)");
+                this.comboBoxDataMode.Enabled = true;
+                this.comboBoxDataMode.Text = "PHX(15Hz)";
+            }
+
             this.dataFilename = "";
             Graph.MakePane(GetChannels);
         }

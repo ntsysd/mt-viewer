@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ElogMtGraph.Properties {
+namespace ElogView.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ElogMtGraph.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElogMtGraph.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElogView.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,6 +75,15 @@ namespace ElogMtGraph.Properties {
         internal static string _Error_no_32Hz_data {
             get {
                 return ResourceManager.GetString("_Error_no_32Hz_data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   120Hz data not found に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _Error_no_120Hz_data {
+            get {
+                return ResourceManager.GetString("_Error_no_120Hz_data", resourceCulture);
             }
         }
         

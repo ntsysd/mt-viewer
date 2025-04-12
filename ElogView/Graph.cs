@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public static class Graph
     {
@@ -33,14 +34,21 @@ namespace ElogMtGraph
         //		private static double range_h_save = -1;
         //		private static double range_y_save = -1;
 
+        // 15Hz, 32Hz用
         private const double VOLT_MAX_E = 2.5;
         private const double VOLT_MIN_E = -2.5;
         private const double VOLT_MAX_H = 10.0;
         private const double VOLT_MIN_H = -10.0;
-
-        // Volt/LSB 
         private const double VOLT_LSB_E = 2.5 / 8388608;
         private const double VOLT_LSB_H = 10.0 / 8388608;
+
+        // 120Hz用
+        private const double VOLT_MAX_E_120 = 2.048;
+        private const double VOLT_MIN_E_120 = -2.048;
+        private const double VOLT_MAX_H_120 = 4.096;
+        private const double VOLT_MIN_H_120 = -4.096;
+        private const double VOLT_LSB_E_120 = 2.048 / 8388608;
+        private const double VOLT_LSB_H_120 = 4.096 / 8388608;
 
         // 1=ファイルが読み込まれていない
         private static int firsttime;
@@ -241,20 +249,8 @@ namespace ElogMtGraph
                 {
                     // AD bits
                     // 変換係数get Volt/LSB
-                    double coef = VOLT_LSB_E;
-                    double volt_max = VOLT_MAX_E;
-                    double volt_min = VOLT_MIN_E;
-
-                    double range_y = range_ey;
-
-                    if (ch >= 2)
-                    {
-                        coef = VOLT_LSB_H;
-                        volt_max = VOLT_MAX_H;
-                        volt_min = VOLT_MIN_H;
-                        range_y = range_hy;
-                    }
-
+                    var (volt_max, volt_min, coef) = GetVoltageParameters(Program.FormMain.GetDataModeFreq(), ch >= 2);
+                    double range_y = ch >= 2 ? range_hy : range_ey;
 
                     Console.WriteLine("DrawGraph() CH={0} start, data_elngth={1}", ch, data_length);
                     GraphPane myp;
@@ -559,12 +555,60 @@ namespace ElogMtGraph
             data_length = (uint)(data_length / filter_length);
         }
 
+        private static bool ReadDataFiles(string[] targetPatterns, int channels, ref uint readData_length, bool interactive)
+        {
+            int fileCount = 0;
+            DirectoryInfo dir = new DirectoryInfo(input_dir);
+            FileInfo[] file_list = dir.GetFiles();
+            dataFileDirName = dir.Name;
 
+            foreach (FileInfo f in file_list)
+            {
+                if (f != null)
+                {
+                    // いずれかのパターンにマッチするかチェック
+                    foreach (string pattern in targetPatterns)
+                    {
+                        if (f.Name.IndexOf(pattern) >= 0)
+                        {
+                            Console.WriteLine("{0}", f.Name);
+                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
+                            {
+                                // 読み込みエラー
+                                if (interactive)
+                                {
+                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                return false;
+                            }
+                            else
+                            {
+                                fileCount++;
+                            }
+                            break;  // パターンにマッチしたのでinner loopを抜ける
+                        }
+                    }
+                }
+            }
 
-        /*
-         * ディレクトリから1日分のファイル読み込んでグラフ描画する
-		 * 一番最初のグラフ描画、横スクロールしたとき、ウィンドウサイズ変わったとき
-         */
+            if (fileCount == 0)
+            {
+                if (interactive)
+                {
+                    string errorMessage = "";
+                    // エラーメッセージの選択
+                    if (targetPatterns.Contains("_15Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_15Hz_data;
+                    else if (targetPatterns.Contains("_32Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_32Hz_data;
+                    else if (targetPatterns.Contains("_120Hz", StringComparer.Ordinal)) errorMessage = Properties.Resources._Error_no_120Hz_data;
+                    
+                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+
+            return true;
+        }
+
         public static bool ReadAndDraw(String input_dir0, int channels, bool first = false, bool interactive = true)
         {
             input_dir = input_dir0;
@@ -579,91 +623,39 @@ namespace ElogMtGraph
                 dataFileDirName = "";
                 return false;
             }
+
             // Graph Clear
             for (int ch = 0; ch < channels; ch++)
             {
                 myPane[ch].CurveList.Clear();
             }
             Program.FormMain.SetDescriptionBoxText(input_dir);
-            // ディレクトリからファイル一覧をget
-            Console.WriteLine("dir={0}", input_dir);
-            DirectoryInfo dir = new DirectoryInfo(input_dir);
-            FileInfo[] file_list = dir.GetFiles();
-            dataFileDirName = dir.Name;
 
             readData_length = 0;
-            if (Program.FormMain.GetDataModeFreq() == 15)
+            bool result = false;
+
+            // サンプリングレートに応じたファイル読み込み
+            int freq = Program.FormMain.GetDataModeFreq();
+            switch (freq)
             {
-                int fileCount = 0;
-                foreach (FileInfo f in file_list)
-                {
-                    if (f != null)
-                    {
-                        if (f.Name.IndexOf("_15Hz") >= 0)
-                        {
-                            Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
-                            {
-                                // 読み込みエラー
-                                if (interactive)
-                                {
-                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                Program.FormMain.SetYRangeValueLabel("");
-                                dataFileDirName = "";
-                                return false;
-                            }
-                            else
-                            {
-                                fileCount++;
-                            }
-                        }
-                    }
-                }
-                if (fileCount == 0)
-                {
+                case 15:
+                    result = ReadDataFiles(new[] { "_15Hz" }, channels, ref readData_length, interactive);
+                    break;
+                case 32:
+                    result = ReadDataFiles(new[] { "_32Hz" }, channels, ref readData_length, interactive);
+                    break;
+                case 120:
+                    result = ReadDataFiles(new[] { "_120Hz" }, channels, ref readData_length, interactive);
+                    break;
+                default:
                     if (interactive)
                     {
-                        MessageBox.Show(Properties.Resources._Error_no_15Hz_data, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"Unsupported sampling frequency: {freq}Hz", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     return false;
-                }
             }
-            if (Program.FormMain.GetDataModeFreq() == 32)
-            {
-                int fileCount = 0;
-                foreach (FileInfo f in file_list)
-                {
-                    if (f != null)
-                    {
-                        if (f.Name.IndexOf("_32Hz") >= 0)
-                        {
-                            Console.WriteLine("{0}", f.Name);
-                            if (ReadFile(f.FullName, channels, ref readData_length) < 0)
-                            {
-                                // 読み込みエラー
-                                if (interactive)
-                                {
-                                    MessageBox.Show(Properties.Resources._Error_Readng_File + "\n" + f.FullName, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                return false;
-                            }
-                            else
-                            {
-                                fileCount++;
-                            }
-                        }
-                    }
-                }
-                if (fileCount == 0)
-                {
-                    if (interactive)
-                    {
-                        MessageBox.Show(Properties.Resources._Error_no_32Hz_data, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    return false;
-                }
-            }
+
+            if (!result) return false;
 
             RefreshData();
 
@@ -697,7 +689,6 @@ namespace ElogMtGraph
 
             return true;
         }
-
 
         /*
 		 * ファイル読み込み　間引きあり
@@ -887,6 +878,23 @@ namespace ElogMtGraph
                 myMaster.SetLayout(g, PaneLayout.SingleColumn);
                 myMaster.AxisChange(g);
                 //g.Dispose();
+            }
+        }
+
+        // サンプリングレートに応じた変換係数とレンジを取得するメソッド
+        private static (double voltMax, double voltMin, double voltLsb) GetVoltageParameters(int freq, bool isMagnetic)
+        {
+            if (freq == 120)
+            {
+                return isMagnetic ? 
+                    (VOLT_MAX_H_120, VOLT_MIN_H_120, VOLT_LSB_H_120) : 
+                    (VOLT_MAX_E_120, VOLT_MIN_E_120, VOLT_LSB_E_120);
+            }
+            else // 15Hz, 32Hz
+            {
+                return isMagnetic ? 
+                    (VOLT_MAX_H, VOLT_MIN_H, VOLT_LSB_H) : 
+                    (VOLT_MAX_E, VOLT_MIN_E, VOLT_LSB_E);
             }
         }
     }
