@@ -1,9 +1,8 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElogMtGraph", "ElogMtGraph\ElogMtGraph.csproj", "{2989346E-D1CB-4202-BB1E-8A8BC565A10D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElogView", "ElogView\ElogView.csproj", "{2989346E-D1CB-4202-BB1E-8A8BC565A10D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,4 +21,4 @@ Global
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9993226-F6D3-4F0E-95E1-6199221A01AC}
 	EndGlobalSection
-EndGlobal
+EndGlobal 
