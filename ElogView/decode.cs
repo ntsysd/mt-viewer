@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public static class decode
     {

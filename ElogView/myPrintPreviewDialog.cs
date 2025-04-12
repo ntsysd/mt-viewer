@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public class myPrintPreviewDialog : System.Windows.Forms.PrintPreviewDialog
     {
