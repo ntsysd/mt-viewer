@@ -45,10 +45,10 @@ namespace ElogView
         // 120Hz用
         private const double VOLT_MAX_E_120 = 2.048;
         private const double VOLT_MIN_E_120 = -2.048;
-        private const double VOLT_MAX_H_120 = 8.192;
-        private const double VOLT_MIN_H_120 = -8.192;
+        private const double VOLT_MAX_H_120 = 4.096;
+        private const double VOLT_MIN_H_120 = -4.096;
         private const double VOLT_LSB_E_120 = 2.048 / 8388608;
-        private const double VOLT_LSB_H_120 = 8.192 / 8388608;
+        private const double VOLT_LSB_H_120 = 4.096 / 8388608;
 
         // 1=ファイルが読み込まれていない
         private static int firsttime;
