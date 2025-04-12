@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public static class UnitUtils
     {

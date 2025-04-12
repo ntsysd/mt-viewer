@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public partial class MainWindow : Form
     {

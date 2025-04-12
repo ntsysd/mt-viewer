@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     static class Program
     {

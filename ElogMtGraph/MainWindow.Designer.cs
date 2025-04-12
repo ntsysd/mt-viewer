@@ -1,4 +1,4 @@
-﻿namespace ElogMtGraph
+﻿namespace ElogView
 {
     partial class MainWindow
     {

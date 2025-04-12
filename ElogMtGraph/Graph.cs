@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 
-namespace ElogMtGraph
+namespace ElogView
 {
     public static class Graph
     {
