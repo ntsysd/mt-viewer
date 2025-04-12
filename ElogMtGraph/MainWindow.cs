@@ -26,7 +26,7 @@ namespace ElogMtGraph
         {
             InitializeComponent();
 
-            Text = "ELOG-MT AUD/PHX Data Viewer " + Application.ProductVersion;
+            Text = "ELOG Series Data Viewer " + Application.ProductVersion;
 
             comboBoxDataMode.SelectedIndex = 0;
             comboBoxChannelMode.SelectedIndex = 0;
