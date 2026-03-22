@@ -44,8 +44,17 @@ namespace ElogView
                     while (remain > 0)
                     {
                         // 1block読み込んでデコード
-                        int readSize = fs.Read(buf, 0, ONEBLOCK);
-                        remain -= readSize;
+                        // fs.Read()は要求バイト数より少なく返す場合があるため
+                        // (外部SSD等でshort read発生)、ループで確実に読み切る
+                        int totalRead = 0;
+                        while (totalRead < ONEBLOCK && remain > 0)
+                        {
+                            int readSize = fs.Read(buf, totalRead, ONEBLOCK - totalRead);
+                            if (readSize == 0) break; // EOF
+                            totalRead += readSize;
+                        }
+                        remain -= totalRead;
+                        if (totalRead < ONEBLOCK) break; // 不完全ブロックはスキップ
                         DecodeBlock(channels, ref buf, ref timestamp0, ref data0);
                         // 間引く
                         for (int i = 0; i < samp_freq; i++)
