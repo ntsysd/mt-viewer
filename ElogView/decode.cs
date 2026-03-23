@@ -7,7 +7,6 @@ namespace ElogView
     {
         private const int TIME_LEN = 3; // 1block先頭のタイムスタンプ(h:m:s)データ長
         private const int DATA_LEN = 3; // 1sample 1chデータ長
-        static int samp_freq = 0;
 
         static decode()
         {
@@ -25,7 +24,7 @@ namespace ElogView
 		 */
         public static int ReadFile(string filepath, int channels, ref DateTime[] timestamp, ref int[,] data, ref UInt32 out_cnt, DateTime ts, DateTime te, int mabiki)
         {
-            samp_freq = Program.FormMain.GetDataModeFreq();
+            int samp_freq = Program.FormMain.GetDataModeFreq();
             int ONEBLOCK = (TIME_LEN + (DATA_LEN * channels) * samp_freq); // 1block(1sec)データ長
             DateTime[] timestamp0 = new DateTime[samp_freq];
             int[,] data0 = new int[samp_freq, channels];
@@ -37,8 +36,8 @@ namespace ElogView
                 {
                     byte[] buf = new byte[ONEBLOCK];
                     fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
-                    int fileSize = (int)fs.Length;
-                    int remain = fileSize;
+                    long fileSize = fs.Length;
+                    long remain = fileSize;
                     int in_cnt = 0; // 間引き用カウンタ
 
                     while (remain > 0)
@@ -55,7 +54,10 @@ namespace ElogView
                         }
                         remain -= totalRead;
                         if (totalRead < ONEBLOCK) break; // 不完全ブロックはスキップ
-                        DecodeBlock(channels, ref buf, ref timestamp0, ref data0);
+                        if (DecodeBlock(samp_freq, channels, ref buf, ref timestamp0, ref data0) < 0)
+                        {
+                            continue; // タイムスタンプ異常のブロックはスキップ
+                        }
                         // 間引く
                         for (int i = 0; i < samp_freq; i++)
                         {
@@ -96,8 +98,9 @@ namespace ElogView
 
         /**
 		 * 1block(1sec)データをデコード
+		 * return 0=OK -1=タイムスタンプ異常
 		 */
-        private static int DecodeBlock(int channels, ref byte[] buf, ref DateTime[] timestamp, ref int[,] data)
+        private static int DecodeBlock(int samp_freq, int channels, ref byte[] buf, ref DateTime[] timestamp, ref int[,] data)
         {
             ulong index = 0;
             int msec;
@@ -106,6 +109,13 @@ namespace ElogView
             h = buf[index++];
             m = buf[index++];
             s = buf[index++];
+
+            // タイムスタンプ値域チェック
+            if (h > 23 || m > 59 || s > 59)
+            {
+                Console.WriteLine("DecodeBlock(): invalid timestamp h={0} m={1} s={2}", h, m, s);
+                return -1;
+            }
 
             for (int i = 0; i < samp_freq; i++)
             {
@@ -116,7 +126,7 @@ namespace ElogView
 
                 for (int ch = 0; ch < channels; ch++)
                 {
-                    data[i, ch] = Byte3_to_int32(ref buf, index);  // 電圧に変換するか？
+                    data[i, ch] = Byte3_to_int32(ref buf, index);
                     index += DATA_LEN;
                     //					Console.Write(",{0}", data[i, ch].ToString("D8"));
                 }
@@ -133,22 +143,13 @@ namespace ElogView
 		 */
         private static Int32 Byte3_to_int32(ref byte[] src0, ulong ofs)
         {
-            byte[] src = new byte[4];
-            src[0] = src0[ofs + 0];
-            src[1] = src0[ofs + 1];
-            src[2] = src0[ofs + 2];
-
-            if ((src[2] & 0x80) != 0)
+            int val = src0[ofs] | (src0[ofs + 1] << 8) | (src0[ofs + 2] << 16);
+            if ((val & 0x800000) != 0)
             {
-                src[3] = 0xFF;
+                val |= unchecked((int)0xFF000000);
             }
-            else
-            {
-                src[3] = 0;
-            }
-            return BitConverter.ToInt32(src, 0);
+            return val;
         }
 
     }
 }
-

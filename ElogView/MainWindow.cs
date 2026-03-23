@@ -90,11 +90,6 @@ namespace ElogView
             };
         }
 
-        private void ComboBoxChannelMode_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetZedGraph(ref ZedGraph.ZedGraphControl myZedGraphCtrl)
         {
             tabPage1.Controls.Clear();
@@ -709,24 +704,43 @@ namespace ElogView
             {
                 return;
             }
-            using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            try
             {
+                using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+                {
+                    var xDocument = System.Xml.Linq.XDocument.Load(stream);
+                    var settings = xDocument.Element("Settings");
+                    if (settings == null) return;
 
-                var xDocument = System.Xml.Linq.XDocument.Load(stream);
+                    var sizeWidth = settings.Element("Size")?.Element("Width")?.Value;
+                    var sizeHeight = settings.Element("Size")?.Element("Height")?.Value;
+                    if (sizeWidth != null && sizeHeight != null)
+                    {
+                        this.Size = new Size(int.Parse(sizeWidth), int.Parse(sizeHeight));
+                    }
 
-                this.Size = new Size(
-                    int.Parse(xDocument.Element("Settings").Element("Size").Element("Width").Value),
-                    int.Parse(xDocument.Element("Settings").Element("Size").Element("Height").Value));
+                    var view = settings.Element("View");
+                    if (view != null)
+                    {
+                        SetDetrendEnable(view.Element("Detrend")?.Value == "On", false);
+                        SetAverageFilterEnable(view.Element("AveFilter")?.Value == "On", false);
+                        var mode = view.Element("Mode")?.Value;
+                        if (mode != null) SetComboDataModeFreq(int.Parse(mode));
+                        var period = view.Element("Period")?.Value;
+                        if (period != null) SetComboPeriod(double.Parse(period));
+                        SetComboY(this.comboBoxEY, view.Element("EY")?.Value);
+                        SetComboY(this.comboBoxHY, view.Element("HY")?.Value);
+                    }
 
-                SetDetrendEnable(xDocument.Element("Settings").Element("View").Element("Detrend").Value == "On", false);
-                SetAverageFilterEnable(xDocument.Element("Settings").Element("View").Element("AveFilter").Value == "On", false);
-                SetComboDataModeFreq(int.Parse(xDocument.Element("Settings").Element("View").Element("Mode").Value));
-                SetComboPeriod(double.Parse(xDocument.Element("Settings").Element("View").Element("Period").Value));
-                SetComboY(this.comboBoxEY, xDocument.Element("Settings").Element("View").Element("EY")?.Value);
-                SetComboY(this.comboBoxHY, xDocument.Element("Settings").Element("View").Element("HY")?.Value);
-                SetComboBoxChannelMode(int.Parse(xDocument.Element("Settings").Element("ChannelMode")?.Value));
-                this.dataFilename = xDocument.Element("Settings").Element("DataFilename").Value;
-                Console.WriteLine(this.dataFilename);
+                    var channelMode = settings.Element("ChannelMode")?.Value;
+                    if (channelMode != null) SetComboBoxChannelMode(int.Parse(channelMode));
+                    this.dataFilename = settings.Element("DataFilename")?.Value ?? "";
+                    Console.WriteLine(this.dataFilename);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write("LoadSettings(): " + e.Message + "\n");
             }
         }
 

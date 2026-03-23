@@ -70,11 +70,12 @@ namespace ElogView
 				 */
                 //				timestamp = new DateTime[2560*10*24];
                 //				data = new int[2560*10*24, Constants.CHNUM];
-                // 間引きを無くしたので15Hzデータ1日分のメモリを確保する
-                timestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                data = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
-                readTimestamp = new DateTime[86400 * Constants.SAMP_FREQ + 1024];
-                readData = new int[86400 * Constants.SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
+                // 最大サンプリングレート(120Hz)の1日分のメモリを確保する
+                const int MAX_SAMP_FREQ = 120;
+                timestamp = new DateTime[86400 * MAX_SAMP_FREQ + 1024];
+                data = new int[86400 * MAX_SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
+                readTimestamp = new DateTime[86400 * MAX_SAMP_FREQ + 1024];
+                readData = new int[86400 * MAX_SAMP_FREQ + 1024, MainWindow.MAX_CHNUM];
 
                 firsttime = 1;
                 //				input_dir = "";
@@ -165,7 +166,6 @@ namespace ElogView
                 if (range_t <= 0) return;
                 if (range_hy <= 0 && range_hy != -1.0) return;
                 if (range_ey <= 0 && range_ey != -1.0) return;
-                if (data_length < 0) return;
                 // 描画中ならばreturn
                 if (mutex) return;
                 mutex = true;
@@ -286,8 +286,7 @@ namespace ElogView
                             for (int i = 0; i < data_length; ++i)
                             {
 
-                                double x = (double)new XDate(timestamp[i].Year, timestamp[i].Month, timestamp[i].Day,
-                                                                    timestamp[i].Hour, timestamp[i].Minute, timestamp[i].Second, timestamp[i].Millisecond);
+                                double x = timestamp[i].ToOADate();
                                 double y = (double)data[i, ch] * coef;
                                 list.Add(x, y);
                                 yavg += y;
@@ -340,25 +339,21 @@ namespace ElogView
                                 //var maxdata = new PointPair(list[maxindex]);
                                 if (minindex < maxindex)
                                 {
-                                    x = (double)new XDate(timestamp[minindex].Year, timestamp[minindex].Month, timestamp[minindex].Day,
-                                                                    timestamp[minindex].Hour, timestamp[minindex].Minute, timestamp[minindex].Second, timestamp[minindex].Millisecond);
+                                    x = timestamp[minindex].ToOADate();
                                     y = (double)data[minindex, ch] * coef;
                                     list.Add(x, y);
 
-                                    x = (double)new XDate(timestamp[maxindex].Year, timestamp[maxindex].Month, timestamp[maxindex].Day,
-                                                                    timestamp[maxindex].Hour, timestamp[maxindex].Minute, timestamp[maxindex].Second, timestamp[maxindex].Millisecond);
+                                    x = timestamp[maxindex].ToOADate();
                                     y = (double)data[maxindex, ch] * coef;
                                     list.Add(x, y);
                                 }
                                 else
                                 {
-                                    x = (double)new XDate(timestamp[maxindex].Year, timestamp[maxindex].Month, timestamp[maxindex].Day,
-                                                                    timestamp[maxindex].Hour, timestamp[maxindex].Minute, timestamp[maxindex].Second, timestamp[maxindex].Millisecond);
+                                    x = timestamp[maxindex].ToOADate();
                                     y = (double)data[maxindex, ch] * coef;
                                     list.Add(x, y);
 
-                                    x = (double)new XDate(timestamp[minindex].Year, timestamp[minindex].Month, timestamp[minindex].Day,
-                                                                    timestamp[minindex].Hour, timestamp[minindex].Minute, timestamp[minindex].Second, timestamp[minindex].Millisecond);
+                                    x = timestamp[minindex].ToOADate();
                                     y = (double)data[minindex, ch] * coef;
                                     list.Add(x, y);
                                 }
@@ -508,9 +503,16 @@ namespace ElogView
 		 */
         public static void RefreshData()
         {
-            Array.Copy(readData, data, readData.Length);
-            Array.Copy(readTimestamp, timestamp, readTimestamp.Length);
             data_length = readData_length;
+            // 読み込み済みデータ分だけコピー（全配列コピーを回避）
+            int copyLen = (int)readData_length;
+            if (copyLen > 0)
+            {
+                Array.Copy(readTimestamp, timestamp, copyLen);
+                // int[,]は1次元としてコピー: copyLen * 列数
+                int cols = readData.GetLength(1);
+                Buffer.BlockCopy(readData, 0, data, 0, copyLen * cols * sizeof(int));
+            }
         }
 
         /*
